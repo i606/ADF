@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_ej5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDW",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlDWTable",
+		"typeProperties": {
+			"tableName": "[dbo].[Test_table]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

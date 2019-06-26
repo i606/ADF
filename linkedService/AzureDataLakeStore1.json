@@ -1,0 +1,15 @@
+{
+	"name": "AzureDataLakeStore1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1",
+			"servicePrincipalId": "98e4ccaf-db1e-4817-88d3-c5dd2eafc1af",
+			"tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+			"subscriptionId": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef",
+			"resourceGroupName": "jijo",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkxFR0VOREFSWURGVjJfOGNkZmExN2EtNTE0Zi00ZjhkLWIxNWYtNjI5NzBmZjAwOTJlIg0KfQ=="
+		}
+	}
+}

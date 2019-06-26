@@ -1,0 +1,98 @@
+{
+	"name": "SourceDataset_qr7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServer1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "FileShare",
+		"structure": [
+			{
+				"name": "SalesOrganization",
+				"type": "String"
+			},
+			{
+				"name": "Purchaseordernumber",
+				"type": "String"
+			},
+			{
+				"name": "SalesDocument",
+				"type": "Int64"
+			},
+			{
+				"name": "Delivery",
+				"type": "String"
+			},
+			{
+				"name": "BillingDate",
+				"type": "String"
+			},
+			{
+				"name": "Material",
+				"type": "Int64"
+			},
+			{
+				"name": "MaterialDescription",
+				"type": "String"
+			},
+			{
+				"name": "Cumul.confirmedqty",
+				"type": "Int64"
+			},
+			{
+				"name": "ListpricePerSalesUOM",
+				"type": "Decimal"
+			},
+			{
+				"name": "PlandGdsMvmntDate",
+				"type": "String"
+			},
+			{
+				"name": "Loc.Sal.Regions1",
+				"type": "String"
+			},
+			{
+				"name": "Loc.Sal.Regions1Name",
+				"type": "String"
+			},
+			{
+				"name": "Loc.Sal.Regions2",
+				"type": "String"
+			},
+			{
+				"name": "Loc.Sal.Regions2Name",
+				"type": "String"
+			},
+			{
+				"name": "Loc.Sal.Regions3",
+				"type": "String"
+			},
+			{
+				"name": "Loc.Sal.Regions3Name",
+				"type": "String"
+			},
+			{
+				"name": "Loc.Sal.Regions4",
+				"type": "String"
+			},
+			{
+				"name": "Loc.Sal.Regions4Name",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"folderPath": ""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

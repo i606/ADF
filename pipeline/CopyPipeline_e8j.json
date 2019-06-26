@@ -1,0 +1,25 @@
+{
+	"name": "CopyPipeline_e8j",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyPipeline_eqt",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"Starttime": {
+				"type": "string",
+				"defaultValue": "@trigger().outputs.windowStartTime"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

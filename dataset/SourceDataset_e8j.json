@@ -1,0 +1,20 @@
+{
+	"name": "SourceDataset_e8j",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDW",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"CompanyCode": {
+				"type": "String",
+				"defaultValue": "MS"
+			}
+		},
+		"type": "AzureSqlDWTable",
+		"typeProperties": {
+			"tableName": "[dbo].[Test_table]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
