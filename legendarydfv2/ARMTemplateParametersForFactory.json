@@ -1,0 +1,129 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "legendarydfv2"
+		},
+		"integrationRuntime_SH-IR": {
+			"value": "SH-IR"
+		},
+		"integrationRuntime_integrationRuntime-Azure": {
+			"value": "integrationRuntime-Azure"
+		},
+		"integrationRuntime_integrationRuntime1": {
+			"value": "integrationRuntime1"
+		},
+		"integrationRuntime_integrationRuntime2": {
+			"value": "integrationRuntime2"
+		},
+		"AzureDataLakeStore1_servicePrincipalKey": {
+			"value": ""
+		},
+		"AzureSqlDW_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureStorage2_connectionString": {
+			"value": ""
+		},
+		"FileServer1_password": {
+			"value": ""
+		},
+		"linkedService_spark_clusterPassword": {
+			"value": ""
+		},
+		"linkedService_spark_clusterSshPassword": {
+			"value": ""
+		},
+		"linkedService_spark_servicePrincipalKey": {
+			"value": ""
+		},
+		"AzureBlob1_properties_typeProperties_fileName": {
+			"value": "1.txt"
+		},
+		"AzureBlob1_properties_typeProperties_folderPath": {
+			"value": "legendarycontainer"
+		},
+		"DestinationDataset_e8j_properties_typeProperties_fileName": {
+			"value": "@concat@('CopyPipeline_eqt').TriggerTime)"
+		},
+		"DestinationDataset_e8j_properties_typeProperties_folderPath": {
+			"value": "Test"
+		},
+		"DestinationDataset_eqt_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"DestinationDataset_eqt_properties_typeProperties_folderPath": {
+			"value": "Test123"
+		},
+		"SourceDataset_eqt_properties_typeProperties_fileName": {
+			"value": "1.csv"
+		},
+		"SourceDataset_eqt_properties_typeProperties_folderPath": {
+			"value": ""
+		},
+		"SourceDataset_qr7_properties_typeProperties_folderPath": {
+			"value": ""
+		},
+		"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
+			"value": "storage"
+		},
+		"AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeStore_properties_typeProperties_subscriptionId": {
+			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
+		},
+		"AzureDataLakeStore_properties_typeProperties_resourceGroupName": {
+			"value": "jijo"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_servicePrincipalId": {
+			"value": "98e4ccaf-db1e-4817-88d3-c5dd2eafc1af"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"value": "jijo"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://Legendary.vault.azure.net/"
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"value": "\\\\legendaryfilestorage.file.core.windows.net\\chutiaji"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"value": "legendaryfilestorage"
+		},
+		"linkedService_spark_properties_typeProperties_hostSubscriptionId": {
+			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
+		},
+		"linkedService_spark_properties_typeProperties_clusterResourceGroup": {
+			"value": "jijo"
+		},
+		"linkedService_spark_properties_typeProperties_servicePrincipalId": {
+			"value": "legendaryspn"
+		},
+		"linkedService_spark_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"Tumbling_properties_pipeline_parameters_Starttime": {
+			"value": "1"
+		},
+		"trigger1_properties_pipeline_parameters_SliceStart": {
+			"value": "1"
+		}
+	}
+}
