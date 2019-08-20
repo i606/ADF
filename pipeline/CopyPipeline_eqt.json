@@ -33,7 +33,10 @@
 				"outputs": [
 					{
 						"referenceName": "DestinationDataset_e8j",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"test_param": "@pipeline('CopyPipeline_eqt').TriggerTime"
+						}
 					}
 				]
 			}
