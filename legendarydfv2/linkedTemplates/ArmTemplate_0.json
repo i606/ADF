@@ -464,7 +464,7 @@
 				"parameters": {
 					"test_param": {
 						"type": "string",
-						"defaultValue": "@pipeline('CopyPipeline_eqt').TriggerTime"
+						"defaultValue": "@pipeline('Copy_eqt').TriggerTime"
 					}
 				},
 				"annotations": [],
