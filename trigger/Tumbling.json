@@ -1,7 +1,8 @@
 {
 	"name": "Tumbling",
 	"properties": {
-		"runtimeState": "Started",
+		"annotations": [],
+		"runtimeState": "Stopped",
 		"pipeline": {
 			"pipelineReference": {
 				"referenceName": "CopyPipeline_e8j",
@@ -20,7 +21,8 @@
 			"maxConcurrency": 50,
 			"retryPolicy": {
 				"intervalInSeconds": 30
-			}
+			},
+			"dependsOn": []
 		}
 	}
 }
