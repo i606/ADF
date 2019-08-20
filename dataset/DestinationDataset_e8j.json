@@ -5,12 +5,16 @@
 			"referenceName": "AzureDataLakeStore1",
 			"type": "LinkedServiceReference"
 		},
+		"annotations": [],
 		"type": "AzureDataLakeStoreFile",
 		"typeProperties": {
 			"format": {
 				"type": "ParquetFormat"
 			},
-			"fileName": "1",
+			"fileName": {
+				"value": "@concat@('CopyPipeline_eqt').TriggerTime)",
+				"type": "Expression"
+			},
 			"folderPath": "Test"
 		}
 	},
