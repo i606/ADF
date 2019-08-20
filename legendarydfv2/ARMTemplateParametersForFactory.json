@@ -48,7 +48,7 @@
 			"value": "legendarycontainer"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
-			"value": "@concat@('CopyPipeline_eqt').TriggerTime)"
+			"value": "@dataset().test_param"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_folderPath": {
 			"value": "Test"

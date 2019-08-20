@@ -105,7 +105,7 @@
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "@concat@('CopyPipeline_eqt').TriggerTime)"
+			"defaultValue": "@dataset().test_param"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_folderPath": {
 			"type": "string",
@@ -460,6 +460,12 @@
 				"linkedServiceName": {
 					"referenceName": "AzureDataLakeStore1",
 					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"test_param": {
+						"type": "string",
+						"defaultValue": "@pipeline('CopyPipeline_eqt').TriggerTime"
+					}
 				},
 				"annotations": [],
 				"type": "AzureDataLakeStoreFile",

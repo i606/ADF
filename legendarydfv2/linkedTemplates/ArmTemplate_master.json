@@ -69,7 +69,7 @@
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "@concat@('CopyPipeline_eqt').TriggerTime)"
+			"defaultValue": "@dataset().test_param"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_folderPath": {
 			"type": "string",
