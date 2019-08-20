@@ -5,12 +5,14 @@
 			{
 				"name": "Copy_eqt",
 				"type": "Copy",
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false
 				},
+				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "FileSystemSource",
@@ -41,7 +43,8 @@
 				"type": "string",
 				"defaultValue": "@pipeline('CopyPipeline_e8j').TriggerTime"
 			}
-		}
+		},
+		"annotations": []
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

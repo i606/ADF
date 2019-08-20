@@ -5,6 +5,12 @@
 			"referenceName": "AzureDataLakeStore1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"test_param": {
+				"type": "string",
+				"defaultValue": "@pipeline('CopyPipeline_eqt').TriggerTime"
+			}
+		},
 		"annotations": [],
 		"type": "AzureDataLakeStoreFile",
 		"typeProperties": {
