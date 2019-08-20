@@ -5,6 +5,7 @@
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"annotations": [],
 		"type": "AzureBlob",
 		"typeProperties": {
 			"format": {
@@ -16,7 +17,10 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "Data Factory India.xlsx",
+			"fileName": {
+				"value": "@('pipeline1').TriggerTime",
+				"type": "Expression"
+			},
 			"folderPath": "legendarycontainer"
 		}
 	}
