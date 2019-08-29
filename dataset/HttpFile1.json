@@ -1,0 +1,17 @@
+{
+	"name": "HttpFile1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "HttpFile",
+		"typeProperties": {
+			"format": {
+				"type": "JsonFormat"
+			},
+			"requestMethod": "GET"
+		}
+	}
+}
