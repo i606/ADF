@@ -13,7 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "legendarycontainer/odin_fullrefresh_daily.json"
+					},
+					{
+						"name": "Destination",
+						"value": "legendarycontainer/"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "BlobSource",
