@@ -65,7 +65,7 @@
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "legendary12-2018-10-02t07-17-24-186z/ams"
+			"defaultValue": "legendary12-2018-10-02t07-17-24-186z/atshistory"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"type": "string",
