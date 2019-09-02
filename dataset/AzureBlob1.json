@@ -48,9 +48,6 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"compression": {
-				"type": "GZip"
-			},
 			"fileName": "",
 			"folderPath": "legendary12-2018-10-02t07-17-24-186z"
 		}
