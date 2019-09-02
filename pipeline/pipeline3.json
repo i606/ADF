@@ -19,7 +19,7 @@
 						"referenceName": "AzureBlob1",
 						"type": "DatasetReference"
 					},
-					"enableLogging": true
+					"enableLogging": false
 				}
 			}
 		],
