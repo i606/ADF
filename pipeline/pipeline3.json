@@ -19,7 +19,8 @@
 						"referenceName": "AzureBlob1",
 						"type": "DatasetReference"
 					},
-					"enableLogging": false
+					"enableLogging": false,
+					"recursive": true
 				}
 			}
 		],
