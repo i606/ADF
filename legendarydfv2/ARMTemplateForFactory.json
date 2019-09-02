@@ -61,11 +61,11 @@
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "1.txt"
+			"defaultValue": ""
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "legendarycontainer"
+			"defaultValue": "legendary12-2018-10-02t07-17-24-186z/ams"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"type": "string",
@@ -393,8 +393,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy Data1",
-						"type": "Copy",
+						"name": "Delete1",
+						"type": "Delete",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -405,41 +405,13 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "BlobSource",
-								"recursive": true
-							},
-							"sink": {
-								"type": "BlobSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"columnMappings": {
-									"Prop_0": "Prop_0",
-									"Prop_1": "Prop_1",
-									"Prop_2": "Prop_2",
-									"Prop_3": "Prop_3",
-									"Prop_4": "Prop_4",
-									"Prop_5": "Prop_5",
-									"Prop_6": "Prop_6"
-								}
-							}
-						},
-						"inputs": [
-							{
+							"dataset": {
 								"referenceName": "AzureBlob1",
 								"type": "DatasetReference",
 								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureBlob1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+							},
+							"enableLogging": false
+						}
 					}
 				],
 				"annotations": []
@@ -499,9 +471,6 @@
 						"treatEmptyAsNull": true,
 						"skipLineCount": 0,
 						"firstRowAsHeader": false
-					},
-					"compression": {
-						"type": "GZip"
 					},
 					"fileName": "[parameters('AzureBlob1_properties_typeProperties_fileName')]",
 					"folderPath": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"

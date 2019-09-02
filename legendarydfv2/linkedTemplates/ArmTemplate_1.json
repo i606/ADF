@@ -509,8 +509,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy Data1",
-						"type": "Copy",
+						"name": "Delete1",
+						"type": "Delete",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -521,41 +521,13 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "BlobSource",
-								"recursive": true
-							},
-							"sink": {
-								"type": "BlobSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"columnMappings": {
-									"Prop_0": "Prop_0",
-									"Prop_1": "Prop_1",
-									"Prop_2": "Prop_2",
-									"Prop_3": "Prop_3",
-									"Prop_4": "Prop_4",
-									"Prop_5": "Prop_5",
-									"Prop_6": "Prop_6"
-								}
-							}
-						},
-						"inputs": [
-							{
+							"dataset": {
 								"referenceName": "AzureBlob1",
 								"type": "DatasetReference",
 								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureBlob1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+							},
+							"enableLogging": false
+						}
 					}
 				],
 				"annotations": []
