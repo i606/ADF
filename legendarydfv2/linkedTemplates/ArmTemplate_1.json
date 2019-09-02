@@ -526,7 +526,8 @@
 								"type": "DatasetReference",
 								"parameters": {}
 							},
-							"enableLogging": false
+							"enableLogging": false,
+							"recursive": true
 						}
 					}
 				],
