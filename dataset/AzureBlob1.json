@@ -17,10 +17,6 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": {
-				"value": "@('pipeline1').TriggerTime",
-				"type": "Expression"
-			},
 			"folderPath": "legendarycontainer"
 		}
 	}
