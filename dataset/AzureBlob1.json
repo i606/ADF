@@ -5,6 +5,7 @@
 			"referenceName": "AzureStorage2",
 			"type": "LinkedServiceReference"
 		},
+		"annotations": [],
 		"type": "AzureBlob",
 		"structure": [
 			{
@@ -50,8 +51,8 @@
 			"compression": {
 				"type": "GZip"
 			},
-			"fileName": "1.txt",
-			"folderPath": "legendarycontainer"
+			"fileName": "",
+			"folderPath": "legendary12-2018-10-02t07-17-24-186z"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
