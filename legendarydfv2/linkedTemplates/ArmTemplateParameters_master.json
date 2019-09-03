@@ -42,10 +42,10 @@
 			"value": ""
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
-			"value": "*"
+			"value": "\"Data Factory India\".*"
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
-			"value": "legendary12-2018-10-02t07-17-24-186z/amshbase"
+			"value": "legendarycontainer"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"value": "@dataset().test_param"

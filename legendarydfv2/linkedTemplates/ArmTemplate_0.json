@@ -97,11 +97,11 @@
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "*"
+			"defaultValue": "\"Data Factory India\".*"
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "legendary12-2018-10-02t07-17-24-186z/amshbase"
+			"defaultValue": "legendarycontainer"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"type": "string",

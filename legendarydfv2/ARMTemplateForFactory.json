@@ -61,11 +61,11 @@
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "*"
+			"defaultValue": "\"Data Factory India\".*"
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "legendary12-2018-10-02t07-17-24-186z/amshbase"
+			"defaultValue": "legendarycontainer"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"type": "string",
@@ -228,29 +228,27 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "FileSystemSource",
+								"type": "BlobSource",
 								"recursive": true
 							},
 							"sink": {
-								"type": "AzureDataLakeStoreSink"
+								"type": "BlobSink"
 							},
 							"enableStaging": false,
 							"dataIntegrationUnits": 0
 						},
 						"inputs": [
 							{
-								"referenceName": "SourceDataset_eqt",
+								"referenceName": "AzureBlob1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "DestinationDataset_e8j",
+								"referenceName": "AzureBlob1",
 								"type": "DatasetReference",
-								"parameters": {
-									"test_param": "@pipeline('Copy_eqt').TriggerTime"
-								}
+								"parameters": {}
 							}
 						]
 					}
@@ -264,8 +262,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_eqt')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_e8j')]"
+				"[concat(variables('factoryId'), '/datasets/AzureBlob1')]"
 			]
 		},
 		{

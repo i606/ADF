@@ -347,29 +347,27 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "FileSystemSource",
+								"type": "BlobSource",
 								"recursive": true
 							},
 							"sink": {
-								"type": "AzureDataLakeStoreSink"
+								"type": "BlobSink"
 							},
 							"enableStaging": false,
 							"dataIntegrationUnits": 0
 						},
 						"inputs": [
 							{
-								"referenceName": "SourceDataset_eqt",
+								"referenceName": "AzureBlob1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "DestinationDataset_e8j",
+								"referenceName": "AzureBlob1",
 								"type": "DatasetReference",
-								"parameters": {
-									"test_param": "@pipeline('Copy_eqt').TriggerTime"
-								}
+								"parameters": {}
 							}
 						]
 					}
@@ -382,9 +380,7 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_eqt')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
