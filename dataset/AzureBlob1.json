@@ -48,8 +48,8 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "*",
-			"folderPath": "legendary12-2018-10-02t07-17-24-186z/amshbase"
+			"fileName": "\"Data Factory India\".*",
+			"folderPath": "legendarycontainer"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

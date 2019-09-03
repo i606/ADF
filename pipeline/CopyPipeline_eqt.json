@@ -15,7 +15,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "FileSystemSource",
+						"type": "BlobSource",
 						"recursive": true
 					},
 					"sink": {
@@ -26,7 +26,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_eqt",
+						"referenceName": "AzureBlob1",
 						"type": "DatasetReference"
 					}
 				],
