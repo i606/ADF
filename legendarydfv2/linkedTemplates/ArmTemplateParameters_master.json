@@ -17,6 +17,9 @@
 		"integrationRuntime_integrationRuntime2": {
 			"value": "integrationRuntime2"
 		},
+		"AzureBlobStorage2_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStore1_servicePrincipalKey": {
 			"value": ""
 		},
