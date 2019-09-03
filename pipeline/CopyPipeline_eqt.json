@@ -19,7 +19,15 @@
 						"recursive": true
 					},
 					"sink": {
-						"type": "BlobSink"
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
 					"enableStaging": false,
 					"dataIntegrationUnits": 0
@@ -32,7 +40,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureBlob1",
+						"referenceName": "DelimitedText2",
 						"type": "DatasetReference"
 					}
 				]
