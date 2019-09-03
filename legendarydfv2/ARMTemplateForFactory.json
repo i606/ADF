@@ -65,7 +65,7 @@
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "Data Factory India.*"
+			"defaultValue": "odin_fullrefresh_daily.json"
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
@@ -298,11 +298,11 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "SqlSource",
-								"sqlReaderQuery": "select * from persons;"
+								"type": "BlobSource",
+								"recursive": true
 							},
 							"dataset": {
-								"referenceName": "AzureSqlTable1",
+								"referenceName": "AzureBlob1",
 								"type": "DatasetReference",
 								"parameters": {}
 							},
@@ -393,6 +393,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/AzureBlob1')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
 			]
 		},

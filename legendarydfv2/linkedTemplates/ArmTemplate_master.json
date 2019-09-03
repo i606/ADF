@@ -65,7 +65,7 @@
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "Data Factory India.*"
+			"defaultValue": "odin_fullrefresh_daily.json"
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
