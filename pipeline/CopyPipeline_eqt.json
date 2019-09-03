@@ -19,7 +19,7 @@
 						"recursive": true
 					},
 					"sink": {
-						"type": "AzureDataLakeStoreSink"
+						"type": "BlobSink"
 					},
 					"enableStaging": false,
 					"dataIntegrationUnits": 0
@@ -32,11 +32,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_e8j",
-						"type": "DatasetReference",
-						"parameters": {
-							"test_param": "@pipeline('Copy_eqt').TriggerTime"
-						}
+						"referenceName": "AzureBlob1",
+						"type": "DatasetReference"
 					}
 				]
 			}
