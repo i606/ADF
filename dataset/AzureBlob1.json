@@ -2,7 +2,7 @@
 	"name": "AzureBlob1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "AzureBlobStorage2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -48,8 +48,8 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "\"Data Factory India\".*",
-			"folderPath": "legendarycontainer"
+			"fileName": "",
+			"folderPath": "legendary12-2018-10-02t07-17-24-186z"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
