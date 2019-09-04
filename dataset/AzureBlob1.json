@@ -48,8 +48,8 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "odin_fullrefresh_daily.json",
-			"folderPath": "legendarycontainer"
+			"fileName": "TF.TGL.*",
+			"folderPath": "legendarycontainer/empty"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
