@@ -13,7 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "AzureBlob1",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"itemName"
+					]
+				}
 			}
 		],
 		"annotations": []
