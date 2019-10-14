@@ -48,8 +48,10 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "TF.TGL.*",
-			"folderPath": "empty"
+			"fileName": "",
+			"folderPath": "legendarycontainer/ASA",
+			"modifiedDatetimeStart": "2019-09-01T00:00:00.000Z",
+			"modifiedDatetimeEnd": "2019-09-30T00:00:00.000Z"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
