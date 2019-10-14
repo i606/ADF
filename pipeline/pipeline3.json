@@ -39,7 +39,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childitems[0]",
+						"value": "@activity('Get Metadata1').output.childitems",
 						"type": "Expression"
 					},
 					"batchCount": 1,
