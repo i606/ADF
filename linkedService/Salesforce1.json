@@ -1,0 +1,24 @@
+{
+	"name": "Salesforce1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Salesforce",
+		"typeProperties": {
+			"environmentUrl": "https://login.salesforce.com",
+			"username": "user",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "salesforce"
+			},
+			"securityToken": {
+				"type": "SecureString",
+				"value": "**********"
+			}
+		}
+	}
+}
