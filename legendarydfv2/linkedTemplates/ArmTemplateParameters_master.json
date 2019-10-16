@@ -29,10 +29,16 @@
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
+		},
 		"AzureStorage2_connectionString": {
 			"value": ""
 		},
 		"FileServer1_password": {
+			"value": ""
+		},
+		"Salesforce1_securityToken": {
 			"value": ""
 		},
 		"linkedService_spark_clusterPassword": {
@@ -45,10 +51,10 @@
 			"value": ""
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
-			"value": "odin_fullrefresh_daily.json"
+			"value": ""
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
-			"value": "legendarycontainer"
+			"value": "legendarycontainer/ASA"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"value": "@dataset().test_param"
@@ -109,6 +115,9 @@
 		},
 		"FileServer1_properties_typeProperties_userId": {
 			"value": "legendaryfilestorage"
+		},
+		"Salesforce1_properties_typeProperties_username": {
+			"value": "user"
 		},
 		"linkedService_spark_properties_typeProperties_hostSubscriptionId": {
 			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"

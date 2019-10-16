@@ -4,27 +4,27 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory Name",
+			"metadata": "Data Factory name",
 			"defaultValue": "legendarydfv2"
 		},
 		"integrationRuntime_SH-IR": {
 			"type": "string",
-			"metadata": "Integration Runtime Name",
+			"metadata": "Integration runtime name",
 			"defaultValue": "SH-IR"
 		},
 		"integrationRuntime_integrationRuntime-Azure": {
 			"type": "string",
-			"metadata": "Integration Runtime Name",
+			"metadata": "Integration runtime name",
 			"defaultValue": "integrationRuntime-Azure"
 		},
 		"integrationRuntime_integrationRuntime1": {
 			"type": "string",
-			"metadata": "Integration Runtime Name",
+			"metadata": "Integration runtime name",
 			"defaultValue": "integrationRuntime1"
 		},
 		"integrationRuntime_integrationRuntime2": {
 			"type": "string",
-			"metadata": "Integration Runtime Name",
+			"metadata": "Integration runtime name",
 			"defaultValue": "integrationRuntime2"
 		},
 		"AzureBlobStorage2_connectionString": {
@@ -42,6 +42,10 @@
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'"
 		},
 		"AzureStorage2_connectionString": {
 			"type": "secureString",
@@ -205,6 +209,19 @@
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase2_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -426,6 +443,33 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "ASA",
+						"container": "legendarycontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_e8j')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -484,124 +528,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStore1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_qr7')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDW",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlDWTable",
-				"structure": [
-					{
-						"name": "SalesOrganization",
-						"type": "String"
-					},
-					{
-						"name": "Purchaseordernumber",
-						"type": "String"
-					},
-					{
-						"name": "SalesDocument",
-						"type": "String"
-					},
-					{
-						"name": "Delivery",
-						"type": "String"
-					},
-					{
-						"name": "BillingDate",
-						"type": "String"
-					},
-					{
-						"name": "Material",
-						"type": "String"
-					},
-					{
-						"name": "MaterialDescription",
-						"type": "String"
-					},
-					{
-						"name": "Cumul.confirmedqty",
-						"type": "String"
-					},
-					{
-						"name": "ListpricePerSalesUOM",
-						"type": "String"
-					},
-					{
-						"name": "PlandGdsMvmntDate",
-						"type": "String"
-					},
-					{
-						"name": "Loc.Sal.Regions1",
-						"type": "String"
-					},
-					{
-						"name": "Loc.Sal.Regions1Name",
-						"type": "String"
-					},
-					{
-						"name": "Loc.Sal.Regions2",
-						"type": "String"
-					},
-					{
-						"name": "Loc.Sal.Regions2Name",
-						"type": "String"
-					},
-					{
-						"name": "Loc.Sal.Regions3",
-						"type": "String"
-					},
-					{
-						"name": "Loc.Sal.Regions3Name",
-						"type": "String"
-					},
-					{
-						"name": "Loc.Sal.Regions4",
-						"type": "String"
-					},
-					{
-						"name": "Loc.Sal.Regions4Name",
-						"type": "String"
-					}
-				],
-				"typeProperties": {
-					"tableName": "[[dbo].[Test_table]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDW')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceDataset_e8j')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDW",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"CompanyCode": {
-						"type": "String",
-						"defaultValue": "MS"
-					}
-				},
-				"annotations": [],
-				"type": "AzureSqlDWTable",
-				"typeProperties": {
-					"tableName": "[[dbo].[Test_table]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDW')]"
 			]
 		}
 	]

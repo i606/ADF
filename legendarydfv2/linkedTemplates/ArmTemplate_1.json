@@ -4,8 +4,12 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory Name",
+			"metadata": "Data Factory name",
 			"defaultValue": "legendarydfv2"
+		},
+		"Salesforce1_securityToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'securityToken' of 'Salesforce1'"
 		},
 		"linkedService_spark_clusterPassword": {
 			"type": "secureString",
@@ -35,6 +39,10 @@
 			"type": "string",
 			"defaultValue": "storage"
 		},
+		"Salesforce1_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "user"
+		},
 		"linkedService_spark_properties_typeProperties_hostSubscriptionId": {
 			"type": "string",
 			"defaultValue": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
@@ -53,11 +61,11 @@
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "odin_fullrefresh_daily.json"
+			"defaultValue": ""
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "legendarycontainer"
+			"defaultValue": "legendarycontainer/ASA"
 		},
 		"trigger1_properties_pipeline_parameters_SliceStart": {
 			"type": "string",
@@ -72,6 +80,120 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_qr7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDW",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"structure": [
+					{
+						"name": "SalesOrganization",
+						"type": "String"
+					},
+					{
+						"name": "Purchaseordernumber",
+						"type": "String"
+					},
+					{
+						"name": "SalesDocument",
+						"type": "String"
+					},
+					{
+						"name": "Delivery",
+						"type": "String"
+					},
+					{
+						"name": "BillingDate",
+						"type": "String"
+					},
+					{
+						"name": "Material",
+						"type": "String"
+					},
+					{
+						"name": "MaterialDescription",
+						"type": "String"
+					},
+					{
+						"name": "Cumul.confirmedqty",
+						"type": "String"
+					},
+					{
+						"name": "ListpricePerSalesUOM",
+						"type": "String"
+					},
+					{
+						"name": "PlandGdsMvmntDate",
+						"type": "String"
+					},
+					{
+						"name": "Loc.Sal.Regions1",
+						"type": "String"
+					},
+					{
+						"name": "Loc.Sal.Regions1Name",
+						"type": "String"
+					},
+					{
+						"name": "Loc.Sal.Regions2",
+						"type": "String"
+					},
+					{
+						"name": "Loc.Sal.Regions2Name",
+						"type": "String"
+					},
+					{
+						"name": "Loc.Sal.Regions3",
+						"type": "String"
+					},
+					{
+						"name": "Loc.Sal.Regions3Name",
+						"type": "String"
+					},
+					{
+						"name": "Loc.Sal.Regions4",
+						"type": "String"
+					},
+					{
+						"name": "Loc.Sal.Regions4Name",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[Test_table]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_e8j')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDW",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"CompanyCode": {
+						"type": "String",
+						"defaultValue": "MS"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"typeProperties": {
+					"tableName": "[[dbo].[Test_table]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_ej5')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -313,6 +435,32 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Salesforce1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Salesforce",
+				"typeProperties": {
+					"environmentUrl": "https://login.salesforce.com",
+					"username": "[parameters('Salesforce1_properties_typeProperties_username')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "salesforce"
+					},
+					"securityToken": {
+						"type": "SecureString",
+						"value": "[parameters('Salesforce1_securityToken')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/linkedService_spark')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -406,7 +554,9 @@
 						"firstRowAsHeader": false
 					},
 					"fileName": "[parameters('AzureBlob1_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
+					"folderPath": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]",
+					"modifiedDatetimeStart": "2019-09-01T00:00:00.000Z",
+					"modifiedDatetimeEnd": "2019-09-30T00:00:00.000Z"
 				}
 			},
 			"dependsOn": [
@@ -420,14 +570,15 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy_eqt",
+						"name": "Copy Data1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
 							"retryIntervalInSeconds": 30,
-							"secureOutput": false
+							"secureOutput": false,
+							"secureInput": false
 						},
 						"userProperties": [],
 						"typeProperties": {
@@ -446,8 +597,7 @@
 									"fileExtension": ".txt"
 								}
 							},
-							"enableStaging": false,
-							"dataIntegrationUnits": 0
+							"enableStaging": false
 						},
 						"inputs": [
 							{
@@ -458,7 +608,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DelimitedText2",
+								"referenceName": "DelimitedText3",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -602,8 +752,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Delete1",
-						"type": "Delete",
+						"name": "Get Metadata1",
+						"type": "GetMetadata",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -619,8 +769,41 @@
 								"type": "DatasetReference",
 								"parameters": {}
 							},
-							"enableLogging": false,
-							"recursive": true
+							"fieldList": [
+								"itemName",
+								"childItems"
+							]
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get Metadata1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get Metadata1').output.childitems",
+								"type": "Expression"
+							},
+							"batchCount": 1,
+							"activities": [
+								{
+									"name": "Wait1",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
 						}
 					}
 				],
