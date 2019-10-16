@@ -39,7 +39,7 @@
 			"value": ""
 		},
 		"Salesforce1_securityToken": {
-			"value": ""
+			"value": "12345"
 		},
 		"linkedService_spark_clusterPassword": {
 			"value": ""
