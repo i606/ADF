@@ -110,14 +110,6 @@
 		"DestinationDataset_e8j_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "Test"
-		},
-		"DestinationDataset_eqt_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": ""
-		},
-		"DestinationDataset_eqt_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "Test123"
 		}
 	},
 	"variables": {
@@ -305,6 +297,76 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDWTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDW",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "_id",
+						"type": "varchar"
+					},
+					{
+						"name": "partyId",
+						"type": "varchar"
+					},
+					{
+						"name": "updateTime",
+						"type": "varchar"
+					},
+					{
+						"name": "IPAddress",
+						"type": "varchar"
+					},
+					{
+						"name": "documentContext",
+						"type": "varchar"
+					},
+					{
+						"name": "document",
+						"type": "varchar"
+					},
+					{
+						"name": "submissionId",
+						"type": "varchar"
+					},
+					{
+						"name": "submissionVersion",
+						"type": "varchar"
+					},
+					{
+						"name": "policyId",
+						"type": "varchar"
+					},
+					{
+						"name": "referenceDocumenId",
+						"type": "varchar"
+					},
+					{
+						"name": "status",
+						"type": "varchar"
+					},
+					{
+						"name": "policyRole",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "affirmationDetails"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDW')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
@@ -495,35 +557,6 @@
 						"type": "Expression"
 					},
 					"folderPath": "[parameters('DestinationDataset_e8j_properties_typeProperties_folderPath')]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStore1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_eqt')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStore1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureDataLakeStoreFile",
-				"typeProperties": {
-					"format": {
-						"type": "TextFormat",
-						"columnDelimiter": ",",
-						"rowDelimiter": "",
-						"nullValue": "\\N",
-						"treatEmptyAsNull": true,
-						"skipLineCount": 0,
-						"firstRowAsHeader": false
-					},
-					"fileName": "[parameters('DestinationDataset_eqt_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('DestinationDataset_eqt_properties_typeProperties_folderPath')]"
 				}
 			},
 			"dependsOn": [

@@ -51,6 +51,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureStorage2'"
 		},
+		"CosmosDbMongoDb_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb'"
+		},
 		"FileServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer1'"
@@ -150,6 +154,10 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://Legendary.vault.azure.net/"
+		},
+		"CosmosDbMongoDb_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "affirmationDetails"
 		},
 		"FileServer1_properties_typeProperties_host": {
 			"type": "string",
@@ -288,12 +296,6 @@
 					},
 					"DestinationDataset_e8j_properties_typeProperties_folderPath": {
 						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_folderPath')]"
-					},
-					"DestinationDataset_eqt_properties_typeProperties_fileName": {
-						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_fileName')]"
-					},
-					"DestinationDataset_eqt_properties_typeProperties_folderPath": {
-						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
@@ -313,6 +315,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"CosmosDbMongoDb_connectionString": {
+						"value": "[parameters('CosmosDbMongoDb_connectionString')]"
+					},
 					"Salesforce1_securityToken": {
 						"value": "[parameters('Salesforce1_securityToken')]"
 					},
@@ -325,6 +330,12 @@
 					"linkedService_spark_servicePrincipalKey": {
 						"value": "[parameters('linkedService_spark_servicePrincipalKey')]"
 					},
+					"DestinationDataset_eqt_properties_typeProperties_fileName": {
+						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_fileName')]"
+					},
+					"DestinationDataset_eqt_properties_typeProperties_folderPath": {
+						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_folderPath')]"
+					},
 					"SourceDataset_eqt_properties_typeProperties_fileName": {
 						"value": "[parameters('SourceDataset_eqt_properties_typeProperties_fileName')]"
 					},
@@ -336,6 +347,9 @@
 					},
 					"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_connectionString_secretName')]"
+					},
+					"CosmosDbMongoDb_properties_typeProperties_database": {
+						"value": "[parameters('CosmosDbMongoDb_properties_typeProperties_database')]"
 					},
 					"Salesforce1_properties_typeProperties_username": {
 						"value": "[parameters('Salesforce1_properties_typeProperties_username')]"

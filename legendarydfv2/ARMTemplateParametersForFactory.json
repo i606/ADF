@@ -35,11 +35,14 @@
 		"AzureStorage2_connectionString": {
 			"value": ""
 		},
+		"CosmosDbMongoDb_connectionString": {
+			"value": ""
+		},
 		"FileServer1_password": {
 			"value": ""
 		},
 		"Salesforce1_securityToken": {
-			"value": "12345"
+			"value": ""
 		},
 		"linkedService_spark_clusterPassword": {
 			"value": ""
@@ -109,6 +112,9 @@
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://Legendary.vault.azure.net/"
+		},
+		"CosmosDbMongoDb_properties_typeProperties_database": {
+			"value": "affirmationDetails"
 		},
 		"FileServer1_properties_typeProperties_host": {
 			"value": "\\\\legendaryfilestorage.file.core.windows.net\\chutiaji"

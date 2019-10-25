@@ -1,0 +1,305 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "legendarydfv2"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Lookup1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "CosmosDbMongoDbApiSource",
+								"batchSize": 100,
+								"filter": {
+									"value": "{lastModifiedDate:{ $gt: @activity('Lookup1').output.firstRow.maxlastModifiedDate}}\n",
+									"type": "Expression"
+								}
+							},
+							"sink": {
+								"type": "SqlDWSink",
+								"allowPolyBase": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['_id']['$oid']"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['policyId']"
+										},
+										"sink": {
+											"name": "policyId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['submissionId']"
+										},
+										"sink": {
+											"name": "submissionId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['document']"
+										},
+										"sink": {
+											"name": "document",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['documentContext']"
+										},
+										"sink": {
+											"name": "documentContext",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['referenceDocumentId']"
+										},
+										"sink": {
+											"name": "referenceDocumenId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['submissions'][0]['submissionsVersion']"
+										},
+										"sink": {
+											"name": "submissionVersion",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['submissions'][0]['parties'][0]['status']"
+										},
+										"sink": {
+											"name": "status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['submissions'][0]['parties'][0]['partyId']"
+										},
+										"sink": {
+											"name": "partyId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['submissions'][0]['parties'][0]['policyRole']"
+										},
+										"sink": {
+											"name": "policyRole",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['submissions'][0]['parties'][0]['updateTime']"
+										},
+										"sink": {
+											"name": "updateTime",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['documents'][0]['submissions'][0]['parties'][0]['IPAddress']"
+										},
+										"sink": {
+											"name": "IPAddress",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CosmosDbMongoDbApiCollection1",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlDWTable1",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlDWSource",
+								"sqlReaderQuery": "select updatetime from affirmationdetails"
+							},
+							"dataset": {
+								"referenceName": "AzureSqlDWTable1",
+								"type": "DatasetReference"
+							}
+						}
+					}
+				],
+				"parameters": {
+					"SliceStart": {
+						"type": "string"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbApiCollection1')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlDWTable1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDWTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDW",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "_id",
+						"type": "varchar"
+					},
+					{
+						"name": "partyId",
+						"type": "varchar"
+					},
+					{
+						"name": "updateTime",
+						"type": "varchar"
+					},
+					{
+						"name": "IPAddress",
+						"type": "varchar"
+					},
+					{
+						"name": "documentContext",
+						"type": "varchar"
+					},
+					{
+						"name": "document",
+						"type": "varchar"
+					},
+					{
+						"name": "submissionId",
+						"type": "varchar"
+					},
+					{
+						"name": "submissionVersion",
+						"type": "varchar"
+					},
+					{
+						"name": "policyId",
+						"type": "varchar"
+					},
+					{
+						"name": "referenceDocumenId",
+						"type": "varchar"
+					},
+					{
+						"name": "status",
+						"type": "varchar"
+					},
+					{
+						"name": "policyRole",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "affirmationDetails"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApiCollection1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDbMongoDb",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbMongoDbApiCollection",
+				"schema": [],
+				"typeProperties": {
+					"collection": "policy"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
