@@ -1,0 +1,93 @@
+{
+	"name": "Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "[dbo].[Test_table].parquet",
+				"folderPath": "Test"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "SalesOrganization",
+				"type": "UTF8"
+			},
+			{
+				"name": "Purchaseordernumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "SalesDocument",
+				"type": "UTF8"
+			},
+			{
+				"name": "Delivery",
+				"type": "UTF8"
+			},
+			{
+				"name": "BillingDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "Material",
+				"type": "UTF8"
+			},
+			{
+				"name": "MaterialDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "Cumul.confirmedqty",
+				"type": "UTF8"
+			},
+			{
+				"name": "ListpricePerSalesUOM",
+				"type": "UTF8"
+			},
+			{
+				"name": "PlandGdsMvmntDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "Loc.Sal.Regions1",
+				"type": "UTF8"
+			},
+			{
+				"name": "Loc.Sal.Regions1Name",
+				"type": "UTF8"
+			},
+			{
+				"name": "Loc.Sal.Regions2",
+				"type": "UTF8"
+			},
+			{
+				"name": "Loc.Sal.Regions2Name",
+				"type": "UTF8"
+			},
+			{
+				"name": "Loc.Sal.Regions3",
+				"type": "UTF8"
+			},
+			{
+				"name": "Loc.Sal.Regions3Name",
+				"type": "UTF8"
+			},
+			{
+				"name": "Loc.Sal.Regions4",
+				"type": "UTF8"
+			},
+			{
+				"name": "Loc.Sal.Regions4Name",
+				"type": "UTF8"
+			}
+		]
+	}
+}

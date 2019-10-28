@@ -24,11 +24,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "CosmosDbMongoDbApiSource",
-						"batchSize": 100,
-						"filter": {
-							"value": "{lastModifiedDate:{ $gt: @activity('Lookup1').output.firstRow.maxlastModifiedDate}}\n",
-							"type": "Expression"
-						}
+						"batchSize": 100
 					},
 					"sink": {
 						"type": "SqlDWSink",
@@ -40,28 +36,55 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['_id']['$oid']"
+									"path": "['submissionsVersion']"
 								},
 								"sink": {
-									"name": "_id",
+									"name": "submissionVersion",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['policyId']"
+									"path": "['parties'][0]['status']"
 								},
 								"sink": {
-									"name": "policyId",
+									"name": "status",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['submissionId']"
+									"path": "['parties'][0]['partyId']"
 								},
 								"sink": {
-									"name": "submissionId",
+									"name": "partyId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['parties'][0]['policyRole']"
+								},
+								"sink": {
+									"name": "policyRole",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['parties'][0]['updateTime']"
+								},
+								"sink": {
+									"name": "updateTime",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['parties'][0]['IPAddress']"
+								},
+								"sink": {
+									"name": "IPAddress",
 									"type": "String"
 								}
 							},
@@ -94,60 +117,33 @@
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['submissionsVersion']"
+									"path": "$['_id']['$oid']"
 								},
 								"sink": {
-									"name": "submissionVersion",
+									"name": "_id",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['status']"
+									"path": "$['policyId']"
 								},
 								"sink": {
-									"name": "status",
+									"name": "policyId",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['partyId']"
+									"path": "$['submissionId']"
 								},
 								"sink": {
-									"name": "partyId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['policyRole']"
-								},
-								"sink": {
-									"name": "policyRole",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['updateTime']"
-								},
-								"sink": {
-									"name": "updateTime",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['IPAddress']"
-								},
-								"sink": {
-									"name": "IPAddress",
+									"name": "submissionId",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": ""
+						"collectionReference": "$['documents'][0]['submissions']"
 					}
 				},
 				"inputs": [
@@ -187,11 +183,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"SliceStart": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
