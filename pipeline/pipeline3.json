@@ -26,8 +26,8 @@
 					"storeSettings": {
 						"type": "AzureDataLakeStoreReadSettings",
 						"recursive": true,
-						"modifiedDatetimeStart": "2018-12-01T00:00:00.000Z",
-						"modifiedDatetimeEnd": "2018-12-31T00:00:00.000Z"
+						"modifiedDatetimeStart": "2018-10-01T00:00:00.000Z",
+						"modifiedDatetimeEnd": "2018-10-31T00:00:00.000Z"
 					}
 				}
 			}
