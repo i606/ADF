@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureDataLakeStoreLocation",
-				"fileName": "[dbo].[Test_table].parquet",
 				"folderPath": "Test"
 			},
 			"compressionCodec": "snappy"

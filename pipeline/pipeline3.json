@@ -21,7 +21,7 @@
 					},
 					"fieldList": [
 						"exists",
-						"childItems"
+						"itemName"
 					],
 					"storeSettings": {
 						"type": "AzureDataLakeStoreReadSettings",
