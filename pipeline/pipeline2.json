@@ -5,9 +5,51 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "CosmosDbMongoDbApiSource",
+						"batchSize": 100
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"quoteAllText": true
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "CosmosDbMongoDbApiCollection1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy data2",
+				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "Copy data1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -23,8 +65,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "CosmosDbMongoDbApiSource",
-						"batchSize": 100
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.json"
+						}
 					},
 					"sink": {
 						"type": "SqlDWSink",
@@ -34,6 +80,60 @@
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
+							{
+								"source": {
+									"path": "$['_id']['$oid']"
+								},
+								"sink": {
+									"name": "_id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['policyId']"
+								},
+								"sink": {
+									"name": "policyId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['submissionId']"
+								},
+								"sink": {
+									"name": "submissionId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['documents'][0]['document']"
+								},
+								"sink": {
+									"name": "document",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['documents'][0]['documentContext']"
+								},
+								"sink": {
+									"name": "documentContext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['documents'][0]['referenceDocumentId']"
+								},
+								"sink": {
+									"name": "referenceDocumenId",
+									"type": "String"
+								}
+							},
 							{
 								"source": {
 									"path": "['submissionsVersion']"
@@ -87,60 +187,6 @@
 									"name": "IPAddress",
 									"type": "String"
 								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['document']"
-								},
-								"sink": {
-									"name": "document",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['documentContext']"
-								},
-								"sink": {
-									"name": "documentContext",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['referenceDocumentId']"
-								},
-								"sink": {
-									"name": "referenceDocumenId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['_id']['$oid']"
-								},
-								"sink": {
-									"name": "_id",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['policyId']"
-								},
-								"sink": {
-									"name": "policyId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['submissionId']"
-								},
-								"sink": {
-									"name": "submissionId",
-									"type": "String"
-								}
 							}
 						],
 						"collectionReference": "$['documents'][0]['submissions']"
@@ -148,7 +194,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "CosmosDbMongoDbApiCollection1",
+						"referenceName": "Json1",
 						"type": "DatasetReference"
 					}
 				],
@@ -158,29 +204,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Lookup1",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "SqlDWSource",
-						"sqlReaderQuery": "select updatetime from affirmationdetails"
-					},
-					"dataset": {
-						"referenceName": "AzureSqlDWTable1",
-						"type": "DatasetReference"
-					}
-				}
 			}
 		],
 		"annotations": []
