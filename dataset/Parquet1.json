@@ -2,15 +2,15 @@
 	"name": "Parquet1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStore",
+			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureDataLakeStoreLocation",
-				"folderPath": "Testing"
+				"type": "AzureBlobStorageLocation",
+				"container": "empty"
 			},
 			"compressionCodec": "none"
 		},
