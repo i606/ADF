@@ -16,20 +16,46 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Parquet1",
+						"referenceName": "AzureBlob1",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"exists",
-						"itemName"
-					],
-					"storeSettings": {
-						"type": "AzureDataLakeStoreReadSettings",
-						"recursive": true,
-						"modifiedDatetimeStart": "2018-10-01T00:00:00.000Z",
-						"modifiedDatetimeEnd": "2018-10-31T00:00:00.000Z"
-					}
+						"childItems"
+					]
 				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BlobSource",
+						"recursive": true
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureBlob1",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
