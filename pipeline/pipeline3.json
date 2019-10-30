@@ -48,11 +48,23 @@
 						"type": "BlobSource",
 						"recursive": true
 					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "AzureBlob1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Binary1",
 						"type": "DatasetReference"
 					}
 				]
