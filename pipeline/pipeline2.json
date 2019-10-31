@@ -20,10 +20,13 @@
 						"batchSize": 100
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"quoteAllText": true
 						}
 					},
 					"enableStaging": false
@@ -36,7 +39,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "Json1",
 						"type": "DatasetReference"
 					}
 				]
@@ -62,10 +65,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ParquetSource",
+						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true
+							"recursive": true,
+							"wildcardFileName": "*.json"
 						}
 					},
 					"sink": {
@@ -78,110 +82,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['_id']['$oid']"
-								},
-								"sink": {
-									"name": "_id",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['policyId']"
-								},
-								"sink": {
-									"name": "policyId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['submissionId']"
-								},
-								"sink": {
-									"name": "submissionId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['document']"
-								},
-								"sink": {
-									"name": "document",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['documentContext']"
-								},
-								"sink": {
-									"name": "documentContext",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['referenceDocumentId']"
-								},
-								"sink": {
-									"name": "referenceDocumenId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['submissionsVersion']"
-								},
-								"sink": {
-									"name": "submissionVersion",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['status']"
-								},
-								"sink": {
-									"name": "status",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['partyId']"
-								},
-								"sink": {
-									"name": "partyId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['policyRole']"
-								},
-								"sink": {
-									"name": "policyRole",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['updateTime']"
-								},
-								"sink": {
-									"name": "updateTime",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['IPAddress']"
-								},
-								"sink": {
-									"name": "IPAddress",
-									"type": "String"
+									"path": "$"
 								}
 							}
 						]
@@ -189,7 +90,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "Json1",
 						"type": "DatasetReference"
 					}
 				],
