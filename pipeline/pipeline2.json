@@ -45,8 +45,8 @@
 				]
 			},
 			{
-				"name": "Copy data2",
-				"type": "Copy",
+				"name": "dataflow1",
+				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
 						"activity": "Copy data1",
@@ -64,146 +64,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "JsonSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"wildcardFileName": "*.json"
-						}
-					},
-					"sink": {
-						"type": "SqlDWSink",
-						"allowPolyBase": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"path": "$['_id']['$oid']"
-								},
-								"sink": {
-									"name": "_id",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['policyId']"
-								},
-								"sink": {
-									"name": "policyId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['submissionId']"
-								},
-								"sink": {
-									"name": "submissionId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['document']"
-								},
-								"sink": {
-									"name": "document",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['documentContext']"
-								},
-								"sink": {
-									"name": "documentContext",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['referenceDocumentId']"
-								},
-								"sink": {
-									"name": "referenceDocumenId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['submissionsVersion']"
-								},
-								"sink": {
-									"name": "submissionVersion",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['status']"
-								},
-								"sink": {
-									"name": "status",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['partyId']"
-								},
-								"sink": {
-									"name": "partyId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['policyRole']"
-								},
-								"sink": {
-									"name": "policyRole",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['updateTime']"
-								},
-								"sink": {
-									"name": "updateTime",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['IPAddress']"
-								},
-								"sink": {
-									"name": "IPAddress",
-									"type": "String"
-								}
-							}
-						],
-						"collectionReference": "$['documents'][0]['submissions']"
+					"dataflow": {
+						"referenceName": "dataflow1",
+						"type": "DataFlowReference"
 					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Json1",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "AzureSqlDWTable1",
-						"type": "DatasetReference"
-					}
-				]
+				}
 			}
 		],
 		"annotations": []
