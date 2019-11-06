@@ -29,115 +29,7 @@
 							"quoteAllText": true
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"path": "$['_id']['$oid']"
-								},
-								"sink": {
-									"path": "$['_id']['$oid']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['policyId']"
-								},
-								"sink": {
-									"path": "$['policyId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['submissionId']"
-								},
-								"sink": {
-									"path": "$['submissionId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['document']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['documentContext']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['referenceDocumentId']"
-								}
-							},
-							{
-								"source": {
-									"path": "['submissionsVersion']"
-								},
-								"sink": {
-									"path": "$['documents'][0]['submissions'][0]['submissionsVersion']"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['status']"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['partyId']"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['policyRole']"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['updateTime']"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties'][0]['IPAddress']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['policies'][0]['policyTerm']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['policies'][0]['parties'][0]['status']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['policies'][0]['parties'][0]['partyId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['policies'][0]['parties'][0]['policyRole']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['policies'][0]['parties'][0]['updateTime']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['documents'][0]['policies'][0]['parties'][0]['IPAddress']"
-								}
-							}
-						],
-						"collectionReference": "$['documents'][0]['submissions']"
-					}
+					"enableStaging": false
 				},
 				"inputs": [
 					{
@@ -244,7 +136,7 @@
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['submissionsVersion']"
+									"path": "['submissionsVersion']"
 								},
 								"sink": {
 									"name": "submissionVersion",
@@ -253,7 +145,7 @@
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['status']"
+									"path": "['parties'][0]['status']"
 								},
 								"sink": {
 									"name": "status",
@@ -262,7 +154,7 @@
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['partyId']"
+									"path": "['parties'][0]['partyId']"
 								},
 								"sink": {
 									"name": "partyId",
@@ -271,7 +163,7 @@
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['policyRole']"
+									"path": "['parties'][0]['policyRole']"
 								},
 								"sink": {
 									"name": "policyRole",
@@ -280,7 +172,7 @@
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['updateTime']"
+									"path": "['parties'][0]['updateTime']"
 								},
 								"sink": {
 									"name": "updateTime",
@@ -289,14 +181,15 @@
 							},
 							{
 								"source": {
-									"path": "$['documents'][0]['submissions'][0]['parties'][0]['IPAddress']"
+									"path": "['parties'][0]['IPAddress']"
 								},
 								"sink": {
 									"name": "IPAddress",
 									"type": "String"
 								}
 							}
-						]
+						],
+						"collectionReference": "$['documents'][0]['submissions']"
 					}
 				},
 				"inputs": [
