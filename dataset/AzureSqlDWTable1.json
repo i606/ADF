@@ -18,9 +18,8 @@
 			},
 			{
 				"name": "updateTime",
-				"type": "datetime",
-				"precision": 23,
-				"scale": 3
+				"type": "datetime2",
+				"scale": 7
 			},
 			{
 				"name": "IPAddress",
