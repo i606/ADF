@@ -17,6 +17,9 @@
 		"integrationRuntime_integrationRuntime2": {
 			"value": "integrationRuntime2"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
 		"AzureBlobStorage2_connectionString": {
 			"value": ""
 		},
@@ -70,18 +73,6 @@
 		},
 		"DestinationDataset_eqt_properties_typeProperties_folderPath": {
 			"value": "Test123"
-		},
-		"SourceDataset_eqt_properties_typeProperties_fileName": {
-			"value": "1.csv"
-		},
-		"SourceDataset_eqt_properties_typeProperties_folderPath": {
-			"value": ""
-		},
-		"SourceDataset_qr7_properties_typeProperties_folderPath": {
-			"value": ""
-		},
-		"AzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
-			"value": "storage"
 		},
 		"AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
 			"value": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
@@ -138,9 +129,6 @@
 			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 		},
 		"Tumbling_properties_pipeline_parameters_Starttime": {
-			"value": "1"
-		},
-		"trigger1_properties_pipeline_parameters_SliceStart": {
 			"value": "1"
 		},
 		"containerUri": {
