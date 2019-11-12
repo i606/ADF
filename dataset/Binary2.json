@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureDataLakeStoreLocation",
+				"fileName": "1.csv",
 				"folderPath": "Test123"
 			}
 		}
