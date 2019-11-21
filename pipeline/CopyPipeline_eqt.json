@@ -16,8 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "BlobSource",
-						"recursive": true
+						"type": "SqlDWSource"
 					},
 					"sink": {
 						"type": "DelimitedTextSink",
@@ -34,7 +33,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureBlob1",
+						"referenceName": "AzureSqlDWTable1",
 						"type": "DatasetReference"
 					}
 				],
@@ -47,9 +46,8 @@
 			}
 		],
 		"parameters": {
-			"WindowStart": {
-				"type": "string",
-				"defaultValue": "@pipeline('CopyPipeline_e8j').TriggerTime"
+			"PartyID": {
+				"type": "string"
 			}
 		},
 		"annotations": []
