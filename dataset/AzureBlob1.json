@@ -40,16 +40,17 @@
 		"typeProperties": {
 			"format": {
 				"type": "TextFormat",
-				"columnDelimiter": "|",
+				"columnDelimiter": ",",
+				"rowDelimiter": "\n",
 				"quoteChar": "\"",
 				"nullValue": "\\N",
 				"encodingName": null,
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
-				"firstRowAsHeader": false
+				"firstRowAsHeader": true
 			},
-			"fileName": "",
-			"folderPath": "legendarycontainer/ASA",
+			"fileName": "lookup-data-lms.txt",
+			"folderPath": "empty",
 			"modifiedDatetimeStart": "2019-09-01T00:00:00.000Z",
 			"modifiedDatetimeEnd": "2019-09-30T00:00:00.000Z"
 		}
