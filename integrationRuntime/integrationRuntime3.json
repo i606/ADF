@@ -1,0 +1,12 @@
+{
+	"name": "integrationRuntime3",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourcegroups/jijo/providers/Microsoft.DataFactory/factories/legendarydfv2/integrationruntimes/integrationRuntime1",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}
