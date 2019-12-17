@@ -110,7 +110,7 @@
 		],
 		"variables": {
 			"test": {
-				"type": "String"
+				"type": "Array"
 			}
 		},
 		"annotations": []
