@@ -41,10 +41,11 @@
 			"format": {
 				"type": "TextFormat",
 				"columnDelimiter": ",",
+				"quoteChar": "\"",
 				"nullValue": "\\N",
 				"encodingName": null,
 				"treatEmptyAsNull": true,
-				"skipLineCount": 1,
+				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
 			"fileName": "collection.json",
