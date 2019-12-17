@@ -9,7 +9,10 @@
 		"type": "CosmosDbMongoDbApiCollection",
 		"schema": [],
 		"typeProperties": {
-			"collection": "policy"
+			"collection": {
+				"value": "@activity('Lookup1').output",
+				"type": "Expression"
+			}
 		}
 	}
 }
