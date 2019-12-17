@@ -36,7 +36,7 @@
 						]
 					},
 					{
-						"activity": "Set variable1",
+						"activity": "Get Metadata1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -45,79 +45,26 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup1').output",
+						"value": "@array(activity('Get Metadata1').output.columnCount)",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "Copy data1",
-							"type": "Copy",
+							"name": "Wait1",
+							"type": "Wait",
 							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "CosmosDbMongoDbApiSource",
-									"batchSize": 100
-								},
-								"sink": {
-									"type": "SqlDWSink"
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "CosmosDbMongoDbApiCollection1",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "AzureSqlDWTable1",
-									"type": "DatasetReference"
-								}
-							]
+								"waitTimeInSeconds": 2
+							}
 						}
 					]
 				}
 			},
 			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "Lookup1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "test",
-					"value": {
-						"value": "@activity('Lookup1').output.firstRow.test",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "Get Metadata1",
 				"type": "GetMetadata",
-				"dependsOn": [
-					{
-						"activity": "Set variable1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -131,7 +78,9 @@
 						"referenceName": "AzureBlob1",
 						"type": "DatasetReference"
 					},
-					"fieldList": []
+					"fieldList": [
+						"columnCount"
+					]
 				}
 			}
 		],
