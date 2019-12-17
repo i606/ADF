@@ -50,9 +50,7 @@
 				"firstRowAsHeader": true
 			},
 			"fileName": "collection.json",
-			"folderPath": "empty",
-			"modifiedDatetimeStart": "2019-09-01T00:00:00.000Z",
-			"modifiedDatetimeEnd": "2019-09-30T00:00:00.000Z"
+			"folderPath": "empty"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
