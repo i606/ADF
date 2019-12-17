@@ -39,14 +39,8 @@
 		],
 		"typeProperties": {
 			"format": {
-				"type": "TextFormat",
-				"columnDelimiter": ",",
-				"quoteChar": "\"",
-				"nullValue": "\\N",
-				"encodingName": null,
-				"treatEmptyAsNull": true,
-				"skipLineCount": 0,
-				"firstRowAsHeader": false
+				"type": "JsonFormat",
+				"filePattern": "setOfObjects"
 			},
 			"fileName": "collection.json",
 			"folderPath": "empty"
