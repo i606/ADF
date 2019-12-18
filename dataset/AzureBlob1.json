@@ -9,31 +9,15 @@
 		"type": "AzureBlob",
 		"structure": [
 			{
-				"name": "Prop_0",
+				"name": "policyId",
 				"type": "String"
 			},
 			{
-				"name": "Prop_1",
+				"name": "submissionId",
 				"type": "String"
 			},
 			{
-				"name": "Prop_2",
-				"type": "String"
-			},
-			{
-				"name": "Prop_3",
-				"type": "String"
-			},
-			{
-				"name": "Prop_4",
-				"type": "String"
-			},
-			{
-				"name": "Prop_5",
-				"type": "String"
-			},
-			{
-				"name": "Prop_6",
+				"name": "documents",
 				"type": "String"
 			}
 		],
