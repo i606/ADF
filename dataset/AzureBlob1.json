@@ -42,7 +42,7 @@
 				"type": "JsonFormat",
 				"filePattern": "setOfObjects"
 			},
-			"fileName": "collection.json",
+			"fileName": "",
 			"folderPath": "empty"
 		}
 	},
