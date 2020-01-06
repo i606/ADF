@@ -1,6 +1,7 @@
 {
 	"name": "schedule1",
 	"properties": {
+		"annotations": [],
 		"runtimeState": "Stopped",
 		"pipelines": [
 			{
