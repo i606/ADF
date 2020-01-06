@@ -3,110 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "CosmosDbMongoDbApiSource",
-						"batchSize": 100
-					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"quoteAllText": true
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"path": "$['_id']['$oid']"
-								},
-								"sink": {
-									"path": "$['_id']['$oid']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['policyId']"
-								},
-								"sink": {
-									"path": "$['policyId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['submissionId']"
-								},
-								"sink": {
-									"path": "$['submissionId']"
-								}
-							},
-							{
-								"source": {
-									"path": "['document']"
-								},
-								"sink": {
-									"path": "$['document']['document']"
-								}
-							},
-							{
-								"source": {
-									"path": "['documentContext']"
-								},
-								"sink": {
-									"path": "$['document']['documentContext']"
-								}
-							},
-							{
-								"source": {
-									"path": "['referenceDocumentId']"
-								},
-								"sink": {
-									"path": "$['document']['referenceDocumentId']"
-								}
-							},
-							{
-								"source": {
-									"path": "['submissions']"
-								},
-								"sink": {
-									"path": "$['document']['submissions']"
-								}
-							}
-						],
-						"collectionReference": "$['documents']"
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "CosmosDbMongoDbApiCollection1",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Json1",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "Copy data2",
 				"type": "Copy",
 				"dependsOn": [
@@ -262,6 +158,110 @@
 				"outputs": [
 					{
 						"referenceName": "AzureSqlDWTable1",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "CosmosDbMongoDbApiSource",
+						"batchSize": 100
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"quoteAllText": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['_id']['$oid']"
+								},
+								"sink": {
+									"path": "$['_id']['$oid']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['policyId']"
+								},
+								"sink": {
+									"path": "$['policyId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['submissionId']"
+								},
+								"sink": {
+									"path": "$['submissionId']"
+								}
+							},
+							{
+								"source": {
+									"path": "['document']"
+								},
+								"sink": {
+									"path": "$['document']['document']"
+								}
+							},
+							{
+								"source": {
+									"path": "['documentContext']"
+								},
+								"sink": {
+									"path": "$['document']['documentContext']"
+								}
+							},
+							{
+								"source": {
+									"path": "['referenceDocumentId']"
+								},
+								"sink": {
+									"path": "$['document']['referenceDocumentId']"
+								}
+							},
+							{
+								"source": {
+									"path": "['submissions']"
+								},
+								"sink": {
+									"path": "$['document']['submissions']"
+								}
+							}
+						],
+						"collectionReference": "$['documents']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CosmosDbMongoDbApiCollection1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Json1",
 						"type": "DatasetReference"
 					}
 				]
