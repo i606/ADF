@@ -143,60 +143,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['_id']"
-								},
-								"sink": {
-									"name": "_id",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['policyId']"
-								},
-								"sink": {
-									"name": "policyId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['submissionId']"
-								},
-								"sink": {
-									"name": "submissionId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['document']['document']"
-								},
-								"sink": {
-									"name": "document",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['document']['documentContext']"
-								},
-								"sink": {
-									"name": "documentContext",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['document']['referenceDocumentId']"
-								},
-								"sink": {
-									"name": "referenceDocumenId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "['submissionsVersion']"
 								},
 								"sink": {
@@ -246,6 +192,60 @@
 								},
 								"sink": {
 									"name": "IPAddress",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['document']['document']"
+								},
+								"sink": {
+									"name": "document",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['document']['documentContext']"
+								},
+								"sink": {
+									"name": "documentContext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['document']['referenceDocumentId']"
+								},
+								"sink": {
+									"name": "referenceDocumenId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_id']['$oid']"
+								},
+								"sink": {
+									"name": "_id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['policyId']"
+								},
+								"sink": {
+									"name": "policyId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['submissionId']"
+								},
+								"sink": {
+									"name": "submissionId",
 									"type": "String"
 								}
 							}
