@@ -12,6 +12,110 @@
 				"type": "AzureBlobStorageLocation",
 				"container": "empty"
 			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "object",
+					"properties": {
+						"$oid": {
+							"type": "string"
+						}
+					}
+				},
+				"policyId": {
+					"type": "string"
+				},
+				"submissionId": {
+					"type": "string"
+				},
+				"documents": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"document": {
+								"type": "string"
+							},
+							"documentContext": {
+								"type": "string"
+							},
+							"referenceDocumentId": {
+								"type": "string"
+							},
+							"submissions": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"submissionsVersion": {
+											"type": "string"
+										},
+										"parties": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"status": {
+														"type": "string"
+													},
+													"partyId": {
+														"type": "string"
+													},
+													"policyRole": {
+														"type": "string"
+													},
+													"updateTime": {
+														"type": "string"
+													},
+													"IPAddress": {
+														"type": "string"
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							"policies": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"policyTerm": {
+											"type": "string"
+										},
+										"parties": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"status": {
+														"type": "string"
+													},
+													"partyId": {
+														"type": "string"
+													},
+													"policyRole": {
+														"type": "string"
+													},
+													"updateTime": {
+														"type": "string"
+													},
+													"IPAddress": {
+														"type": "string"
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
