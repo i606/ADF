@@ -12,26 +12,6 @@
 				"type": "AzureBlobStorageLocation",
 				"container": "empty"
 			}
-		},
-		"schema": {
-			"type": "object",
-			"properties": {
-				"status": {
-					"type": "string"
-				},
-				"partyId": {
-					"type": "string"
-				},
-				"policyRole": {
-					"type": "string"
-				},
-				"updateTime": {
-					"type": "string"
-				},
-				"IPAddress": {
-					"type": "string"
-				}
-			}
 		}
 	}
 }
