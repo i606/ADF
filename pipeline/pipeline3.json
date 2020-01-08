@@ -3,11 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data2",
+				"name": "BlobToSQL",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy data3",
+						"activity": "BlobToBlob",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -163,7 +163,7 @@
 				]
 			},
 			{
-				"name": "Copy data1",
+				"name": "MongoToBlob",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -267,11 +267,11 @@
 				]
 			},
 			{
-				"name": "Copy data3",
+				"name": "BlobToBlob",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "MongoToBlob",
 						"dependencyConditions": [
 							"Succeeded"
 						]
