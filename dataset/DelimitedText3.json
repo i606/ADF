@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "ASA",
-				"container": "legendarycontainer"
+				"container": "dataflow"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
