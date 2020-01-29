@@ -23,10 +23,16 @@
 		],
 		"typeProperties": {
 			"format": {
-				"type": "JsonFormat",
-				"filePattern": "setOfObjects"
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"quoteChar": "\"",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
 			},
-			"fileName": "",
+			"fileName": "Finance.csv",
 			"folderPath": "empty"
 		}
 	},
