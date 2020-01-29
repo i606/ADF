@@ -1,0 +1,24 @@
+{
+	"name": "dataflow_test",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "sourcestream"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: true,\n\tpartitionBy('hash', 1)) ~> sourcestream\nsourcestream select(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1"
+		}
+	}
+}
