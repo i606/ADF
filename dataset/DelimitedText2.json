@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Finance.csv",
+				"fileName": "parquet.csv",
 				"container": "empty"
 			},
 			"columnDelimiter": ",",
