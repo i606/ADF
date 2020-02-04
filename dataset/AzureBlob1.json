@@ -32,8 +32,8 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": true
 			},
-			"fileName": "Finance.csv",
-			"folderPath": "empty"
+			"fileName": "",
+			"folderPath": "dataflow"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
