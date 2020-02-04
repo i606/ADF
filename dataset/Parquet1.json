@@ -16,7 +16,8 @@
 				"fileName": {
 					"value": "@{item().table_name}",
 					"type": "Expression"
-				}
+				},
+				"container": "dataflow"
 			},
 			"compressionCodec": "none"
 		},
