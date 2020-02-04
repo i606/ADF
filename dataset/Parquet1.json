@@ -14,7 +14,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@{item().table_name}",
+					"value": "@{item().Prop_0}",
 					"type": "Expression"
 				},
 				"container": "dataflow"
