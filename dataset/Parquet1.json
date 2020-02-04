@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "data_99750ed6-841b-4f58-8afe-58c4224a6b18_a2531511-c732-4eb6-a9f8-89cea45ad2d9.parquet",
-				"container": "empty"
+				"container": "dataflow"
 			},
 			"compressionCodec": "none"
 		},
