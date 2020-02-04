@@ -23,14 +23,7 @@
 		],
 		"typeProperties": {
 			"format": {
-				"type": "TextFormat",
-				"columnDelimiter": ",",
-				"quoteChar": "\"",
-				"nullValue": "\\N",
-				"encodingName": null,
-				"treatEmptyAsNull": true,
-				"skipLineCount": 0,
-				"firstRowAsHeader": true
+				"type": "ParquetFormat"
 			},
 			"fileName": "",
 			"folderPath": "dataflow"
