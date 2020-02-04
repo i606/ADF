@@ -5,6 +5,9 @@
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "tvs-lms-test"
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
@@ -13,20 +16,11 @@
 				"fileName": {
 					"value": "@{item().table_name}",
 					"type": "Expression"
-				},
-				"container": "dataflow"
+				}
 			},
 			"compressionCodec": "none"
 		},
-		"schema": [
-			{
-				"name": "policyId",
-				"type": "UTF8"
-			},
-			{
-				"name": "submissionId",
-				"type": "UTF8"
-			}
-		]
-	}
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
