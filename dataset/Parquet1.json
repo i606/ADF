@@ -13,10 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": {
-					"value": "@{item().Prop_0}",
-					"type": "Expression"
-				},
+				"fileName": "@{item().Prop_0}",
 				"container": "dataflow"
 			},
 			"compressionCodec": "none"
