@@ -11,7 +11,7 @@
 			},
 			"ssisProperties": {
 				"edition": "Standard",
-				"licenseType": "LicenseIncluded"
+				"licenseType": "BasePrice"
 			}
 		}
 	}
