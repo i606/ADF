@@ -25,8 +25,8 @@
 			"format": {
 				"type": "ParquetFormat"
 			},
-			"fileName": "",
-			"folderPath": "dataflow"
+			"fileName": "sandeep.json",
+			"folderPath": "empty"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
