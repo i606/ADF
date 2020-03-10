@@ -2,10 +2,15 @@
 	"name": "RestService",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
+		"parameters": {
+			"URL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://sandboxsdwan.cisco.com:8443/j_security_check",
+			"url": "linkedService().URL",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Basic",
 			"userName": "devnetuser",
