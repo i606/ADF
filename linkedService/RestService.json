@@ -1,14 +1,13 @@
 {
 	"name": "RestService",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
+		"type": "RestService",
 		"parameters": {
 			"URL": {
 				"type": "string"
 			}
 		},
 		"annotations": [],
-		"type": "RestService",
 		"typeProperties": {
 			"url": "linkedService().URL",
 			"enableServerCertificateValidation": true,
