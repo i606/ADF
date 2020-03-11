@@ -310,70 +310,11 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['submissionsVersion']"
-								},
-								"sink": {
-									"path": "$['document']['submission']['submissionsVersion']"
-								}
-							},
-							{
-								"source": {
-									"path": "['parties']"
-								},
-								"sink": {
-									"path": "$['document']['submission']['parties']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['document']['document']"
-								},
-								"sink": {
-									"path": "$['document']['document']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['document']['documentContext']"
-								},
-								"sink": {
-									"path": "$['document']['documentContext']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['document']['referenceDocumentId']"
-								},
-								"sink": {
-									"path": "$['document']['referenceDocumentId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['_id']['$oid']"
-								},
-								"sink": {
-									"path": "$['_id']['$oid']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['policyId']"
-								},
-								"sink": {
-									"path": "$['policyId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['submissionId']"
-								},
-								"sink": {
-									"path": "$['submissionId']"
+									"path": "$['Column_1']"
 								}
 							}
 						],
-						"collectionReference": "$['document']['submissions']"
+						"collectionReference": ""
 					}
 				},
 				"inputs": [
