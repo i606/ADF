@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "sandeep.csv",
+				"fileName": "list.csv",
 				"container": "empty"
 			},
 			"columnDelimiter": ",",
