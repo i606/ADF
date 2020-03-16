@@ -1,11 +1,10 @@
 {
 	"name": "RestService",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
-		"annotations": [],
 		"type": "RestService",
+		"annotations": [],
 		"typeProperties": {
-			"url": "linkedService().URL",
+			"url": "@{linkedService().URL}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Basic",
 			"userName": "devnetuser",
