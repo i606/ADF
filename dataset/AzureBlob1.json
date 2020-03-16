@@ -25,7 +25,7 @@
 			"format": {
 				"type": "ParquetFormat"
 			},
-			"fileName": "sandeep.json",
+			"fileName": "",
 			"folderPath": "empty"
 		}
 	},
