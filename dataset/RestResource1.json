@@ -11,6 +11,11 @@
 				}
 			}
 		},
+		"parameters": {
+			"URL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"schema": []
