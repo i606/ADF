@@ -2,14 +2,8 @@
 	"name": "RestResource1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "RestService1",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"URL": {
-					"value": "@dataset().URL",
-					"type": "Expression"
-				}
-			}
+			"referenceName": "RestService",
+			"type": "LinkedServiceReference"
 		},
 		"parameters": {
 			"URL": {

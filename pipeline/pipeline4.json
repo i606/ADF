@@ -20,7 +20,6 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -28,7 +27,7 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "DelimitedText2",
+						"referenceName": "DelimitedText5",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
@@ -53,8 +52,8 @@
 					},
 					"activities": [
 						{
-							"name": "dataflow3",
-							"type": "ExecuteDataFlow",
+							"name": "Copy data1",
+							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "7.00:00:00",
@@ -65,15 +64,35 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataflow": {
-									"referenceName": "dataflow3",
-									"type": "DataFlowReference"
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET"
 								},
-								"compute": {
-									"coreCount": 8,
-									"computeType": "General"
+								"sink": {
+									"type": "BlobSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RestResource1",
+									"type": "DatasetReference",
+									"parameters": {
+										"URL": {
+											"value": "@activity('Lookup1').output",
+											"type": "Expression"
+										}
+									}
 								}
-							}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureBlob1",
+									"type": "DatasetReference"
+								}
+							]
 						}
 					]
 				}
