@@ -7,26 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "legendarydfv2"
 		},
-		"integrationRuntime_SH-IR": {
-			"type": "string",
-			"metadata": "Integration runtime name",
-			"defaultValue": "SH-IR"
-		},
-		"integrationRuntime_integrationRuntime-Azure": {
-			"type": "string",
-			"metadata": "Integration runtime name",
-			"defaultValue": "integrationRuntime-Azure"
-		},
-		"integrationRuntime_integrationRuntime1": {
-			"type": "string",
-			"metadata": "Integration runtime name",
-			"defaultValue": "integrationRuntime1"
-		},
-		"integrationRuntime_integrationRuntime2": {
-			"type": "string",
-			"metadata": "Integration runtime name",
-			"defaultValue": "integrationRuntime2"
-		},
 		"AzureBlobStorage1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
@@ -34,6 +14,10 @@
 		"AzureBlobStorage2_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"AzureDataLakeStorageGen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorageGen2'"
 		},
 		"AzureDataLakeStore1_servicePrincipalKey": {
 			"type": "secureString",
@@ -63,9 +47,29 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer1'"
 		},
+		"HttpServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'HttpServer1'"
+		},
+		"RestService2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'RestService2'"
+		},
 		"Salesforce1_securityToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'securityToken' of 'Salesforce1'"
+		},
+		"Salesforce2_username": {
+			"type": "secureString",
+			"metadata": "Secure string for 'username' of 'Salesforce2'"
+		},
+		"Salesforce2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Salesforce2'"
+		},
+		"Salesforce2_SecurityToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'SecurityToken' of 'Salesforce2'"
 		},
 		"linkedService_spark_clusterPassword": {
 			"type": "secureString",
@@ -85,7 +89,7 @@
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "legendarycontainer/ASA"
+			"defaultValue": "empty"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"type": "string",
@@ -102,6 +106,10 @@
 		"DestinationDataset_eqt_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "Test123"
+		},
+		"AzureDataLakeStorageGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://legendarygeneration2.dfs.core.windows.net"
 		},
 		"AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
 			"type": "string",
@@ -155,9 +163,60 @@
 			"type": "string",
 			"defaultValue": "legendaryfilestorage"
 		},
+		"HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://google.com"
+		},
+		"HttpServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "user"
+		},
+		"RestService_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().URL}"
+		},
+		"RestService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "devnetuser"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "linkedService().URL"
+		},
+		"RestService1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "devnetuser"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://legendary.vault.azure.net/secrets/REST/cfadc277cd5247fba00f31226cd26ff8"
+		},
+		"RestService2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "devnetuser"
+		},
+		"RestServiceGraph_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://graph.microsoft.com/beta/reports/getTeamsDeviceUsageUserDetail(date=@linkedService().Date)?$format=application/json "
+		},
+		"RestServiceGraph_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "99aee3cf-e649-40d5-9232-b7e565a55a4e"
+		},
+		"Salesforce1_properties_typeProperties_environmentUrl": {
+			"type": "string",
+			"defaultValue": "https://login.salesforce.com"
+		},
 		"Salesforce1_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "user"
+		},
+		"Salesforce2_properties_typeProperties_environmentUrl": {
+			"type": "string",
+			"defaultValue": "https://test.salesforce.com"
+		},
+		"Salesforce2_properties_typeProperties_username": {
+			"type": "string"
 		},
 		"linkedService_spark_properties_typeProperties_hostSubscriptionId": {
 			"type": "string",
@@ -206,32 +265,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"integrationRuntime_SH-IR": {
-						"value": "[parameters('integrationRuntime_SH-IR')]"
-					},
-					"integrationRuntime_integrationRuntime-Azure": {
-						"value": "[parameters('integrationRuntime_integrationRuntime-Azure')]"
-					},
-					"integrationRuntime_integrationRuntime1": {
-						"value": "[parameters('integrationRuntime_integrationRuntime1')]"
-					},
-					"integrationRuntime_integrationRuntime2": {
-						"value": "[parameters('integrationRuntime_integrationRuntime2')]"
-					},
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
 					},
 					"AzureBlobStorage2_connectionString": {
 						"value": "[parameters('AzureBlobStorage2_connectionString')]"
 					},
+					"AzureDataLakeStorageGen2_accountKey": {
+						"value": "[parameters('AzureDataLakeStorageGen2_accountKey')]"
+					},
 					"AzureDataLakeStore1_servicePrincipalKey": {
 						"value": "[parameters('AzureDataLakeStore1_servicePrincipalKey')]"
 					},
 					"AzureSqlDW_connectionString": {
 						"value": "[parameters('AzureSqlDW_connectionString')]"
-					},
-					"AzureSqlDatabase1_connectionString": {
-						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
 					"AzureSqlDatabase2_connectionString": {
 						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
@@ -241,6 +288,21 @@
 					},
 					"FileServer1_password": {
 						"value": "[parameters('FileServer1_password')]"
+					},
+					"RestService2_password": {
+						"value": "[parameters('RestService2_password')]"
+					},
+					"Salesforce2_username": {
+						"value": "[parameters('Salesforce2_username')]"
+					},
+					"Salesforce2_password": {
+						"value": "[parameters('Salesforce2_password')]"
+					},
+					"Salesforce2_SecurityToken": {
+						"value": "[parameters('Salesforce2_SecurityToken')]"
+					},
+					"AzureDataLakeStorageGen2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorageGen2_properties_typeProperties_url')]"
 					},
 					"AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
 						"value": "[parameters('AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri')]"
@@ -278,11 +340,35 @@
 					"FileServer1_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
 					},
-					"AzureBlob1_properties_typeProperties_fileName": {
-						"value": "[parameters('AzureBlob1_properties_typeProperties_fileName')]"
+					"RestService_properties_typeProperties_url": {
+						"value": "[parameters('RestService_properties_typeProperties_url')]"
 					},
-					"AzureBlob1_properties_typeProperties_folderPath": {
-						"value": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
+					"RestService_properties_typeProperties_userName": {
+						"value": "[parameters('RestService_properties_typeProperties_userName')]"
+					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
+					},
+					"RestService1_properties_typeProperties_userName": {
+						"value": "[parameters('RestService1_properties_typeProperties_userName')]"
+					},
+					"RestService2_properties_typeProperties_url": {
+						"value": "[parameters('RestService2_properties_typeProperties_url')]"
+					},
+					"RestService2_properties_typeProperties_userName": {
+						"value": "[parameters('RestService2_properties_typeProperties_userName')]"
+					},
+					"RestServiceGraph_properties_typeProperties_url": {
+						"value": "[parameters('RestServiceGraph_properties_typeProperties_url')]"
+					},
+					"RestServiceGraph_properties_typeProperties_userName": {
+						"value": "[parameters('RestServiceGraph_properties_typeProperties_userName')]"
+					},
+					"Salesforce2_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('Salesforce2_properties_typeProperties_environmentUrl')]"
+					},
+					"Salesforce2_properties_typeProperties_username": {
+						"value": "[parameters('Salesforce2_properties_typeProperties_username')]"
 					}
 				}
 			},
@@ -302,8 +388,52 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureBlob1_properties_typeProperties_fileName": {
+						"value": "[parameters('AzureBlob1_properties_typeProperties_fileName')]"
+					},
+					"AzureBlob1_properties_typeProperties_folderPath": {
+						"value": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
+					},
+					"DestinationDataset_e8j_properties_typeProperties_fileName": {
+						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_fileName')]"
+					},
+					"DestinationDataset_e8j_properties_typeProperties_folderPath": {
+						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_folderPath')]"
+					},
+					"DestinationDataset_eqt_properties_typeProperties_fileName": {
+						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_fileName')]"
+					},
+					"DestinationDataset_eqt_properties_typeProperties_folderPath": {
+						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_folderPath')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
 					"CosmosDbMongoDb_connectionString": {
 						"value": "[parameters('CosmosDbMongoDb_connectionString')]"
+					},
+					"HttpServer1_password": {
+						"value": "[parameters('HttpServer1_password')]"
 					},
 					"Salesforce1_securityToken": {
 						"value": "[parameters('Salesforce1_securityToken')]"
@@ -317,20 +447,17 @@
 					"linkedService_spark_servicePrincipalKey": {
 						"value": "[parameters('linkedService_spark_servicePrincipalKey')]"
 					},
-					"DestinationDataset_e8j_properties_typeProperties_fileName": {
-						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_fileName')]"
-					},
-					"DestinationDataset_e8j_properties_typeProperties_folderPath": {
-						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_folderPath')]"
-					},
-					"DestinationDataset_eqt_properties_typeProperties_fileName": {
-						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_fileName')]"
-					},
-					"DestinationDataset_eqt_properties_typeProperties_folderPath": {
-						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_folderPath')]"
-					},
 					"CosmosDbMongoDb_properties_typeProperties_database": {
 						"value": "[parameters('CosmosDbMongoDb_properties_typeProperties_database')]"
+					},
+					"HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
+					},
+					"HttpServer1_properties_typeProperties_userName": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_userName')]"
+					},
+					"Salesforce1_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('Salesforce1_properties_typeProperties_environmentUrl')]"
 					},
 					"Salesforce1_properties_typeProperties_username": {
 						"value": "[parameters('Salesforce1_properties_typeProperties_username')]"
@@ -353,7 +480,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_1')]"
 			]
 		}
 	]

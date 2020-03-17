@@ -5,22 +5,13 @@
 		"factoryName": {
 			"value": "legendarydfv2"
 		},
-		"integrationRuntime_SH-IR": {
-			"value": "SH-IR"
-		},
-		"integrationRuntime_integrationRuntime-Azure": {
-			"value": "integrationRuntime-Azure"
-		},
-		"integrationRuntime_integrationRuntime1": {
-			"value": "integrationRuntime1"
-		},
-		"integrationRuntime_integrationRuntime2": {
-			"value": "integrationRuntime2"
-		},
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorageGen2_accountKey": {
 			"value": ""
 		},
 		"AzureDataLakeStore1_servicePrincipalKey": {
@@ -44,7 +35,22 @@
 		"FileServer1_password": {
 			"value": ""
 		},
+		"HttpServer1_password": {
+			"value": ""
+		},
+		"RestService2_password": {
+			"value": ""
+		},
 		"Salesforce1_securityToken": {
+			"value": ""
+		},
+		"Salesforce2_username": {
+			"value": ""
+		},
+		"Salesforce2_password": {
+			"value": ""
+		},
+		"Salesforce2_SecurityToken": {
 			"value": ""
 		},
 		"linkedService_spark_clusterPassword": {
@@ -60,7 +66,7 @@
 			"value": ""
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
-			"value": "legendarycontainer/ASA"
+			"value": "empty"
 		},
 		"DestinationDataset_e8j_properties_typeProperties_fileName": {
 			"value": "@dataset().test_param"
@@ -73,6 +79,9 @@
 		},
 		"DestinationDataset_eqt_properties_typeProperties_folderPath": {
 			"value": "Test123"
+		},
+		"AzureDataLakeStorageGen2_properties_typeProperties_url": {
+			"value": "https://legendarygeneration2.dfs.core.windows.net"
 		},
 		"AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
 			"value": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
@@ -113,8 +122,47 @@
 		"FileServer1_properties_typeProperties_userId": {
 			"value": "legendaryfilestorage"
 		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "http://google.com"
+		},
+		"HttpServer1_properties_typeProperties_userName": {
+			"value": "user"
+		},
+		"RestService_properties_typeProperties_url": {
+			"value": "@{linkedService().URL}"
+		},
+		"RestService_properties_typeProperties_userName": {
+			"value": "devnetuser"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "linkedService().URL"
+		},
+		"RestService1_properties_typeProperties_userName": {
+			"value": "devnetuser"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"value": "https://legendary.vault.azure.net/secrets/REST/cfadc277cd5247fba00f31226cd26ff8"
+		},
+		"RestService2_properties_typeProperties_userName": {
+			"value": "devnetuser"
+		},
+		"RestServiceGraph_properties_typeProperties_url": {
+			"value": "https://graph.microsoft.com/beta/reports/getTeamsDeviceUsageUserDetail(date=@linkedService().Date)?$format=application/json "
+		},
+		"RestServiceGraph_properties_typeProperties_userName": {
+			"value": "99aee3cf-e649-40d5-9232-b7e565a55a4e"
+		},
+		"Salesforce1_properties_typeProperties_environmentUrl": {
+			"value": "https://login.salesforce.com"
+		},
 		"Salesforce1_properties_typeProperties_username": {
 			"value": "user"
+		},
+		"Salesforce2_properties_typeProperties_environmentUrl": {
+			"value": "https://test.salesforce.com"
+		},
+		"Salesforce2_properties_typeProperties_username": {
+			"value": ""
 		},
 		"linkedService_spark_properties_typeProperties_hostSubscriptionId": {
 			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
