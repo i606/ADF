@@ -1,5 +1,5 @@
 {
-	"name": "pipeline4",
+	"name": "ForEach",
 	"properties": {
 		"activities": [
 			{
@@ -80,7 +80,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"URL": {
-											"value": "@item()",
+											"value": "@item().URL",
 											"type": "Expression"
 										}
 									}
