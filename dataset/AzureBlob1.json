@@ -7,20 +7,6 @@
 		},
 		"annotations": [],
 		"type": "AzureBlob",
-		"structure": [
-			{
-				"name": "policyId",
-				"type": "String"
-			},
-			{
-				"name": "submissionId",
-				"type": "String"
-			},
-			{
-				"name": "documents",
-				"type": "String"
-			}
-		],
 		"typeProperties": {
 			"format": {
 				"type": "ParquetFormat"
