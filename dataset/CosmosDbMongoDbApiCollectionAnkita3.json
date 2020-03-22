@@ -1,0 +1,15 @@
+{
+	"name": "CosmosDbMongoDbApiCollectionAnkita3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDbMongoDbApi_Ankita1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbMongoDbApiCollection",
+		"schema": [],
+		"typeProperties": {
+			"collection": "ankita1"
+		}
+	}
+}
