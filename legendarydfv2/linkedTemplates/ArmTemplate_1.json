@@ -37,6 +37,16 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime2')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -57,20 +67,6 @@
 				},
 				"annotations": [],
 				"type": "AzureBlob",
-				"structure": [
-					{
-						"name": "policyId",
-						"type": "String"
-					},
-					{
-						"name": "submissionId",
-						"type": "String"
-					},
-					{
-						"name": "documents",
-						"type": "String"
-					}
-				],
 				"typeProperties": {
 					"format": {
 						"type": "ParquetFormat"
@@ -832,33 +828,6 @@
 					},
 					"compressionCodec": "snappy"
 				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RestResource1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "RestService",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"URL": {
-							"value": "@dataset().URL",
-							"type": "Expression"
-						}
-					}
-				},
-				"parameters": {
-					"URL": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
 				"schema": []
 			},
 			"dependsOn": []
