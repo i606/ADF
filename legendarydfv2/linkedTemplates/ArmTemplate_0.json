@@ -35,6 +35,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureStorage2'"
 		},
+		"CosmosDbMongoDbApi_Ankita1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi_Ankita1'"
+		},
+		"CosmosDbMongoDbApi_Ankita2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi_Ankita2'"
+		},
 		"FileServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer1'"
@@ -98,6 +106,14 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://Legendary.vault.azure.net/"
+		},
+		"CosmosDbMongoDbApi_Ankita1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ankita"
+		},
+		"CosmosDbMongoDbApi_Ankita2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ankita"
 		},
 		"FileServer1_properties_typeProperties_host": {
 			"type": "string",
@@ -318,6 +334,34 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApi_Ankita1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDbMongoDbApi",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDbMongoDbApi_Ankita1_connectionString')]",
+					"database": "[parameters('CosmosDbMongoDbApi_Ankita1_properties_typeProperties_database')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApi_Ankita2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDbMongoDbApi",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDbMongoDbApi_Ankita2_connectionString')]",
+					"database": "[parameters('CosmosDbMongoDbApi_Ankita2_properties_typeProperties_database')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/FileServer1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -487,46 +531,6 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SSIS-IR')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "Managed",
-				"typeProperties": {
-					"computeProperties": {
-						"location": "East US",
-						"nodeSize": "Standard_D8_v3",
-						"numberOfNodes": 2,
-						"maxParallelExecutionsPerNode": 8
-					},
-					"ssisProperties": {
-						"edition": "Standard",
-						"licenseType": "BasePrice"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/integrationRuntime-Azure')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "Managed",
-				"typeProperties": {
-					"computeProperties": {
-						"location": "AutoResolve",
-						"dataFlowProperties": {
-							"computeType": "General",
-							"coreCount": 8,
-							"timeToLiveInMinutes": 60
-						}
-					}
-				}
 			},
 			"dependsOn": []
 		}

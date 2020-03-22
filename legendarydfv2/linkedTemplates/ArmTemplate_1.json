@@ -37,6 +37,46 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SSIS-IR')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "East US",
+						"nodeSize": "Standard_D8_v3",
+						"numberOfNodes": 2,
+						"maxParallelExecutionsPerNode": 8
+					},
+					"ssisProperties": {
+						"edition": "Standard",
+						"licenseType": "BasePrice"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime-Azure')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "AutoResolve",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLiveInMinutes": 60
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -209,6 +249,58 @@
 					"compressionCodec": "none"
 				},
 				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApiCollectionAnkita1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDbMongoDbApi_Ankita1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"CollectionName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "CosmosDbMongoDbApiCollection",
+				"schema": [],
+				"typeProperties": {
+					"collection": {
+						"value": "@dataset().CollectionName",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApiCollection_Ankita')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDbMongoDbApi_Ankita2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"CollectionName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "CosmosDbMongoDbApiCollection",
+				"schema": [],
+				"typeProperties": {
+					"collection": {
+						"value": "@dataset().CollectionName",
+						"type": "Expression"
+					}
+				}
 			},
 			"dependsOn": []
 		},
@@ -421,6 +513,37 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText6')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "collection.csv",
+						"container": "empty"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "CollectionName",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_e8j')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -565,270 +688,6 @@
 				"typeProperties": {
 					"tableName": "[[dbo].[Test_table]"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Json1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "list.json",
-						"container": "empty"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Json2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "mongo"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"_id": {
-							"type": "object",
-							"properties": {
-								"$oid": {
-									"type": "string"
-								}
-							}
-						},
-						"policyId": {
-							"type": "string"
-						},
-						"submissionId": {
-							"type": "string"
-						},
-						"documents": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"document": {
-										"type": "string"
-									},
-									"documentContext": {
-										"type": "string"
-									},
-									"referenceDocumentId": {
-										"type": "string"
-									},
-									"submissions": {
-										"type": "array",
-										"items": {
-											"type": "object",
-											"properties": {
-												"submissionsVersion": {
-													"type": "string"
-												},
-												"parties": {
-													"type": "array",
-													"items": {
-														"type": "object",
-														"properties": {
-															"status": {
-																"type": "string"
-															},
-															"partyId": {
-																"type": "string"
-															},
-															"policyRole": {
-																"type": "string"
-															},
-															"updateTime": {
-																"type": "string"
-															},
-															"IPAddress": {
-																"type": "string"
-															}
-														}
-													}
-												}
-											}
-										}
-									},
-									"policies": {
-										"type": "array",
-										"items": {
-											"type": "object",
-											"properties": {
-												"policyTerm": {
-													"type": "string"
-												},
-												"parties": {
-													"type": "array",
-													"items": {
-														"type": "object",
-														"properties": {
-															"status": {
-																"type": "string"
-															},
-															"partyId": {
-																"type": "string"
-															},
-															"policyRole": {
-																"type": "string"
-															},
-															"updateTime": {
-																"type": "string"
-															},
-															"IPAddress": {
-																"type": "string"
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Json3')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "sandeep.json",
-						"container": "empty"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"value": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"businessPhones": {
-										"type": "array"
-									},
-									"displayName": {
-										"type": "string"
-									},
-									"givenName": {
-										"type": "string"
-									},
-									"jobTitle": {
-										"type": "null"
-									},
-									"mail": {
-										"type": "string"
-									},
-									"mobilePhone": {
-										"type": "null"
-									},
-									"officeLocation": {
-										"type": "null"
-									},
-									"preferredLanguage": {
-										"type": "null"
-									},
-									"surname": {
-										"type": "string"
-									},
-									"userPrincipalName": {
-										"type": "string"
-									},
-									"id": {
-										"type": "string"
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Parquet1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "tvs-lms-test"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@{item().Prop_0}",
-							"type": "Expression"
-						},
-						"container": "dataflow"
-					},
-					"compressionCodec": "none"
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Parquet2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorageGen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "testadb"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
 			},
 			"dependsOn": []
 		}

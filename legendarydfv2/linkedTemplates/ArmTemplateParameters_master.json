@@ -32,6 +32,12 @@
 		"CosmosDbMongoDb_connectionString": {
 			"value": ""
 		},
+		"CosmosDbMongoDbApi_Ankita1_connectionString": {
+			"value": ""
+		},
+		"CosmosDbMongoDbApi_Ankita2_connectionString": {
+			"value": ""
+		},
 		"FileServer1_password": {
 			"value": ""
 		},
@@ -115,6 +121,12 @@
 		},
 		"CosmosDbMongoDb_properties_typeProperties_database": {
 			"value": "affirmationDetails"
+		},
+		"CosmosDbMongoDbApi_Ankita1_properties_typeProperties_database": {
+			"value": "ankita"
+		},
+		"CosmosDbMongoDbApi_Ankita2_properties_typeProperties_database": {
+			"value": "ankita"
 		},
 		"FileServer1_properties_typeProperties_host": {
 			"value": "\\\\legendaryfilestorage.file.core.windows.net\\chutiaji"

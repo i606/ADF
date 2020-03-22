@@ -43,6 +43,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb'"
 		},
+		"CosmosDbMongoDbApi_Ankita1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi_Ankita1'"
+		},
+		"CosmosDbMongoDbApi_Ankita2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi_Ankita2'"
+		},
 		"FileServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer1'"
@@ -154,6 +162,14 @@
 		"CosmosDbMongoDb_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "affirmationDetails"
+		},
+		"CosmosDbMongoDbApi_Ankita1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ankita"
+		},
+		"CosmosDbMongoDbApi_Ankita2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ankita"
 		},
 		"FileServer1_properties_typeProperties_host": {
 			"type": "string",
@@ -286,6 +302,12 @@
 					"AzureStorage2_connectionString": {
 						"value": "[parameters('AzureStorage2_connectionString')]"
 					},
+					"CosmosDbMongoDbApi_Ankita1_connectionString": {
+						"value": "[parameters('CosmosDbMongoDbApi_Ankita1_connectionString')]"
+					},
+					"CosmosDbMongoDbApi_Ankita2_connectionString": {
+						"value": "[parameters('CosmosDbMongoDbApi_Ankita2_connectionString')]"
+					},
 					"FileServer1_password": {
 						"value": "[parameters('FileServer1_password')]"
 					},
@@ -333,6 +355,12 @@
 					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"CosmosDbMongoDbApi_Ankita1_properties_typeProperties_database": {
+						"value": "[parameters('CosmosDbMongoDbApi_Ankita1_properties_typeProperties_database')]"
+					},
+					"CosmosDbMongoDbApi_Ankita2_properties_typeProperties_database": {
+						"value": "[parameters('CosmosDbMongoDbApi_Ankita2_properties_typeProperties_database')]"
 					},
 					"FileServer1_properties_typeProperties_host": {
 						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
@@ -473,6 +501,26 @@
 					},
 					"linkedService_spark_properties_typeProperties_tenant": {
 						"value": "[parameters('linkedService_spark_properties_typeProperties_tenant')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"Tumbling_properties_pipeline_parameters_Starttime": {
 						"value": "[parameters('Tumbling_properties_pipeline_parameters_Starttime')]"
@@ -480,7 +528,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_1')]"
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_2')]"
 			]
 		}
 	]

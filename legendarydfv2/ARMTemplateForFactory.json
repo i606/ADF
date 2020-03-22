@@ -43,6 +43,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb'"
 		},
+		"CosmosDbMongoDbApi_Ankita1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi_Ankita1'"
+		},
+		"CosmosDbMongoDbApi_Ankita2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi_Ankita2'"
+		},
 		"FileServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer1'"
@@ -154,6 +162,14 @@
 		"CosmosDbMongoDb_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "affirmationDetails"
+		},
+		"CosmosDbMongoDbApi_Ankita1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ankita"
+		},
+		"CosmosDbMongoDbApi_Ankita2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ankita"
 		},
 		"FileServer1_properties_typeProperties_host": {
 			"type": "string",
@@ -787,6 +803,147 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "DelimitedText6",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Set variable1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@variables('Collection')",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy data1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "CosmosDbMongoDbApiSource",
+											"batchSize": 100
+										},
+										"sink": {
+											"type": "CosmosDbMongoDbApiSink",
+											"writeBatchTimeout": "00:30:00",
+											"writeBehavior": "insert"
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "CosmosDbMongoDbApiCollectionAnkita1",
+											"type": "DatasetReference",
+											"parameters": {
+												"CollectionName": {
+													"value": "@item().CollectionName",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "CosmosDbMongoDbApiCollection_Ankita",
+											"type": "DatasetReference",
+											"parameters": {
+												"CollectionName": {
+													"value": "@item().CollectionName",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					},
+					{
+						"name": "Set variable1",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Lookup1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Collection",
+							"value": {
+								"value": "@activity('Lookup1').output.value",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"variables": {
+					"Collection": {
+						"type": "Array"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DelimitedText6')]",
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbApiCollectionAnkita1')]",
+				"[concat(variables('factoryId'), '/datasets/CosmosDbMongoDbApiCollection_Ankita')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlob1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1067,6 +1224,62 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApiCollectionAnkita1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDbMongoDbApi_Ankita1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"CollectionName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "CosmosDbMongoDbApiCollection",
+				"schema": [],
+				"typeProperties": {
+					"collection": {
+						"value": "@dataset().CollectionName",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDbApi_Ankita1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApiCollection_Ankita')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDbMongoDbApi_Ankita2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"CollectionName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "CosmosDbMongoDbApiCollection",
+				"schema": [],
+				"typeProperties": {
+					"collection": {
+						"value": "@dataset().CollectionName",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDbMongoDbApi_Ankita2')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1276,6 +1489,39 @@
 						"type": "String"
 					},
 					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText6')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "collection.csv",
+						"container": "empty"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "CollectionName",
 						"type": "String"
 					}
 				]
@@ -1925,6 +2171,34 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApi_Ankita1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDbMongoDbApi",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDbMongoDbApi_Ankita1_connectionString')]",
+					"database": "[parameters('CosmosDbMongoDbApi_Ankita1_properties_typeProperties_database')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApi_Ankita2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDbMongoDbApi",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDbMongoDbApi_Ankita2_connectionString')]",
+					"database": "[parameters('CosmosDbMongoDbApi_Ankita2_properties_typeProperties_database')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/FileServer1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -2205,14 +2479,14 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "CopyPipeline_eqt",
+							"referenceName": "ForEach",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
 					},
 					{
 						"pipelineReference": {
-							"referenceName": "ForEach",
+							"referenceName": "Cosmos",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
@@ -2229,8 +2503,8 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_eqt')]",
-				"[concat(variables('factoryId'), '/pipelines/ForEach')]"
+				"[concat(variables('factoryId'), '/pipelines/ForEach')]",
+				"[concat(variables('factoryId'), '/pipelines/Cosmos')]"
 			]
 		},
 		{
