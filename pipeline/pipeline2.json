@@ -1,0 +1,133 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "DelimitedText6",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('Collection')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "CosmosDbMongoDbApiSource",
+									"batchSize": 100
+								},
+								"sink": {
+									"type": "CosmosDbMongoDbApiSink",
+									"writeBatchTimeout": "00:30:00",
+									"writeBehavior": "insert"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "CosmosDbMongoDbApiCollectionAnkita1",
+									"type": "DatasetReference",
+									"parameters": {
+										"CollectionName": {
+											"value": "@item().CollectionName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "CosmosDbMongoDbApiCollection_Ankita",
+									"type": "DatasetReference",
+									"parameters": {
+										"CollectionName": {
+											"value": "@item().CollectionName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Collection",
+					"value": {
+						"value": "@activity('Lookup1').output.value",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"Collection": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	}
+}
