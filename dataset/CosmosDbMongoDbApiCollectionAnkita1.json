@@ -1,5 +1,5 @@
 {
-	"name": "CosmosDbMongoDbApiCollection2",
+	"name": "CosmosDbMongoDbApiCollectionAnkita1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "CosmosDbMongoDbApi_Ankita1",
@@ -12,6 +12,12 @@
 		},
 		"annotations": [],
 		"type": "CosmosDbMongoDbApiCollection",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"collection": {
+				"value": "@dataset().CollectionName",
+				"type": "Expression"
+			}
+		}
 	}
 }
