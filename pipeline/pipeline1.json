@@ -3,28 +3,24 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Web1",
-				"type": "WebActivity",
+				"name": "Set variable1",
+				"type": "SetVariable",
 				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://management.azure.com/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.DataFactory/factories/legendarydfv2/queryPipelineRuns?api-version=2018-06-01",
-					"method": "POST",
-					"headers": {
-						"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IllNRUxIVDBndmIwbXhvU0RvWWZvbWpxZmpZVSIsImtpZCI6IllNRUxIVDBndmIwbXhvU0RvWWZvbWpxZmpZVSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83MmY5ODhiZi04NmYxLTQxYWYtOTFhYi0yZDdjZDAxMWRiNDcvIiwiaWF0IjoxNTg0ODUxOTUzLCJuYmYiOjE1ODQ4NTE5NTMsImV4cCI6MTU4NDg1NTg1MywiX2NsYWltX25hbWVzIjp7Imdyb3VwcyI6InNyYzEifSwiX2NsYWltX3NvdXJjZXMiOnsic3JjMSI6eyJlbmRwb2ludCI6Imh0dHBzOi8vZ3JhcGgud2luZG93cy5uZXQvNzJmOTg4YmYtODZmMS00MWFmLTkxYWItMmQ3Y2QwMTFkYjQ3L3VzZXJzLzdmMTFkMTY0LTY5NTItNGI5NC04MmM2LTNiN2M3OTVlOTdjZS9nZXRNZW1iZXJPYmplY3RzIn19LCJhY3IiOiIxIiwiYWlvIjoiQVZRQXEvOE9BQUFBNk1Id3FJa0lBVFZITnJlVlNUZ1NkK0RpRzI4V1FLQ05aT2JuMUcyenZ3QUpxWnhQU3VZV0tYUWk2eG53UXpmMjlJVDNMYWFxOWhURjF3eUlxSm53ODBVVCtlS0lQbzdDcDF6TmcvdUdKYjQ9IiwiYW1yIjpbInJzYSIsIm1mYSJdLCJhcHBpZCI6IjdmNTlhNzczLTJlYWYtNDI5Yy1hMDU5LTUwZmM1YmIyOGI0NCIsImFwcGlkYWNyIjoiMiIsImRldmljZWlkIjoiNGM5YzdlYjQtYzI3Ni00MzI3LThiNzctYjk3MmEyYTY1MzE4IiwiZmFtaWx5X25hbWUiOiJQdXRob29yYW4iLCJnaXZlbl9uYW1lIjoiSmlqbyIsImlwYWRkciI6IjEwNi41MS4xMDguMjM1IiwibmFtZSI6Ikppam8gUHV0aG9vcmFuIiwib2lkIjoiN2YxMWQxNjQtNjk1Mi00Yjk0LTgyYzYtM2I3Yzc5NWU5N2NlIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTIxNDY3NzMwODUtOTAzMzYzMjg1LTcxOTM0NDcwNy0yMzY5ODYwIiwicHVpZCI6IjEwMDNCRkZEQUI3NTQ0MDciLCJzY3AiOiJ1c2VyX2ltcGVyc29uYXRpb24iLCJzdWIiOiJHZmlDTElwZkZldWRCQ29vbkJGelhSRV9UUVl0T1JFTFUwU1FrVy1zd1FjIiwidGlkIjoiNzJmOTg4YmYtODZmMS00MWFmLTkxYWItMmQ3Y2QwMTFkYjQ3IiwidW5pcXVlX25hbWUiOiJqaXB1dGhvb0BtaWNyb3NvZnQuY29tIiwidXBuIjoiamlwdXRob29AbWljcm9zb2Z0LmNvbSIsInV0aSI6InNPUDhEb3FDdjBxNXYyc1phSW1pQUEiLCJ2ZXIiOiIxLjAifQ.S3EzYHmyo1vNJEEpw6yQw63NEDxhADjGCughxjE1tCAJjbw6SVmdPWWf4wrERA2UY-AHAPVf0W3_IpebZ0m1KQigpyg31I7SIQkL_Em9hwFgCtK5yWNM24z0E4Bk_zLpsb4FUIcCb9ml3pRiFQR9nPmNy80FUTFzoKQnkd_Uleor1fzUPYU7Vt9_2z4TilN4T4dVB2VW1whI9XiB1qbWYYZIZR_9KuD7MYEXOhZ3VDG-G4DzwzbsPhURSWkXIJYa8VgzR47FjLK1IFloEaxNzAzpA5bZXSQ6KYdCjeA9lC3ALdILCTEnn25GrM_B6eGib3GAqu5AX5WW-Aw1GcAo4w",
-						"Content-type": "application/json"
-					},
-					"body": "\"value\": []"
+					"variableName": "Date",
+					"value": {
+						"value": "@div(1,0)",
+						"type": "Expression"
+					}
 				}
 			}
 		],
+		"variables": {
+			"Date": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
