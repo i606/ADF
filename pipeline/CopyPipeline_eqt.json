@@ -222,8 +222,33 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "BlobToBlob",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Error",
+					"value": {
+						"value": "@activity('BlobToBlob').error.message",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"Error": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"

@@ -5,6 +5,8 @@
 			{
 				"name": "Execute Pipeline1",
 				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "CopyPipeline_eqt",
@@ -19,7 +21,8 @@
 				"type": "string",
 				"defaultValue": "@trigger().outputs.windowStartTime"
 			}
-		}
+		},
+		"annotations": []
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
