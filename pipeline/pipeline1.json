@@ -15,13 +15,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://management.azure.com/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.DataFactory/factories/legendarydfv2/queryPipelineRuns?api-version=2018-06-01",
+					"url": "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/v2.0/token",
 					"method": "POST",
 					"headers": {
-						"Content-type": "application/json",
-						"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IllNRUxIVDBndmIwbXhvU0RvWWZvbWpxZmpZVSIsImtpZCI6IllNRUxIVDBndmIwbXhvU0RvWWZvbWpxZmpZVSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83MmY5ODhiZi04NmYxLTQxYWYtOTFhYi0yZDdjZDAxMWRiNDcvIiwiaWF0IjoxNTg1NzUyNzQ1LCJuYmYiOjE1ODU3NTI3NDUsImV4cCI6MTU4NTc1NjY0NSwiX2NsYWltX25hbWVzIjp7Imdyb3VwcyI6InNyYzEifSwiX2NsYWltX3NvdXJjZXMiOnsic3JjMSI6eyJlbmRwb2ludCI6Imh0dHBzOi8vZ3JhcGgud2luZG93cy5uZXQvNzJmOTg4YmYtODZmMS00MWFmLTkxYWItMmQ3Y2QwMTFkYjQ3L3VzZXJzLzdmMTFkMTY0LTY5NTItNGI5NC04MmM2LTNiN2M3OTVlOTdjZS9nZXRNZW1iZXJPYmplY3RzIn19LCJhY3IiOiIxIiwiYWlvIjoiQVZRQXEvOFBBQUFBNnp3bEdVWElBZ0FsNkhkNkdqNVdrRGE4UUxXVXAvbFRpQ2d3SmxXMmo1MUNmcHluOFVSejVXeXhPL3JEVU9td1dGWTRIVWtNREFWRGFVYWdMQlRYRFVaRGErS3RqQzdLL1lUQ0xmazZpME09IiwiYW1yIjpbInJzYSIsIm1mYSJdLCJhcHBpZCI6IjdmNTlhNzczLTJlYWYtNDI5Yy1hMDU5LTUwZmM1YmIyOGI0NCIsImFwcGlkYWNyIjoiMiIsImRldmljZWlkIjoiNGM5YzdlYjQtYzI3Ni00MzI3LThiNzctYjk3MmEyYTY1MzE4IiwiZmFtaWx5X25hbWUiOiJQdXRob29yYW4iLCJnaXZlbl9uYW1lIjoiSmlqbyIsImluX2NvcnAiOiJ0cnVlIiwiaXBhZGRyIjoiNDkuMjA3LjU2LjYxIiwibmFtZSI6Ikppam8gUHV0aG9vcmFuIiwib2lkIjoiN2YxMWQxNjQtNjk1Mi00Yjk0LTgyYzYtM2I3Yzc5NWU5N2NlIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTIxNDY3NzMwODUtOTAzMzYzMjg1LTcxOTM0NDcwNy0yMzY5ODYwIiwicHVpZCI6IjEwMDNCRkZEQUI3NTQ0MDciLCJzY3AiOiJ1c2VyX2ltcGVyc29uYXRpb24iLCJzdWIiOiJHZmlDTElwZkZldWRCQ29vbkJGelhSRV9UUVl0T1JFTFUwU1FrVy1zd1FjIiwidGlkIjoiNzJmOTg4YmYtODZmMS00MWFmLTkxYWItMmQ3Y2QwMTFkYjQ3IiwidW5pcXVlX25hbWUiOiJqaXB1dGhvb0BtaWNyb3NvZnQuY29tIiwidXBuIjoiamlwdXRob29AbWljcm9zb2Z0LmNvbSIsInV0aSI6Im5FMjBqN3cwOTBtWFZ2Y19uRkJJQUEiLCJ2ZXIiOiIxLjAifQ.iRs9_iKEC_u6XGOlVgOswt5lBwObHNNzcXviVP3YB5Lbd5JPycSU1M0c46wxt5kZSyZ99uuPaI1S8qOuBm3AgTQuVv-xM4o18TY9JIkyxY2jPHjMvuk1cTSdFWcWhWFM0eO2pt5L8y0uN53hxR2KrnCNtKuLQaaBzRdJBXvuQc_hq1rrM7MJJaxvheEFtt8HKtQHBxsi4J1p7JTG-Sn-3b2kDvtWHTZ5cWp6FL6lExHH7bcztobBK1uFwJyOXT2Tq_WjZ93FRosPZjuF8wzYoithBkqiJ9wVffy7pTGwsp5YwzWRQXSaiVgYNTV1RMWhc86fYhx0Te6vmte_YadYUw"
+						"Content-type": "application/x-www-form-urlencoded"
 					},
-					"body": "{\n\tlastUpdatedAfter: \"\"\n\tlastUpdatedBefore: \"\"\n}"
+					"body": "grant_type=client_credentials&client_id=dbfc0866-e1ce-4757-b511-f2e84b1bf9c1&client_secret=fQ4o@2S/XAfC?Q-KxaJQL9F4W_-aT92:&scope=https://management.azure.com/.default"
 				}
 			}
 		],
