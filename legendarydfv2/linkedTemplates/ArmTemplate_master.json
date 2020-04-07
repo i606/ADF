@@ -421,12 +421,6 @@
 					},
 					"AzureBlob1_properties_typeProperties_folderPath": {
 						"value": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
-					},
-					"DestinationDataset_e8j_properties_typeProperties_fileName": {
-						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_fileName')]"
-					},
-					"DestinationDataset_e8j_properties_typeProperties_folderPath": {
-						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
@@ -468,6 +462,12 @@
 					},
 					"linkedService_spark_servicePrincipalKey": {
 						"value": "[parameters('linkedService_spark_servicePrincipalKey')]"
+					},
+					"DestinationDataset_e8j_properties_typeProperties_fileName": {
+						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_fileName')]"
+					},
+					"DestinationDataset_e8j_properties_typeProperties_folderPath": {
+						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_folderPath')]"
 					},
 					"DestinationDataset_eqt_properties_typeProperties_fileName": {
 						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_fileName')]"

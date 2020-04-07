@@ -14,20 +14,22 @@
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "empty"
-		},
-		"DestinationDataset_e8j_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "@dataset().test_param"
-		},
-		"DestinationDataset_e8j_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "Test"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/SH-IR')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SSIS-IR')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
@@ -568,36 +570,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_e8j')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStore1",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"test_param": {
-						"type": "string",
-						"defaultValue": "@pipeline('Copy_eqt').TriggerTime"
-					}
-				},
-				"annotations": [],
-				"type": "AzureDataLakeStoreFile",
-				"typeProperties": {
-					"format": {
-						"type": "ParquetFormat"
-					},
-					"fileName": {
-						"value": "[parameters('DestinationDataset_e8j_properties_typeProperties_fileName')]",
-						"type": "Expression"
-					},
-					"folderPath": "[parameters('DestinationDataset_e8j_properties_typeProperties_folderPath')]"
-				}
 			},
 			"dependsOn": []
 		}
