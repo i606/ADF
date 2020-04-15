@@ -75,40 +75,93 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/dataflow_test')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"type": "MappingDataFlow",
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
 				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "DelimitedText2",
-								"type": "DatasetReference"
-							},
-							"name": "sourcestream"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "DelimitedText3",
-								"type": "DatasetReference"
-							},
-							"name": "sink1"
-						}
-					],
-					"transformations": [
-						{
-							"name": "Select1"
-						},
-						{
-							"name": "Aggregate1"
-						}
-					],
-					"script": "source(output(\n\t\tSegment as string,\n\t\tCountry as string,\n\t\t{ Product } as string,\n\t\t{ Discount Band } as string,\n\t\t{Units Sold} as string,\n\t\t{Manufacturing Price} as string,\n\t\t{Sale Price} as string,\n\t\t{Gross Sales} as string,\n\t\tDiscounts as string,\n\t\t{ Sales} as string,\n\t\tCOGS as string,\n\t\tProfit as string,\n\t\tDate as string,\n\t\t{Month Number} as string,\n\t\t{ Month Name } as string,\n\t\tYear as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpartitionBy('hash', 1)) ~> sourcestream\nsourcestream select(mapColumn(\n\t\tProduct = { Product },\n\t\t{Units Sold},\n\t\t{Manufacturing Price},\n\t\t{Sale Price},\n\t\t{Gross Sales},\n\t\tProfit,\n\t\tDiscounts\n\t),\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 aggregate(groupBy(Product),\n\t{Units Sold} = count({Units Sold}),\n\tpartitionBy('hash', 1)) ~> Aggregate1\nAggregate1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
-				}
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "parquet.csv",
+						"container": "empty"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Segment",
+						"type": "String"
+					},
+					{
+						"name": "Country",
+						"type": "String"
+					},
+					{
+						"name": " Product ",
+						"type": "String"
+					},
+					{
+						"name": " Discount Band ",
+						"type": "String"
+					},
+					{
+						"name": "Units Sold",
+						"type": "String"
+					},
+					{
+						"name": "Manufacturing Price",
+						"type": "String"
+					},
+					{
+						"name": "Sale Price",
+						"type": "String"
+					},
+					{
+						"name": "Gross Sales",
+						"type": "String"
+					},
+					{
+						"name": "Discounts",
+						"type": "String"
+					},
+					{
+						"name": " Sales",
+						"type": "String"
+					},
+					{
+						"name": "COGS",
+						"type": "String"
+					},
+					{
+						"name": "Profit",
+						"type": "String"
+					},
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Month Number",
+						"type": "String"
+					},
+					{
+						"name": " Month Name ",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": []
 		},
@@ -376,16 +429,23 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/schedule1')]",
+			"name": "[concat(parameters('factoryName'), '/schedule_test')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
 							"referenceName": "ForEach",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "Copy from REST connector into ADLS Gen2",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
