@@ -9,12 +9,6 @@
 					"referenceName": "ForEach",
 					"type": "PipelineReference"
 				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "Copy from REST connector into ADLS Gen2",
-					"type": "PipelineReference"
-				}
 			}
 		],
 		"type": "ScheduleTrigger",
