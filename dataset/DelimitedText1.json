@@ -2,13 +2,14 @@
 	"name": "DelimitedText1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "FileServer1",
+			"referenceName": "AzureDataLakeStore",
 			"type": "LinkedServiceReference"
 		},
+		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation",
+				"type": "AzureDataLakeStoreLocation",
 				"fileName": "1.csv"
 			},
 			"columnDelimiter": ",",
