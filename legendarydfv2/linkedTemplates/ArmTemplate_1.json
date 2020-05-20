@@ -113,372 +113,73 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/Avro')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
-					{
-						"name": "Stored procedure1",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Set variable1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[dbo].[usp_clear_staging_table]",
-							"storedProcedureParameters": {
-								"COUNTRY": {
-									"value": {
-										"value": "@variables('table_properties')[0].Country",
-										"type": "Expression"
-									},
-									"type": "String"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureSqlDW",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Set variable1",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "table_properties",
-							"value": [
-								{
-									"SrcTableName": "CHAT",
-									"TrgTableName": "CHAT",
-									"InitBot": "DATEINITBOT",
-									"EndBot": "DATEENDBOT",
-									"RequestTransfer": "DATEREQUESTTRANSFER",
-									"InitLiveChat": "DATEINITCHAT",
-									"EndLiveChat": "DATEENDCHAT",
-									"Country": "EC",
-									"TableType": "dbo.DataTypeForChatTable",
-									"TableTypeParameterName": "chat_table",
-									"Mapping": {
-										"type": "TabularTranslator",
-										"mappings": [
-											{
-												"source": {
-													"name": "GUIDCHAT",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDCHAT"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDUSERDATA",
-													"type": "String"
-												},
-												"sink": {
-													"name": "GUIDUSERDATA"
-												}
-											},
-											{
-												"source": {
-													"name": "CUSTOMERIDENTIFIER",
-													"type": "String"
-												},
-												"sink": {
-													"name": "CUSTOMERIDENTIFIER"
-												}
-											},
-											{
-												"source": {
-													"name": "CUSTOMERNAME",
-													"type": "String"
-												},
-												"sink": {
-													"name": "CUSTOMERNAME"
-												}
-											},
-											{
-												"source": {
-													"name": "ANUMBER",
-													"type": "String"
-												},
-												"sink": {
-													"name": "ANUMBER"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDCLIENTTYPE",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDCLIENTTYPE"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDSUPPORTTHEME",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDSUPPORTTHEME"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDSYSTEMCAMPAIGN",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDSYSTEMCAMPAIGN"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDSYSTEMREGION",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDSYSTEMREGION"
-												}
-											},
-											{
-												"source": {
-													"name": "DATEINITCHAT",
-													"type": "DateTimeOffset"
-												},
-												"sink": {
-													"name": "DATEINITCHAT"
-												}
-											},
-											{
-												"source": {
-													"name": "DATEENDCHAT",
-													"type": "DateTimeOffset"
-												},
-												"sink": {
-													"name": "DATEENDCHAT"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDCHATSTATE",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDCHATSTATE"
-												}
-											},
-											{
-												"source": {
-													"name": "LIMITTOANSWER",
-													"type": "Int64"
-												},
-												"sink": {
-													"name": "LIMITTOANSWER"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDCHATFINISHBY",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDCHATFINISHBY"
-												}
-											},
-											{
-												"source": {
-													"name": "ANSWEREDSURVEY",
-													"type": "Byte"
-												},
-												"sink": {
-													"name": "ANSWEREDSURVEY"
-												}
-											},
-											{
-												"source": {
-													"name": "CUSTOMERREMOTEIP",
-													"type": "String"
-												},
-												"sink": {
-													"name": "CUSTOMERREMOTEIP"
-												}
-											},
-											{
-												"source": {
-													"name": "PRIORITYSUPPORTTHEME",
-													"type": "Int32"
-												},
-												"sink": {
-													"name": "PRIORITYSUPPORTTHEME"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDSYSTEMCHANNEL",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDSYSTEMCHANNEL"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDSYSTEMCALLCENTER",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDSYSTEMCALLCENTER"
-												}
-											},
-											{
-												"source": {
-													"name": "DATEFIRSTANSWER",
-													"type": "DateTimeOffset"
-												},
-												"sink": {
-													"name": "DATEFIRSTANSWER"
-												}
-											},
-											{
-												"source": {
-													"name": "ANSWERBEFORELIMIT",
-													"type": "Byte"
-												},
-												"sink": {
-													"name": "ANSWERBEFORELIMIT"
-												}
-											},
-											{
-												"source": {
-													"name": "ISBOTATTENDED",
-													"type": "Byte"
-												},
-												"sink": {
-													"name": "ISBOTATTENDED"
-												}
-											},
-											{
-												"source": {
-													"name": "ISTRANSFERAGENT",
-													"type": "Byte"
-												},
-												"sink": {
-													"name": "ISTRANSFERAGENT"
-												}
-											},
-											{
-												"source": {
-													"name": "DATEINITBOT",
-													"type": "DateTimeOffset"
-												},
-												"sink": {
-													"name": "DATEINITBOT"
-												}
-											},
-											{
-												"source": {
-													"name": "DATEENDBOT",
-													"type": "DateTimeOffset"
-												},
-												"sink": {
-													"name": "DATEENDBOT"
-												}
-											},
-											{
-												"source": {
-													"name": "CUSTOMERCEDULA",
-													"type": "String"
-												},
-												"sink": {
-													"name": "CUSTOMERCEDULA"
-												}
-											},
-											{
-												"source": {
-													"name": "CUSTOMEREMAIL",
-													"type": "String"
-												},
-												"sink": {
-													"name": "CUSTOMEREMAIL"
-												}
-											},
-											{
-												"source": {
-													"name": "DATEOPENCHAT",
-													"type": "DateTimeOffset"
-												},
-												"sink": {
-													"name": "DATEOPENCHAT"
-												}
-											},
-											{
-												"source": {
-													"name": "GUIDSYSTEMCOMPANY",
-													"type": "Guid"
-												},
-												"sink": {
-													"name": "GUIDSYSTEMCOMPANY"
-												}
-											},
-											{
-												"source": {
-													"name": "ISDIRECTAGENT",
-													"type": "Byte"
-												},
-												"sink": {
-													"name": "ISDIRECTAGENT"
-												}
-											},
-											{
-												"source": {
-													"name": "DATEREQUESTTRANSFER",
-													"type": "DateTimeOffset"
-												},
-												"sink": {
-													"name": "DATEREQUESTTRANSFER"
-												}
-											},
-											{
-												"source": {
-													"name": "COUNTRYCODE",
-													"type": "String"
-												},
-												"sink": {
-													"name": "COUNTRYCODE"
-												}
-											}
-										]
-									},
-									"StoredProcedureNameForInsertOperation": "stg.usp_insert_chat_table",
-									"StoredProcedureNameForMergeOperation": "dw.usp_upsert_chat_all"
-								}
-							]
-						}
-					}
-				],
-				"variables": {
-					"table_properties": {
-						"type": "Array"
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Avro",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "21 (1).avro",
+						"container": "empty"
 					}
 				},
-				"annotations": []
+				"schema": {
+					"type": "record",
+					"name": "Microsoft.ServiceBus.Messaging.EventData",
+					"fields": [
+						{
+							"name": "SequenceNumber",
+							"type": "long"
+						},
+						{
+							"name": "Offset",
+							"type": "string"
+						},
+						{
+							"name": "EnqueuedTimeUtc",
+							"type": "string"
+						},
+						{
+							"name": "SystemProperties",
+							"type": {
+								"type": "map",
+								"values": [
+									"long",
+									"double",
+									"string",
+									"bytes"
+								]
+							}
+						},
+						{
+							"name": "Properties",
+							"type": {
+								"type": "map",
+								"values": [
+									"long",
+									"double",
+									"string",
+									"bytes",
+									"null"
+								]
+							}
+						},
+						{
+							"name": "Body",
+							"type": [
+								"null",
+								"bytes"
+							]
+						}
+					]
+				}
 			},
 			"dependsOn": []
 		},
@@ -732,15 +433,15 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "FileServer1",
+					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
-						"type": "FileServerLocation",
-						"fileName": "1.csv"
+						"type": "AzureBlobStorageLocation",
+						"container": "empty"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
