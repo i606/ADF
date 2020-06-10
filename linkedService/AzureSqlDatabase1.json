@@ -10,18 +10,7 @@
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=legendarysql.database.windows.net;Initial Catalog=legendary;User ID=jijo",
-			"password": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "AzureKeyVault1",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": {
-					"value": "linkedService().SQLP",
-					"type": "Expression"
-				}
-			}
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=legendarysql.database.windows.net;Initial Catalog=legendary"
 		}
 	}
 }
