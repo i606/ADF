@@ -1,0 +1,10 @@
+{
+	"name": "LegendaryGen2",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.Storage/storageAccounts/legendarygen2",
+		"groupId": "blob",
+		"fqdns": [
+			"legendarygen2.blob.core.windows.net"
+		]
+	}
+}

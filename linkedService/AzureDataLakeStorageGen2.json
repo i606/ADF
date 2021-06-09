@@ -1,0 +1,19 @@
+{
+	"name": "AzureDataLakeStorageGen2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://legendaryadlsgen2.dfs.core.windows.net",
+			"tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+			"servicePrincipalId": "be56f591-badf-4c64-aaec-ca647c49ab9d",
+			"servicePrincipalCredentialType": "ServicePrincipalKey",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwYzQ2NTk4OS03MTI3LTRkZjMtOWU1Ni0xMmJjYjRlYmY5YmUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SH-IR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

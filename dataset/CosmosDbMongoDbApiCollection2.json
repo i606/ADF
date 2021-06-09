@@ -1,0 +1,16 @@
+{
+	"name": "CosmosDbMongoDbApiCollection2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDbMongoDbApi_Ankita2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbMongoDbApiCollection",
+		"schema": [],
+		"typeProperties": {
+			"collection": "ankita1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

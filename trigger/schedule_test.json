@@ -1,0 +1,17 @@
+{
+	"name": "schedule_test",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2019-05-03T04:48:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
