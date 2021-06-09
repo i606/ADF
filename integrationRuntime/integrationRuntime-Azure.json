@@ -1,0 +1,16 @@
+{
+	"name": "integrationRuntime-Azure",
+	"properties": {
+		"type": "Managed",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "South India",
+				"dataFlowProperties": {
+					"computeType": "MemoryOptimized",
+					"coreCount": 32,
+					"timeToLive": 0
+				}
+			}
+		}
+	}
+}

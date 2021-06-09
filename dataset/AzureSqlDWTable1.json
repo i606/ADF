@@ -1,0 +1,67 @@
+{
+	"name": "AzureSqlDWTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "_id",
+				"type": "varchar"
+			},
+			{
+				"name": "partyId",
+				"type": "varchar"
+			},
+			{
+				"name": "updateTime",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "IPAddress",
+				"type": "varchar"
+			},
+			{
+				"name": "documentContext",
+				"type": "varchar"
+			},
+			{
+				"name": "document",
+				"type": "varchar"
+			},
+			{
+				"name": "submissionId",
+				"type": "varchar"
+			},
+			{
+				"name": "submissionVersion",
+				"type": "varchar"
+			},
+			{
+				"name": "policyId",
+				"type": "varchar"
+			},
+			{
+				"name": "referenceDocumenId",
+				"type": "varchar"
+			},
+			{
+				"name": "status",
+				"type": "varchar"
+			},
+			{
+				"name": "policyRole",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "affirmationDetails"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

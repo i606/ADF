@@ -1,0 +1,17 @@
+{
+	"name": "schedule2",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 10,
+				"startTime": "2019-05-03T04:48:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

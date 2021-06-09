@@ -2,23 +2,26 @@
 	"name": "trigger1",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "pipeline1234",
-					"type": "PipelineReference"
-				}
-			}
-		],
-		"type": "ScheduleTrigger",
+		"runtimeState": "Stopped",
+		"type": "TumblingWindowTrigger",
 		"typeProperties": {
-			"recurrence": {
-				"frequency": "Minute",
-				"interval": 1,
-				"startTime": "2019-08-29T09:14:00.000Z",
-				"timeZone": "UTC"
-			}
+			"frequency": "Minute",
+			"interval": 15,
+			"startTime": "2019-04-27T06:15:00Z",
+			"delay": "00:00:00",
+			"maxConcurrency": 50,
+			"retryPolicy": {
+				"intervalInSeconds": 30
+			},
+			"dependsOn": [
+				{
+					"type": "TumblingWindowTriggerDependencyReference",
+					"referenceTrigger": {
+						"referenceName": "Tumbling",
+						"type": "TriggerReference"
+					}
+				}
+			]
 		}
 	}
 }

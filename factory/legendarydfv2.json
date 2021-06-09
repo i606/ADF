@@ -1,0 +1,17 @@
+{
+	"name": "legendarydfv2",
+	"properties": {
+		"globalParameters": {
+			"Test": {
+				"type": "string",
+				"value": "empty"
+			}
+		}
+	},
+	"location": "EastUS",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "243e2e29-a346-4b95-87f2-5a1d70539cea",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}

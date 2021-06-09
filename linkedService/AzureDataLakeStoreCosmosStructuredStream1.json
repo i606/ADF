@@ -1,0 +1,14 @@
+{
+	"name": "AzureDataLakeStoreCosmosStructuredStream1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStoreCosmosStructuredStream",
+		"typeProperties": {
+			"accountName": "sducvsduhbchd",
+			"tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+			"subscriptionId": "sdcdchiwd",
+			"resourceGroupName": "shdw"
+		}
+	}
+}

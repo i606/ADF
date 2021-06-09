@@ -9,16 +9,11 @@
 		"type": "AzureBlob",
 		"typeProperties": {
 			"format": {
-				"type": "TextFormat",
-				"columnDelimiter": ",",
-				"rowDelimiter": "",
-				"nullValue": "\\N",
-				"treatEmptyAsNull": true,
-				"skipLineCount": 0,
-				"firstRowAsHeader": false
+				"type": "ParquetFormat"
 			},
-			"fileName": "",
-			"folderPath": "legendary12-2018-10-02t07-17-24-186z"
+			"fileName": "test.json",
+			"folderPath": "empty"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

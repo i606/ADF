@@ -1,0 +1,21 @@
+{
+	"name": "FtpServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FtpServer",
+		"typeProperties": {
+			"host": "ftp.isoftix.com",
+			"port": 21,
+			"enableSsl": true,
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Basic",
+			"userName": "u711360529.testopenftp",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkxFR0VOREFSWURGVjJfMjI5Y2ZkMGQtMWRjNS00ODNjLWIwYmMtZmU4Njc0ZTI0MjFhIg0KfQ=="
+		},
+		"connectVia": {
+			"referenceName": "ManagedVNET",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"name": "AzureBatch1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBatch",
+		"typeProperties": {
+			"accountName": "legendary",
+			"batchUri": "https://legendary.eastus.batch.azure.com",
+			"poolName": "custom-activity-pool",
+			"linkedServiceName": {
+				"referenceName": "AzureBlobStorage",
+				"type": "LinkedServiceReference"
+			},
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkxFR0VOREFSWURGVjJfMTVkMTBhYjgtOWZjNS00NTI2LTlhMDktZThhZjY3YjIyNmJiIg0KfQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime-Azure",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

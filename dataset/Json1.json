@@ -1,0 +1,155 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "PT1H.json",
+				"container": "empty"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"time": {
+					"type": "string"
+				},
+				"resourceId": {
+					"type": "string"
+				},
+				"category": {
+					"type": "string"
+				},
+				"level": {
+					"type": "integer"
+				},
+				"operationName": {
+					"type": "string"
+				},
+				"properties": {
+					"type": "object",
+					"properties": {
+						"EventClass": {
+							"type": "string"
+						},
+						"EventSubclass": {
+							"type": "string"
+						},
+						"RootActivityId": {
+							"type": "string"
+						},
+						"IsQueryScaleoutReadonlyInstance": {
+							"type": "string"
+						},
+						"CurrentTime": {
+							"type": "string"
+						},
+						"StartTime": {
+							"type": "string"
+						},
+						"JobID": {
+							"type": "null"
+						},
+						"ObjectID": {
+							"type": "string"
+						},
+						"ObjectType": {
+							"type": "string"
+						},
+						"ObjectName": {
+							"type": "string"
+						},
+						"ObjectPath": {
+							"type": "string"
+						},
+						"ObjectReference": {
+							"type": "string"
+						},
+						"EndTime": {
+							"type": "string"
+						},
+						"Duration": {
+							"type": "string"
+						},
+						"CPUTime": {
+							"type": "string"
+						},
+						"SessionType": {
+							"type": "null"
+						},
+						"ProgressTotal": {
+							"type": "null"
+						},
+						"IntegerData": {
+							"type": "string"
+						},
+						"Severity": {
+							"type": "string"
+						},
+						"Success": {
+							"type": "string"
+						},
+						"Error": {
+							"type": "string"
+						},
+						"TextData": {
+							"type": "string"
+						},
+						"ConnectionID": {
+							"type": "string"
+						},
+						"DatabaseName": {
+							"type": "string"
+						},
+						"NTDomainName": {
+							"type": "string"
+						},
+						"SessionID": {
+							"type": "string"
+						},
+						"SPID": {
+							"type": "string"
+						},
+						"ClientHostName": {
+							"type": "string"
+						},
+						"ClientProcessID": {
+							"type": "string"
+						},
+						"ApplicationName": {
+							"type": "string"
+						},
+						"ApplicationContext": {
+							"type": "string"
+						},
+						"User": {
+							"type": "string"
+						},
+						"EffectiveUsername": {
+							"type": "string"
+						},
+						"Tenant": {
+							"type": "string"
+						},
+						"ServerName": {
+							"type": "string"
+						},
+						"RequestParameters": {
+							"type": "string"
+						},
+						"RequestProperties": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

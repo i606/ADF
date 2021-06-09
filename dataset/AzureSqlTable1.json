@@ -3,13 +3,7 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"SQLP": {
-					"value": "@dataset().SQLPass",
-					"type": "Expression"
-				}
-			}
+			"type": "LinkedServiceReference"
 		},
 		"parameters": {
 			"SQLPass": {
@@ -18,10 +12,31 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"structure": [
+			{
+				"name": "PersonID",
+				"type": "Int32"
+			},
+			{
+				"name": "LastName",
+				"type": "String"
+			},
+			{
+				"name": "FirstName",
+				"type": "String"
+			},
+			{
+				"name": "Address",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "Persons"
+			"tableName": "[dbo].[Persons]"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

@@ -1,0 +1,24 @@
+{
+	"name": "DestinationDataset_ADLS_Gen1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"test_param": {
+				"type": "string",
+				"defaultValue": "@pipeline('Copy_eqt').TriggerTime"
+			}
+		},
+		"annotations": [],
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"format": {
+				"type": "ParquetFormat"
+			},
+			"folderPath": "Test"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

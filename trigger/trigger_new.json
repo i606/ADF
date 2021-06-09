@@ -1,0 +1,17 @@
+{
+	"name": "trigger_new",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 5,
+				"startTime": "2021-01-23T10:41:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"name": "linkedservice_spark",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HDInsightOnDemand",
+		"typeProperties": {
+			"clusterType": "spark",
+			"clusterSize": 2,
+			"timeToLive": "1:30:00",
+			"version": "4.0",
+			"hostSubscriptionId": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef",
+			"clusterResourceGroup": "jijo",
+			"servicePrincipalId": "legendaryspn",
+			"osType": "Linux",
+			"tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+			"clusterNamePrefix": "atlasHDInsightCluster",
+			"clusterUserName": "atlas",
+			"clusterSshUserName": "atlas",
+			"sparkVersion": "2.3",
+			"additionalLinkedServiceNames": [],
+			"linkedServiceName": {
+				"referenceName": "AzureBlobStorage2",
+				"type": "LinkedServiceReference"
+			},
+			"headNodeSize": "",
+			"dataNodeSize": "",
+			"zookeeperNodeSize": "",
+			"subnetName": "",
+			"virtualNetworkId": "",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkxFR0VOREFSWURGVjJfYzNhYjY1YzgtN2E1MS00NjkwLTg2OTMtZDIwMDQ1MzU3Y2YyIg0KfQ=="
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "Odbc_MySQL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Odbc",
+		"typeProperties": {
+			"connectionString": {
+				"type": "SecureString",
+				"value": "**********"
+			},
+			"authenticationType": "Basic",
+			"userName": "root",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2OWFiMmU5Zi1mYTliLTRkMTQtODhiOS1hMzMzYWExZWI3MGUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SH-IR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
