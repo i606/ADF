@@ -6,7 +6,6 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText6",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -26,7 +25,6 @@
 				}
 			],
 			"transformations": [],
-			"script": "source(output(\n\t\tFirstName as string,\n\t\tLastName as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tFirstName as string,\n\t\tLastName as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\toutputRejectedData: true,\n\trejectedData_container: 'test',\n\trejectedData_folderPath: 'Dataflow',\n\ttransactionCommit: 'batch',\n\treportSuccessOnError: true) ~> sink1"
 		}
 	}
 }
