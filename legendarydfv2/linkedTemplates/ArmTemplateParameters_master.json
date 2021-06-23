@@ -128,6 +128,18 @@
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"value": "empty"
 		},
+		"AzureBlob2_properties_typeProperties_fileName": {
+			"value": "odin_fullrefresh_daily.json"
+		},
+		"AzureBlob2_properties_typeProperties_folderPath": {
+			"value": "legendarycontainer"
+		},
+		"AzureBlob3_properties_typeProperties_fileName": {
+			"value": "odin_fullrefresh_daily.json"
+		},
+		"AzureBlob3_properties_typeProperties_folderPath": {
+			"value": "legendarycontainer"
+		},
 		"DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath": {
 			"value": "Test"
 		},
@@ -172,6 +184,18 @@
 		},
 		"AzureDataLakeStorageGen2_properties_typeProperties_servicePrincipalId": {
 			"value": "be56f591-badf-4c64-aaec-ca647c49ab9d"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"value": "jijo"
 		},
 		"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
 			"value": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"

@@ -23,9 +23,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureMySql1'"
 		},
-		"AzureSqlDatabase1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		"DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Test"
 		},
 		"DestinationDataset_eqt_properties_typeProperties_fileName": {
 			"type": "string",
@@ -68,6 +68,32 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_ADLS_Gen1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"test_param": {
+						"type": "string",
+						"defaultValue": "@pipeline('Copy_eqt').TriggerTime"
+					}
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "ParquetFormat"
+					},
+					"folderPath": "[parameters('DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_eqt')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -715,23 +741,6 @@
 				},
 				"connectVia": {
 					"referenceName": "integrationRuntime-Azure",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "SH-IR",
 					"type": "IntegrationRuntimeReference"
 				}
 			},

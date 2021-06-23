@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "legendarydfv2"
 		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
 		"CosmosDbMongoDb_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDb'"
@@ -150,12 +154,37 @@
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "empty"
+		},
+		"AzureBlob2_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "odin_fullrefresh_daily.json"
+		},
+		"AzureBlob2_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "legendarycontainer"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "SH-IR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDb')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -399,142 +428,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Web')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Web1",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://efs010.effacts.com/effacts/rest/v2/auth/basic?integratorKey=c2502ac2-d89b-4f8e-af8f-74767cf4d96a&context=684",
-							"method": "GET",
-							"headers": {},
-							"authentication": {
-								"type": "Basic",
-								"username": "SER_EDL_DEV",
-								"password": {
-									"type": "AzureKeyVaultSecret",
-									"store": {
-										"referenceName": "AzureKeyVault1",
-										"type": "LinkedServiceReference"
-									},
-									"secretName": "RESTnew"
-								}
-							}
-						}
-					},
-					{
-						"name": "Web2",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "Web1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://efs010.effacts.com/effacts/rest/v1/CountryState?fields=id,description",
-							"method": "GET",
-							"headers": {
-								"Content-Type": "application/json",
-								"Effacts-IntegratorKey": "c2502ac2-d89b-4f8e-af8f-74767cf4d96a",
-								"Effacts-Context": "684",
-								"Authorization": {
-									"value": "@concat('Effacts ',activity('Web1').output.token)",
-									"type": "Expression"
-								}
-							}
-						}
-					},
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Web1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Content-Type": "application/json",
-									"Effacts-IntegratorKey": "c2502ac2-d89b-4f8e-af8f-74767cf4d96a",
-									"Effacts-Context": "684",
-									"Authorization": {
-										"value": "@concat('Effacts ',activity('Web1').output.token)",
-										"type": "Expression"
-									}
-								}
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "RestResource3",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Json_web",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"annotations": [],
-				"lastPublishTime": "2021-04-23T11:03:32Z"
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/http')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -730,6 +623,277 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlob2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "ingestion_config.source",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.app",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.home_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.feed_id",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.seq_type",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.file_sensor.expected_ext",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.file_sensor.expected_ext_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.location.base_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.input_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.error_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.archive_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.unzipped_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.start_sequence.initial_seq_id",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.start_sequence.length",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"format": {
+						"type": "JsonFormat"
+					},
+					"fileName": "[parameters('AzureBlob2_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('AzureBlob2_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -771,7 +935,9 @@
 					"tableName": "[[dbo].[Persons]"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1_New1')]",
@@ -790,7 +956,9 @@
 					"table": "walesBank"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Binary2')]",
@@ -807,28 +975,6 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"folderPath": "Empty1",
-						"fileSystem": "test"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Binary4')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorageGen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "*.pdf",
-						"folderPath": "Empty2/all/WS/document",
 						"fileSystem": "test"
 					}
 				}

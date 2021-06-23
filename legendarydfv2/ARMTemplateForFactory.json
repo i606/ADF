@@ -171,6 +171,22 @@
 			"type": "string",
 			"defaultValue": "empty"
 		},
+		"AzureBlob2_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "odin_fullrefresh_daily.json"
+		},
+		"AzureBlob2_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "legendarycontainer"
+		},
+		"AzureBlob3_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "odin_fullrefresh_daily.json"
+		},
+		"AzureBlob3_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "legendarycontainer"
+		},
 		"DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "Test"
@@ -230,6 +246,22 @@
 		"AzureDataLakeStorageGen2_properties_typeProperties_servicePrincipalId": {
 			"type": "string",
 			"defaultValue": "be56f591-badf-4c64-aaec-ca647c49ab9d"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "jijo"
 		},
 		"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
 			"type": "string",
@@ -479,121 +511,6 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/Copy from REST connector into ADLS Gen2')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "GetBearerToken",
-						"description": "Use this Web activity to get bearer token",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://login.microsoftonline.com/microsoft.onmicrosoft.com/oauth2/v2.0/token",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/x-www-form-urlencoded"
-							},
-							"body": {}
-						}
-					},
-					{
-						"name": "Web1",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "Set variable1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@concat('https://management.azure.com/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.DataFactory/factories/legendarydfv2/pipelineruns/',pipeline().RunId,'?api-version=2018-06-01')",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {
-								"Authorization": {
-									"value": "@variables('Token')",
-									"type": "Expression"
-								}
-							}
-						}
-					},
-					{
-						"name": "Set variable1",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "GetBearerToken",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "Token",
-							"value": {
-								"value": "@concat('Bearer',' ',activity('GetBearerToken').output.access_token)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Set variable2",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Web1",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "Error",
-							"value": {
-								"value": "@activity('Web1').error.message",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"variables": {
-					"Token": {
-						"type": "String"
-					},
-					"Error": {
-						"type": "String"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-04-07T10:59:01Z"
-			},
-			"dependsOn": []
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CopyPipelinefor Text')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -1095,190 +1012,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Web')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Web1",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://efs010.effacts.com/effacts/rest/v2/auth/basic?integratorKey=c2502ac2-d89b-4f8e-af8f-74767cf4d96a&context=684",
-							"method": "GET",
-							"headers": {},
-							"authentication": {
-								"type": "Basic",
-								"username": "SER_EDL_DEV",
-								"password": {
-									"type": "AzureKeyVaultSecret",
-									"store": {
-										"referenceName": "AzureKeyVault1",
-										"type": "LinkedServiceReference"
-									},
-									"secretName": "RESTnew"
-								}
-							}
-						}
-					},
-					{
-						"name": "Web2",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "Web1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://efs010.effacts.com/effacts/rest/v1/CountryState?fields=id,description",
-							"method": "GET",
-							"headers": {
-								"Content-Type": "application/json",
-								"Effacts-IntegratorKey": "c2502ac2-d89b-4f8e-af8f-74767cf4d96a",
-								"Effacts-Context": "684",
-								"Authorization": {
-									"value": "@concat('Effacts ',activity('Web1').output.token)",
-									"type": "Expression"
-								}
-							}
-						}
-					},
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Web1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Content-Type": "application/json",
-									"Effacts-IntegratorKey": "c2502ac2-d89b-4f8e-af8f-74767cf4d96a",
-									"Effacts-Context": "684",
-									"Authorization": {
-										"value": "@concat('Effacts ',activity('Web1').output.token)",
-										"type": "Expression"
-									}
-								}
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "RestResource3",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Json_web",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"annotations": [],
-				"lastPublishTime": "2021-04-23T11:03:32Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/RestResource3')]",
-				"[concat(variables('factoryId'), '/datasets/Json_web')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dataflow_error_handling')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Data flow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "error_row_handling",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"annotations": [],
-				"lastPublishTime": "2021-03-02T06:21:16Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/error_row_handling')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/http')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1385,44 +1118,6 @@
 				"[concat(variables('factoryId'), '/integrationRuntimes/SH-IR')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Web1",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 3,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/v2.0/token",
-							"method": "POST",
-							"headers": {
-								"Content-type": "application/x-www-form-urlencoded"
-							},
-							"body": {}
-						}
-					}
-				],
-				"variables": {
-					"Date": {
-						"type": "String"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-07-08T12:16:57Z"
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline5')]",
@@ -1604,6 +1299,367 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlob2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "ingestion_config.source",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.app",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.home_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.feed_id",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.seq_type",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.file_sensor.expected_ext",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.file_sensor.expected_ext_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.location.base_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.input_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.error_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.archive_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.unzipped_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.start_sequence.initial_seq_id",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.start_sequence.length",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"format": {
+						"type": "JsonFormat"
+					},
+					"fileName": "[parameters('AzureBlob2_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('AzureBlob2_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlob3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"typeProperties": {
+					"format": {
+						"type": "JsonFormat",
+						"jsonNodeReference": "$.['ingestion_config']['datafeed']['lookup_category']['cdc_config']['key_cols']",
+						"jsonPathDefinition": {
+							"ingestion_config.source": "$.['ingestion_config']['source']",
+							"ingestion_config.app": "$.['ingestion_config']['app']",
+							"ingestion_config.home_dir": "$.['ingestion_config']['home_dir']",
+							"ingestion_config.feed_id": "$.['ingestion_config']['feed_id']",
+							"ingestion_config.seq_type": "$.['ingestion_config']['seq_type']",
+							"ingestion_config.file_sensor.expected_ext": "$.['ingestion_config']['file_sensor']['expected_ext']",
+							"ingestion_config.file_sensor.expected_ext_count": "$.['ingestion_config']['file_sensor']['expected_ext_count']",
+							"ingestion_config.location.base_dir": "$.['ingestion_config']['location']['base_dir']",
+							"ingestion_config.location.input_dir": "$.['ingestion_config']['location']['input_dir']",
+							"ingestion_config.location.error_dir": "$.['ingestion_config']['location']['error_dir']",
+							"ingestion_config.location.archive_dir": "$.['ingestion_config']['location']['archive_dir']",
+							"ingestion_config.location.unzipped_dir": "$.['ingestion_config']['location']['unzipped_dir']",
+							"ingestion_config.start_sequence.initial_seq_id": "$.['ingestion_config']['start_sequence']['initial_seq_id']",
+							"ingestion_config.start_sequence.length": "$.['ingestion_config']['start_sequence']['length']",
+							"ingestion_config.datafeed.lookup_category.config_path": "$.['ingestion_config']['datafeed']['lookup_category']['config_path']",
+							"ingestion_config.datafeed.lookup_category.cdc": "$.['ingestion_config']['datafeed']['lookup_category']['cdc']",
+							"ingestion_config.datafeed.lookup_category.format": "$.['ingestion_config']['datafeed']['lookup_category']['format']",
+							"ingestion_config.datafeed.lookup_category.delimiter": "$.['ingestion_config']['datafeed']['lookup_category']['delimiter']",
+							"ingestion_config.datafeed.lookup_reference.config_path": "$.['ingestion_config']['datafeed']['lookup_reference']['config_path']",
+							"ingestion_config.datafeed.lookup_reference.cdc": "$.['ingestion_config']['datafeed']['lookup_reference']['cdc']",
+							"ingestion_config.datafeed.lookup_reference.format": "$.['ingestion_config']['datafeed']['lookup_reference']['format']",
+							"ingestion_config.datafeed.lookup_reference.delimiter": "$.['ingestion_config']['datafeed']['lookup_reference']['delimiter']",
+							"ingestion_config.datafeed.lookup_translation.config_path": "$.['ingestion_config']['datafeed']['lookup_translation']['config_path']",
+							"ingestion_config.datafeed.lookup_translation.cdc": "$.['ingestion_config']['datafeed']['lookup_translation']['cdc']",
+							"ingestion_config.datafeed.lookup_translation.format": "$.['ingestion_config']['datafeed']['lookup_translation']['format']",
+							"ingestion_config.datafeed.lookup_translation.delimiter": "$.['ingestion_config']['datafeed']['lookup_translation']['delimiter']",
+							"ingestion_config.datafeed.lookup_category.validation.file_date_format": "$.['ingestion_config']['datafeed']['lookup_category']['validation']['file_date_format']",
+							"ingestion_config.datafeed.lookup_category.cdc_config.history_table": "$.['ingestion_config']['datafeed']['lookup_category']['cdc_config']['history_table']",
+							"ingestion_config.datafeed.lookup_category.cdc_config.active_table": "$.['ingestion_config']['datafeed']['lookup_category']['cdc_config']['active_table']",
+							"ingestion_config.datafeed.lookup_category.cdc_config.key_cols": "$.['ingestion_config']['datafeed']['lookup_category']['cdc_config']['key_cols']",
+							"ingestion_config.datafeed.lookup_category.cdc_config.update_ts_col": "$.['ingestion_config']['datafeed']['lookup_category']['cdc_config']['update_ts_col']",
+							"ingestion_config.datafeed.lookup_category.cdc_config.custom_cdc_query": "$.['ingestion_config']['datafeed']['lookup_category']['cdc_config']['custom_cdc_query']",
+							"ingestion_config.datafeed.lookup_reference.validation.file_date_format": "$.['ingestion_config']['datafeed']['lookup_reference']['validation']['file_date_format']",
+							"ingestion_config.datafeed.lookup_reference.cdc_config.history_table": "$.['ingestion_config']['datafeed']['lookup_reference']['cdc_config']['history_table']",
+							"ingestion_config.datafeed.lookup_reference.cdc_config.active_table": "$.['ingestion_config']['datafeed']['lookup_reference']['cdc_config']['active_table']",
+							"ingestion_config.datafeed.lookup_reference.cdc_config.key_cols": "$.['ingestion_config']['datafeed']['lookup_reference']['cdc_config']['key_cols']",
+							"ingestion_config.datafeed.lookup_reference.cdc_config.update_ts_col": "$.['ingestion_config']['datafeed']['lookup_reference']['cdc_config']['update_ts_col']",
+							"ingestion_config.datafeed.lookup_reference.cdc_config.custom_cdc_query": "$.['ingestion_config']['datafeed']['lookup_reference']['cdc_config']['custom_cdc_query']",
+							"ingestion_config.datafeed.lookup_translation.validation.file_date_format": "$.['ingestion_config']['datafeed']['lookup_translation']['validation']['file_date_format']",
+							"ingestion_config.datafeed.lookup_translation.cdc_config.history_table": "$.['ingestion_config']['datafeed']['lookup_translation']['cdc_config']['history_table']",
+							"ingestion_config.datafeed.lookup_translation.cdc_config.active_table": "$.['ingestion_config']['datafeed']['lookup_translation']['cdc_config']['active_table']",
+							"ingestion_config.datafeed.lookup_translation.cdc_config.key_cols": "$.['ingestion_config']['datafeed']['lookup_translation']['cdc_config']['key_cols']",
+							"ingestion_config.datafeed.lookup_translation.cdc_config.update_ts_col": "$.['ingestion_config']['datafeed']['lookup_translation']['cdc_config']['update_ts_col']",
+							"ingestion_config.datafeed.lookup_translation.cdc_config.custom_cdc_query": "$.['ingestion_config']['datafeed']['lookup_translation']['cdc_config']['custom_cdc_query']",
+							"ingestion_config.datafeed.lookup_category.validation.triplet_check.file_pattern": "$.['ingestion_config']['datafeed']['lookup_category']['validation']['triplet_check']['file_pattern']",
+							"ingestion_config.datafeed.lookup_category.validation.triplet_check.file_extensions": "$.['ingestion_config']['datafeed']['lookup_category']['validation']['triplet_check']['file_extensions']",
+							"ingestion_config.datafeed.lookup_category.validation.triplet_check.file_count": "$.['ingestion_config']['datafeed']['lookup_category']['validation']['triplet_check']['file_count']",
+							"ingestion_config.datafeed.lookup_category.validation.record_count_validation.header": "$.['ingestion_config']['datafeed']['lookup_category']['validation']['record_count_validation']['header']",
+							"ingestion_config.datafeed.lookup_category.validation.record_count_validation.footer": "$.['ingestion_config']['datafeed']['lookup_category']['validation']['record_count_validation']['footer']",
+							"ingestion_config.datafeed.lookup_category.validation.record_count_validation.rec_cnt_pos_ctl": "$.['ingestion_config']['datafeed']['lookup_category']['validation']['record_count_validation']['rec_cnt_pos_ctl']",
+							"ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_pattern": "$.['ingestion_config']['datafeed']['lookup_reference']['validation']['triplet_check']['file_pattern']",
+							"ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_extensions": "$.['ingestion_config']['datafeed']['lookup_reference']['validation']['triplet_check']['file_extensions']",
+							"ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_count": "$.['ingestion_config']['datafeed']['lookup_reference']['validation']['triplet_check']['file_count']",
+							"ingestion_config.datafeed.lookup_reference.validation.record_count_validation.header": "$.['ingestion_config']['datafeed']['lookup_reference']['validation']['record_count_validation']['header']",
+							"ingestion_config.datafeed.lookup_reference.validation.record_count_validation.footer": "$.['ingestion_config']['datafeed']['lookup_reference']['validation']['record_count_validation']['footer']",
+							"ingestion_config.datafeed.lookup_reference.validation.record_count_validation.rec_cnt_pos_ctl": "$.['ingestion_config']['datafeed']['lookup_reference']['validation']['record_count_validation']['rec_cnt_pos_ctl']",
+							"ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_pattern": "$.['ingestion_config']['datafeed']['lookup_translation']['validation']['triplet_check']['file_pattern']",
+							"ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_extensions": "$.['ingestion_config']['datafeed']['lookup_translation']['validation']['triplet_check']['file_extensions']",
+							"ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_count": "$.['ingestion_config']['datafeed']['lookup_translation']['validation']['triplet_check']['file_count']",
+							"ingestion_config.datafeed.lookup_translation.validation.record_count_validation.header": "$.['ingestion_config']['datafeed']['lookup_translation']['validation']['record_count_validation']['header']",
+							"ingestion_config.datafeed.lookup_translation.validation.record_count_validation.footer": "$.['ingestion_config']['datafeed']['lookup_translation']['validation']['record_count_validation']['footer']",
+							"ingestion_config.datafeed.lookup_translation.validation.record_count_validation.rec_cnt_pos_ctl": "$.['ingestion_config']['datafeed']['lookup_translation']['validation']['record_count_validation']['rec_cnt_pos_ctl']"
+						}
+					},
+					"fileName": "[parameters('AzureBlob3_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('AzureBlob3_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
 			]
 		},
 		{
@@ -2619,6 +2675,28 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/HttpFile1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HttpServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "HttpFile",
+				"typeProperties": {
+					"format": {
+						"type": "JsonFormat"
+					},
+					"requestMethod": "GET"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/HttpServer1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Json1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3488,6 +3566,22 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/SH-IR')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]",
+					"tenant": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore2')]",
@@ -4400,6 +4494,16 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime-SH')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -4457,45 +4561,6 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/error_row_handling')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "AzureSqlDWTable1",
-								"type": "DatasetReference"
-							},
-							"name": "source1"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "AzureSqlTable2",
-								"type": "DatasetReference"
-							},
-							"name": "sink1",
-							"rejectedDataLinkedService": {
-								"referenceName": "AzureBlobStorage2",
-								"type": "LinkedServiceReference"
-							}
-						}
-					],
-					"transformations": [],
-					"script": "source(output(\n\t\t{_id} as string,\n\t\tpartyId as string,\n\t\tupdateTime as timestamp,\n\t\tIPAddress as string,\n\t\tdocumentContext as string,\n\t\tdocument as string,\n\t\tsubmissionId as string,\n\t\tsubmissionVersion as string,\n\t\tpolicyId as string,\n\t\treferenceDocumenId as string,\n\t\tstatus as string,\n\t\tpolicyRole as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table',\n\tstaged: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tFirstName as string,\n\t\tLastName as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\toutputRejectedData: true,\n\trejectedData_container: 'test',\n\trejectedData_folderPath: 'Dataflow',\n\ttransactionCommit: 'batch',\n\treportSuccessOnError: true) ~> sink1"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/AzureSqlDWTable1')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable2')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
-			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/default')]",

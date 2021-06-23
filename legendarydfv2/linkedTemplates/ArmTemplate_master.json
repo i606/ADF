@@ -171,6 +171,22 @@
 			"type": "string",
 			"defaultValue": "empty"
 		},
+		"AzureBlob2_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "odin_fullrefresh_daily.json"
+		},
+		"AzureBlob2_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "legendarycontainer"
+		},
+		"AzureBlob3_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "odin_fullrefresh_daily.json"
+		},
+		"AzureBlob3_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "legendarycontainer"
+		},
 		"DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "Test"
@@ -230,6 +246,22 @@
 		"AzureDataLakeStorageGen2_properties_typeProperties_servicePrincipalId": {
 			"type": "string",
 			"defaultValue": "be56f591-badf-4c64-aaec-ca647c49ab9d"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "jijo"
 		},
 		"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
 			"type": "string",
@@ -546,6 +578,9 @@
 					"Kusto1_servicePrincipalKey": {
 						"value": "[parameters('Kusto1_servicePrincipalKey')]"
 					},
+					"MySql1_connectionString": {
+						"value": "[parameters('MySql1_connectionString')]"
+					},
 					"AzureDataLakeAnalytics_properties_typeProperties_accountName": {
 						"value": "[parameters('AzureDataLakeAnalytics_properties_typeProperties_accountName')]"
 					},
@@ -560,6 +595,18 @@
 					},
 					"AzureDataLakeAnalytics_properties_typeProperties_resourceGroupName": {
 						"value": "[parameters('AzureDataLakeAnalytics_properties_typeProperties_resourceGroupName')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
 					},
 					"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
 						"value": "[parameters('AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri')]"
@@ -629,9 +676,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"MySql1_connectionString": {
-						"value": "[parameters('MySql1_connectionString')]"
 					},
 					"OData1_password": {
 						"value": "[parameters('OData1_password')]"
@@ -722,8 +766,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath": {
-						"value": "[parameters('DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath')]"
+					"AzureBlob3_properties_typeProperties_fileName": {
+						"value": "[parameters('AzureBlob3_properties_typeProperties_fileName')]"
+					},
+					"AzureBlob3_properties_typeProperties_folderPath": {
+						"value": "[parameters('AzureBlob3_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
@@ -757,8 +804,8 @@
 					"AzureMySql1_connectionString": {
 						"value": "[parameters('AzureMySql1_connectionString')]"
 					},
-					"AzureSqlDatabase1_connectionString": {
-						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					"DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath": {
+						"value": "[parameters('DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath')]"
 					},
 					"DestinationDataset_eqt_properties_typeProperties_fileName": {
 						"value": "[parameters('DestinationDataset_eqt_properties_typeProperties_fileName')]"
@@ -806,6 +853,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
 					"CosmosDbMongoDb_connectionString": {
 						"value": "[parameters('CosmosDbMongoDb_connectionString')]"
@@ -908,6 +958,12 @@
 					},
 					"AzureBlob1_properties_typeProperties_folderPath": {
 						"value": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
+					},
+					"AzureBlob2_properties_typeProperties_fileName": {
+						"value": "[parameters('AzureBlob2_properties_typeProperties_fileName')]"
+					},
+					"AzureBlob2_properties_typeProperties_folderPath": {
+						"value": "[parameters('AzureBlob2_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
@@ -928,21 +984,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"FtpServer1_password": {
-						"value": "[parameters('FtpServer1_password')]"
-					},
-					"HDI_Spark_password": {
-						"value": "[parameters('HDI_Spark_password')]"
-					},
-					"FtpServer1_properties_typeProperties_host": {
-						"value": "[parameters('FtpServer1_properties_typeProperties_host')]"
-					},
-					"FtpServer1_properties_typeProperties_userName": {
-						"value": "[parameters('FtpServer1_properties_typeProperties_userName')]"
-					},
-					"HDI_Spark_properties_typeProperties_userName": {
-						"value": "[parameters('HDI_Spark_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -963,6 +1004,21 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"FtpServer1_password": {
+						"value": "[parameters('FtpServer1_password')]"
+					},
+					"HDI_Spark_password": {
+						"value": "[parameters('HDI_Spark_password')]"
+					},
+					"FtpServer1_properties_typeProperties_host": {
+						"value": "[parameters('FtpServer1_properties_typeProperties_host')]"
+					},
+					"FtpServer1_properties_typeProperties_userName": {
+						"value": "[parameters('FtpServer1_properties_typeProperties_userName')]"
+					},
+					"HDI_Spark_properties_typeProperties_userName": {
+						"value": "[parameters('HDI_Spark_properties_typeProperties_userName')]"
 					}
 				}
 			},
