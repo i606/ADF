@@ -1,1 +1,6 @@
-{}
+{
+	"Test": {
+		"type": "string",
+		"value": "empty"
+	}
+}

@@ -5,19 +5,34 @@
 		"factoryName": {
 			"value": "legendarydfv2"
 		},
+		"AzureBatch1_accessKey": {
+			"value": ""
+		},
+		"AzureBlobStorage_connectionString": {
+			"value": ""
+		},
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage2_connectionString": {
 			"value": ""
 		},
-		"AzureBlobStorage3_connectionString": {
+		"AzureDataLakeAnalytics_servicePrincipalKey": {
 			"value": ""
 		},
-		"AzureDataLakeStorageGen2_accountKey": {
+		"AzureDataLakeStorageGen2_servicePrincipalCredential": {
 			"value": ""
 		},
-		"AzureDataLakeStore1_servicePrincipalKey": {
+		"AzureDatabricks_accessToken": {
+			"value": ""
+		},
+		"AzureFunction_functionKey": {
+			"value": ""
+		},
+		"AzureFunction1_functionKey": {
+			"value": ""
+		},
+		"AzureMySql1_connectionString": {
 			"value": ""
 		},
 		"AzureSqlDW_connectionString": {
@@ -32,6 +47,12 @@
 		"AzureStorage2_connectionString": {
 			"value": ""
 		},
+		"AzureTableStorage_connectionString": {
+			"value": ""
+		},
+		"AzureTableStorage1_connectionString": {
+			"value": ""
+		},
 		"CosmosDbMongoDb_connectionString": {
 			"value": ""
 		},
@@ -44,10 +65,40 @@
 		"FileServer1_password": {
 			"value": ""
 		},
-		"HttpServer1_password": {
+		"FtpServer1_password": {
+			"value": ""
+		},
+		"HDI_Spark_password": {
+			"value": ""
+		},
+		"Kusto1_servicePrincipalKey": {
+			"value": ""
+		},
+		"MySql1_connectionString": {
+			"value": ""
+		},
+		"OData1_password": {
+			"value": ""
+		},
+		"Odbc_MySQL_connectionString": {
+			"value": ""
+		},
+		"Odbc_MySQL_password": {
+			"value": ""
+		},
+		"Oracle_connectionString": {
+			"value": ""
+		},
+		"RestService_password": {
+			"value": ""
+		},
+		"RestService1_password": {
 			"value": ""
 		},
 		"RestService2_password": {
+			"value": ""
+		},
+		"RestServiceGraph_password": {
 			"value": ""
 		},
 		"Salesforce1_securityToken": {
@@ -62,25 +113,22 @@
 		"Salesforce2_SecurityToken": {
 			"value": ""
 		},
-		"linkedService_spark_clusterPassword": {
+		"linkedservice_spark_clusterPassword": {
 			"value": ""
 		},
-		"linkedService_spark_clusterSshPassword": {
+		"linkedservice_spark_clusterSshPassword": {
 			"value": ""
 		},
-		"linkedService_spark_servicePrincipalKey": {
+		"linkedservice_spark_servicePrincipalKey": {
 			"value": ""
 		},
 		"AzureBlob1_properties_typeProperties_fileName": {
-			"value": ""
+			"value": "test.json"
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
 			"value": "empty"
 		},
-		"DestinationDataset_e8j_properties_typeProperties_fileName": {
-			"value": "@dataset().test_param"
-		},
-		"DestinationDataset_e8j_properties_typeProperties_folderPath": {
+		"DestinationDataset_ADLS_Gen1_properties_typeProperties_folderPath": {
 			"value": "Test"
 		},
 		"DestinationDataset_eqt_properties_typeProperties_fileName": {
@@ -89,35 +137,71 @@
 		"DestinationDataset_eqt_properties_typeProperties_folderPath": {
 			"value": "Test123"
 		},
+		"AzureBatch1_properties_typeProperties_accountName": {
+			"value": "legendary"
+		},
+		"AzureBatch1_properties_typeProperties_batchUri": {
+			"value": "https://legendary.eastus.batch.azure.com"
+		},
+		"AzureBatch1_properties_typeProperties_poolName": {
+			"value": "custom-activity-pool"
+		},
+		"AzureBlobStorage3_properties_typeProperties_serviceEndpoint": {
+			"value": "https://legendaryfilestorage.blob.core.windows.net"
+		},
+		"AzureDataLakeAnalytics_properties_typeProperties_accountName": {
+			"value": "legendary"
+		},
+		"AzureDataLakeAnalytics_properties_typeProperties_servicePrincipalId": {
+			"value": "be56f591-badf-4c64-aaec-ca647c49ab9d"
+		},
+		"AzureDataLakeAnalytics_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeAnalytics_properties_typeProperties_subscriptionId": {
+			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
+		},
+		"AzureDataLakeAnalytics_properties_typeProperties_resourceGroupName": {
+			"value": "jijo"
+		},
 		"AzureDataLakeStorageGen2_properties_typeProperties_url": {
-			"value": "https://legendarygeneration2.dfs.core.windows.net"
+			"value": "https://legendaryadlsgen2.dfs.core.windows.net"
 		},
-		"AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
-			"value": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
-		},
-		"AzureDataLakeStore_properties_typeProperties_tenant": {
+		"AzureDataLakeStorageGen2_properties_typeProperties_tenant": {
 			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 		},
-		"AzureDataLakeStore_properties_typeProperties_subscriptionId": {
-			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
+		"AzureDataLakeStorageGen2_properties_typeProperties_servicePrincipalId": {
+			"value": "be56f591-badf-4c64-aaec-ca647c49ab9d"
 		},
-		"AzureDataLakeStore_properties_typeProperties_resourceGroupName": {
-			"value": "jijo"
-		},
-		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+		"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
 			"value": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_servicePrincipalId": {
-			"value": "98e4ccaf-db1e-4817-88d3-c5dd2eafc1af"
-		},
-		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+		"AzureDataLakeStore2_properties_typeProperties_tenant": {
 			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+		"AzureDataLakeStore2_properties_typeProperties_subscriptionId": {
 			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+		"AzureDataLakeStore2_properties_typeProperties_resourceGroupName": {
 			"value": "jijo"
+		},
+		"AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_accountName": {
+			"value": "sducvsduhbchd"
+		},
+		"AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_subscriptionId": {
+			"value": "sdcdchiwd"
+		},
+		"AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_resourceGroupName": {
+			"value": "shdw"
+		},
+		"AzureFunction_properties_typeProperties_functionAppUrl": {
+			"value": "https://legendary1234.azurewebsites.net"
+		},
+		"AzureFunction1_properties_typeProperties_functionAppUrl": {
+			"value": "https://durablefunctions123.azurewebsites.net"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://Legendary.vault.azure.net/"
@@ -137,17 +221,38 @@
 		"FileServer1_properties_typeProperties_userId": {
 			"value": "legendaryfilestorage"
 		},
-		"HttpServer1_properties_typeProperties_url": {
-			"value": "http://google.com"
+		"FtpServer1_properties_typeProperties_host": {
+			"value": "ftp.isoftix.com"
 		},
-		"HttpServer1_properties_typeProperties_userName": {
-			"value": "user"
+		"FtpServer1_properties_typeProperties_userName": {
+			"value": "u711360529.testopenftp"
+		},
+		"HDI_Spark_properties_typeProperties_userName": {
+			"value": "admin"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://efs010.effacts.com/effacts/rest/v1/CountryState?fields=id,description"
+		},
+		"Kusto1_properties_typeProperties_endpoint": {
+			"value": "https://xxxx.com"
+		},
+		"Kusto1_properties_typeProperties_servicePrincipalId": {
+			"value": "12346777"
+		},
+		"OData1_properties_typeProperties_url": {
+			"value": "https:///xxxxx"
+		},
+		"OData1_properties_typeProperties_userName": {
+			"value": "xxx"
+		},
+		"Odbc_MySQL_properties_typeProperties_userName": {
+			"value": "root"
 		},
 		"RestService_properties_typeProperties_url": {
-			"value": "@{linkedService().URL}"
+			"value": "https://efs010.effacts.com/effacts/rest/v2/auth/basic?integratorKey=c2502ac2-d89b-4f8e-af8f-74767cf4d96a&context=684"
 		},
 		"RestService_properties_typeProperties_userName": {
-			"value": "devnetuser"
+			"value": "SER_EDL_DEV"
 		},
 		"RestService1_properties_typeProperties_url": {
 			"value": "linkedService().URL"
@@ -160,6 +265,9 @@
 		},
 		"RestService2_properties_typeProperties_userName": {
 			"value": "devnetuser"
+		},
+		"RestService3_properties_typeProperties_url": {
+			"value": "https://efs010.effacts.com/effacts/rest"
 		},
 		"RestServiceGraph_properties_typeProperties_url": {
 			"value": "https://graph.microsoft.com/beta/reports/getTeamsDeviceUsageUserDetail(date=@linkedService().Date)?$format=application/json "
@@ -179,20 +287,76 @@
 		"Salesforce2_properties_typeProperties_username": {
 			"value": ""
 		},
-		"linkedService_spark_properties_typeProperties_hostSubscriptionId": {
+		"linkedservice_spark_properties_typeProperties_hostSubscriptionId": {
 			"value": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
 		},
-		"linkedService_spark_properties_typeProperties_clusterResourceGroup": {
+		"linkedservice_spark_properties_typeProperties_clusterResourceGroup": {
 			"value": "jijo"
 		},
-		"linkedService_spark_properties_typeProperties_servicePrincipalId": {
+		"linkedservice_spark_properties_typeProperties_servicePrincipalId": {
 			"value": "legendaryspn"
 		},
-		"linkedService_spark_properties_typeProperties_tenant": {
+		"linkedservice_spark_properties_typeProperties_tenant": {
 			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 		},
-		"Tumbling_properties_pipeline_parameters_Starttime": {
-			"value": "1"
+		"linkedservice_spark_properties_typeProperties_clusterUserName": {
+			"value": "atlas"
+		},
+		"linkedservice_spark_properties_typeProperties_clusterSshUserName": {
+			"value": "atlas"
+		},
+		"Event_properties_typeProperties_scope": {
+			"value": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.Storage/storageAccounts/legendaryadlsgen2"
+		},
+		"AzureBlobStorage1_properties_privateLinkResourceId": {
+			"value": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.Storage/storageAccounts/legendarygeneration2"
+		},
+		"AzureBlobStorage1_properties_groupId": {
+			"value": "blob"
+		},
+		"AzureBlobStorage1_properties_fqdns": {
+			"value": [
+				"legendarygeneration2.blob.core.windows.net"
+			]
+		},
+		"AzureBlobStorage2_properties_privateLinkResourceId": {
+			"value": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/Vivek/providers/Microsoft.Storage/storageAccounts/blobstorage100"
+		},
+		"AzureBlobStorage2_properties_groupId": {
+			"value": "blob"
+		},
+		"AzureBlobStorage3_properties_privateLinkResourceId": {
+			"value": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.Storage/storageAccounts/legendaryadlsgen2"
+		},
+		"AzureBlobStorage3_properties_groupId": {
+			"value": "blob"
+		},
+		"AzureBlobStorage3_properties_fqdns": {
+			"value": [
+				"legendaryadlsgen2.blob.core.windows.net"
+			]
+		},
+		"AzureDataLakeStorage_Gen2_properties_privateLinkResourceId": {
+			"value": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.Storage/storageAccounts/legendarygeneration2"
+		},
+		"AzureDataLakeStorage_Gen2_properties_groupId": {
+			"value": "dfs"
+		},
+		"AzureDataLakeStorage_Gen2_properties_fqdns": {
+			"value": [
+				"legendarygeneration2.dfs.core.windows.net"
+			]
+		},
+		"LegendaryGen2_properties_privateLinkResourceId": {
+			"value": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.Storage/storageAccounts/legendarygen2"
+		},
+		"LegendaryGen2_properties_groupId": {
+			"value": "blob"
+		},
+		"LegendaryGen2_properties_fqdns": {
+			"value": [
+				"legendarygen2.blob.core.windows.net"
+			]
 		},
 		"containerUri": {
 			"value": ""

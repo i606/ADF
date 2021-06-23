@@ -7,21 +7,29 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "legendarydfv2"
 		},
-		"AzureBlobStorage1_connectionString": {
+		"AzureBlobStorage_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
 		"AzureBlobStorage2_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
 		},
-		"AzureDataLakeStorageGen2_accountKey": {
+		"AzureDataLakeAnalytics_servicePrincipalKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorageGen2'"
+			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeAnalytics'"
 		},
-		"AzureDataLakeStore1_servicePrincipalKey": {
+		"AzureDatabricks_accessToken": {
 			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeStore1'"
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks'"
+		},
+		"AzureFunction_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'AzureFunction'"
+		},
+		"AzureFunction1_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'AzureFunction1'"
 		},
 		"AzureSqlDW_connectionString": {
 			"type": "secureString",
@@ -35,6 +43,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureStorage2'"
 		},
+		"AzureTableStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureTableStorage'"
+		},
+		"AzureTableStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureTableStorage1'"
+		},
 		"CosmosDbMongoDbApi_Ankita1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDbMongoDbApi_Ankita1'"
@@ -47,61 +63,69 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer1'"
 		},
-		"RestService2_password": {
+		"Kusto1_servicePrincipalKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'RestService2'"
+			"metadata": "Secure string for 'servicePrincipalKey' of 'Kusto1'"
 		},
-		"Salesforce2_username": {
-			"type": "secureString",
-			"metadata": "Secure string for 'username' of 'Salesforce2'"
-		},
-		"Salesforce2_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Salesforce2'"
-		},
-		"Salesforce2_SecurityToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'SecurityToken' of 'Salesforce2'"
-		},
-		"AzureDataLakeStorageGen2_properties_typeProperties_url": {
+		"AzureDataLakeAnalytics_properties_typeProperties_accountName": {
 			"type": "string",
-			"defaultValue": "https://legendarygeneration2.dfs.core.windows.net"
+			"defaultValue": "legendary"
 		},
-		"AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
+		"AzureDataLakeAnalytics_properties_typeProperties_servicePrincipalId": {
 			"type": "string",
-			"defaultValue": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
+			"defaultValue": "be56f591-badf-4c64-aaec-ca647c49ab9d"
 		},
-		"AzureDataLakeStore_properties_typeProperties_tenant": {
+		"AzureDataLakeAnalytics_properties_typeProperties_tenant": {
 			"type": "string",
 			"defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 		},
-		"AzureDataLakeStore_properties_typeProperties_subscriptionId": {
+		"AzureDataLakeAnalytics_properties_typeProperties_subscriptionId": {
 			"type": "string",
 			"defaultValue": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
 		},
-		"AzureDataLakeStore_properties_typeProperties_resourceGroupName": {
+		"AzureDataLakeAnalytics_properties_typeProperties_resourceGroupName": {
 			"type": "string",
 			"defaultValue": "jijo"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+		"AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri": {
 			"type": "string",
 			"defaultValue": "https://legendaryadls.azuredatalakestore.net/webhdfs/v1"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_servicePrincipalId": {
-			"type": "string",
-			"defaultValue": "98e4ccaf-db1e-4817-88d3-c5dd2eafc1af"
-		},
-		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+		"AzureDataLakeStore2_properties_typeProperties_tenant": {
 			"type": "string",
 			"defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+		"AzureDataLakeStore2_properties_typeProperties_subscriptionId": {
 			"type": "string",
 			"defaultValue": "f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+		"AzureDataLakeStore2_properties_typeProperties_resourceGroupName": {
 			"type": "string",
 			"defaultValue": "jijo"
+		},
+		"AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "sducvsduhbchd"
+		},
+		"AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "sdcdchiwd"
+		},
+		"AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "shdw"
+		},
+		"AzureFunction_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://legendary1234.azurewebsites.net"
+		},
+		"AzureFunction1_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://durablefunctions123.azurewebsites.net"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -123,45 +147,13 @@
 			"type": "string",
 			"defaultValue": "legendaryfilestorage"
 		},
-		"RestService_properties_typeProperties_url": {
+		"Kusto1_properties_typeProperties_endpoint": {
 			"type": "string",
-			"defaultValue": "@{linkedService().URL}"
+			"defaultValue": "https://xxxx.com"
 		},
-		"RestService_properties_typeProperties_userName": {
+		"Kusto1_properties_typeProperties_servicePrincipalId": {
 			"type": "string",
-			"defaultValue": "devnetuser"
-		},
-		"RestService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "linkedService().URL"
-		},
-		"RestService1_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "devnetuser"
-		},
-		"RestService2_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://legendary.vault.azure.net/secrets/REST/cfadc277cd5247fba00f31226cd26ff8"
-		},
-		"RestService2_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "devnetuser"
-		},
-		"RestServiceGraph_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://graph.microsoft.com/beta/reports/getTeamsDeviceUsageUserDetail(date=@linkedService().Date)?$format=application/json "
-		},
-		"RestServiceGraph_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "99aee3cf-e649-40d5-9232-b7e565a55a4e"
-		},
-		"Salesforce2_properties_typeProperties_environmentUrl": {
-			"type": "string",
-			"defaultValue": "https://test.salesforce.com"
-		},
-		"Salesforce2_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "[parameters('Salesforce2_username')]"
+			"defaultValue": "12346777"
 		}
 	},
 	"variables": {
@@ -193,7 +185,7 @@
 							"headers": {
 								"Content-Type": "application/x-www-form-urlencoded"
 							},
-							"body": "grant_type=client_credentials&client_id=dbfc0866-e1ce-4757-b511-f2e84b1bf9c1&client_secret=fQ4o@2S/XAfC?Q-KxaJQL9F4W_-aT92:&scope=https://management.azure.com/.default"
+							"body": {}
 						}
 					},
 					{
@@ -278,7 +270,8 @@
 						"type": "String"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2020-04-07T10:59:01Z"
 			},
 			"dependsOn": []
 		},
@@ -294,7 +287,7 @@
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
-							"retry": 0,
+							"retry": 3,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
@@ -306,7 +299,7 @@
 							"headers": {
 								"Content-type": "application/x-www-form-urlencoded"
 							},
-							"body": "grant_type=client_credentials&client_id=dbfc0866-e1ce-4757-b511-f2e84b1bf9c1&client_secret=fQ4o@2S/XAfC?Q-KxaJQL9F4W_-aT92:&scope=https://management.azure.com/.default"
+							"body": {}
 						}
 					}
 				],
@@ -315,19 +308,20 @@
 						"type": "String"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2020-07-08T12:16:57Z"
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+					"connectionString": "[parameters('AzureBlobStorage_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -346,55 +340,106 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorageGen2')]",
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeAnalytics')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureBlobFS",
+				"type": "AzureDataLakeAnalytics",
 				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorageGen2_properties_typeProperties_url')]",
-					"accountKey": {
+					"accountName": "[parameters('AzureDataLakeAnalytics_properties_typeProperties_accountName')]",
+					"servicePrincipalId": "[parameters('AzureDataLakeAnalytics_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalKey": {
 						"type": "SecureString",
-						"value": "[parameters('AzureDataLakeStorageGen2_accountKey')]"
+						"value": "[parameters('AzureDataLakeAnalytics_servicePrincipalKey')]"
+					},
+					"tenant": "[parameters('AzureDataLakeAnalytics_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('AzureDataLakeAnalytics_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('AzureDataLakeAnalytics_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('AzureDataLakeStore2_properties_typeProperties_dataLakeStoreUri')]",
+					"tenant": "[parameters('AzureDataLakeStore2_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('AzureDataLakeStore2_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('AzureDataLakeStore2_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStoreCosmosStructuredStream1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStoreCosmosStructuredStream",
+				"typeProperties": {
+					"accountName": "[parameters('AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_accountName')]",
+					"tenant": "[parameters('AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('AzureDataLakeStoreCosmosStructuredStream1_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-1505559841787249.9.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks_accessToken')]"
+					},
+					"existingClusterId": "0122-053821-lie978"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureFunction')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureFunction",
+				"typeProperties": {
+					"functionAppUrl": "[parameters('AzureFunction_properties_typeProperties_functionAppUrl')]",
+					"functionKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureFunction_functionKey')]"
 					}
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore')]",
+			"name": "[concat(parameters('factoryName'), '/AzureFunction1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureDataLakeStore",
+				"type": "AzureFunction",
 				"typeProperties": {
-					"dataLakeStoreUri": "[parameters('AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri')]",
-					"tenant": "[parameters('AzureDataLakeStore_properties_typeProperties_tenant')]",
-					"subscriptionId": "[parameters('AzureDataLakeStore_properties_typeProperties_subscriptionId')]",
-					"resourceGroupName": "[parameters('AzureDataLakeStore_properties_typeProperties_resourceGroupName')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureDataLakeStore",
-				"typeProperties": {
-					"dataLakeStoreUri": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]",
-					"servicePrincipalId": "[parameters('AzureDataLakeStore1_properties_typeProperties_servicePrincipalId')]",
-					"servicePrincipalKey": {
+					"functionAppUrl": "[parameters('AzureFunction1_properties_typeProperties_functionAppUrl')]",
+					"functionKey": {
 						"type": "SecureString",
-						"value": "[parameters('AzureDataLakeStore1_servicePrincipalKey')]"
-					},
-					"tenant": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]",
-					"subscriptionId": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]",
-					"resourceGroupName": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
+						"value": "[parameters('AzureFunction1_functionKey')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -452,6 +497,32 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureTableStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureTableStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureTableStorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureTableStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureTableStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureTableStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CosmosDbMongoDbApi_Ankita1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -498,143 +569,18 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/RestService')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "RestService",
-				"annotations": [],
-				"typeProperties": {
-					"url": "[parameters('RestService_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('RestService_properties_typeProperties_userName')]",
-					"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkxFR0VOREFSWURGVjJfMDFlNzEwYTktOGMwMC00YjI4LTlhYzMtYmI3MWVlYzY4NzRhIg0KfQ=="
-				},
-				"parameters": {
-					"URL": {
-						"type": "string"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RestService1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "RestService",
-				"parameters": {
-					"URL": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"typeProperties": {
-					"url": "[parameters('RestService1_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('RestService1_properties_typeProperties_userName')]",
-					"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkxFR0VOREFSWURGVjJfZTBhNzBiYzAtMjE4Yi00YWZkLWIwZjUtNjRlZGUwODkzZmUxIg0KfQ=="
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RestService2')]",
+			"name": "[concat(parameters('factoryName'), '/Kusto1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "RestService",
+				"type": "Kusto",
 				"typeProperties": {
-					"url": "[parameters('RestService2_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('RestService2_properties_typeProperties_userName')]",
-					"password": {
+					"endpoint": "[parameters('Kusto1_properties_typeProperties_endpoint')]",
+					"servicePrincipalId": "[parameters('Kusto1_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalKey": {
 						"type": "SecureString",
-						"value": "[parameters('RestService2_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RestServiceGraph')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "RestService",
-				"annotations": [],
-				"typeProperties": {
-					"url": "[parameters('RestServiceGraph_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('RestServiceGraph_properties_typeProperties_userName')]",
-					"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFDRU1XU1BFWEFERjAxX2JhN2ExMzVmLTIxOWUtNGE0ZC1hNzY3LWUyYThkMzI0YTlhYiINCn0="
-				},
-				"parameters": {
-					"Date": {
-						"type": "string"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Salesforce2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "Salesforce",
-				"annotations": [],
-				"typeProperties": {
-					"environmentUrl": "[parameters('Salesforce2_properties_typeProperties_environmentUrl')]",
-					"username": {
-						"type": "SecureString",
-						"value": "[parameters('Salesforce2_properties_typeProperties_username')]"
-					},
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Salesforce2_password')]"
-					},
-					"SecurityToken": {
-						"type": "SecureString",
-						"value": "[parameters('Salesforce2_SecurityToken')]"
-					}
-				},
-				"parameters": {
-					"UserName": {
-						"type": "String",
-						"defaultValue": "xyz@abc.com.abc.dev"
-					},
-					"PasswdDev": {
-						"type": "SecureString"
-					},
-					"StrToken": {
-						"type": "SecureString"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/schedule_test')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 1,
-						"startTime": "2019-05-03T04:48:00.000Z",
-						"timeZone": "UTC"
+						"value": "[parameters('Kusto1_servicePrincipalKey')]"
 					}
 				}
 			},
