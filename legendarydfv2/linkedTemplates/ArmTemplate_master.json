@@ -984,6 +984,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"FtpServer1_password": {
+						"value": "[parameters('FtpServer1_password')]"
+					},
+					"FtpServer1_properties_typeProperties_host": {
+						"value": "[parameters('FtpServer1_properties_typeProperties_host')]"
+					},
+					"FtpServer1_properties_typeProperties_userName": {
+						"value": "[parameters('FtpServer1_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -1005,17 +1014,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"FtpServer1_password": {
-						"value": "[parameters('FtpServer1_password')]"
-					},
 					"HDI_Spark_password": {
 						"value": "[parameters('HDI_Spark_password')]"
-					},
-					"FtpServer1_properties_typeProperties_host": {
-						"value": "[parameters('FtpServer1_properties_typeProperties_host')]"
-					},
-					"FtpServer1_properties_typeProperties_userName": {
-						"value": "[parameters('FtpServer1_properties_typeProperties_userName')]"
 					},
 					"HDI_Spark_properties_typeProperties_userName": {
 						"value": "[parameters('HDI_Spark_properties_typeProperties_userName')]"
