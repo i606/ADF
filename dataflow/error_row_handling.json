@@ -6,6 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
+						"referenceName": "AzureSqlDWTable1",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -25,6 +26,7 @@
 				}
 			],
 			"transformations": [],
+			"script": "source(output(\n\t\t{_id} as string,\n\t\tpartyId as string,\n\t\tupdateTime as timestamp,\n\t\tIPAddress as string,\n\t\tdocumentContext as string,\n\t\tdocument as string,\n\t\tsubmissionId as string,\n\t\tsubmissionVersion as string,\n\t\tpolicyId as string,\n\t\treferenceDocumenId as string,\n\t\tstatus as string,\n\t\tpolicyRole as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table',\n\tstaged: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tFirstName as string,\n\t\tLastName as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\toutputRejectedData: true,\n\trejectedData_container: 'test',\n\trejectedData_folderPath: 'Dataflow',\n\ttransactionCommit: 'batch',\n\treportSuccessOnError: true) ~> sink1"
 		}
 	}
 }
