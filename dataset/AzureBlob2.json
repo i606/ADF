@@ -261,8 +261,8 @@
 			"format": {
 				"type": "JsonFormat"
 			},
-			"fileName": "odin_fullrefresh_daily.json",
-			"folderPath": "legendarycontainer"
+			"fileName": "murugesan.json",
+			"folderPath": "custom"
 		}
 	}
 }
