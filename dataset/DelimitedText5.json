@@ -2,16 +2,16 @@
 	"name": "DelimitedText5",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorageGen2",
+			"referenceName": "AzureBlobStorage2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "list.csv",
-				"fileSystem": "empty"
+				"type": "AzureBlobStorageLocation",
+				"fileName": "date.csv",
+				"container": "custom"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
