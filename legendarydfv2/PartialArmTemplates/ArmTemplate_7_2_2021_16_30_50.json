@@ -1,0 +1,466 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "legendarydfv2"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlob2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "ingestion_config.source",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.app",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.home_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.feed_id",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.seq_type",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.file_sensor.expected_ext",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.file_sensor.expected_ext_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.location.base_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.input_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.error_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.archive_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.location.unzipped_dir",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.start_sequence.initial_seq_id",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.start_sequence.length",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.config_path",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.delimiter",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.file_date_format",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.history_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.active_table",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.key_cols",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.update_ts_col",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.custom_cdc_query",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_pattern",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_extensions",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_count",
+						"type": "Int64"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.header",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.footer",
+						"type": "String"
+					},
+					{
+						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.rec_cnt_pos_ctl",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"format": {
+						"type": "JsonFormat"
+					},
+					"fileName": "murugesan.json",
+					"folderPath": "custom"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "PT1H (2).json",
+						"container": "empty"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"time": {
+							"type": "string"
+						},
+						"resourceId": {
+							"type": "string"
+						},
+						"category": {
+							"type": "string"
+						},
+						"level": {
+							"type": "integer"
+						},
+						"operationName": {
+							"type": "string"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"EventClass": {
+									"type": "string"
+								},
+								"EventSubclass": {
+									"type": "string"
+								},
+								"RootActivityId": {
+									"type": "string"
+								},
+								"IsQueryScaleoutReadonlyInstance": {
+									"type": "string"
+								},
+								"CurrentTime": {
+									"type": "string"
+								},
+								"StartTime": {
+									"type": "string"
+								},
+								"JobID": {
+									"type": "null"
+								},
+								"ObjectID": {
+									"type": "string"
+								},
+								"ObjectType": {
+									"type": "string"
+								},
+								"ObjectName": {
+									"type": "string"
+								},
+								"ObjectPath": {
+									"type": "string"
+								},
+								"ObjectReference": {
+									"type": "string"
+								},
+								"EndTime": {
+									"type": "string"
+								},
+								"Duration": {
+									"type": "string"
+								},
+								"CPUTime": {
+									"type": "string"
+								},
+								"SessionType": {
+									"type": "null"
+								},
+								"ProgressTotal": {
+									"type": "null"
+								},
+								"IntegerData": {
+									"type": "string"
+								},
+								"Severity": {
+									"type": "string"
+								},
+								"Success": {
+									"type": "string"
+								},
+								"Error": {
+									"type": "string"
+								},
+								"TextData": {
+									"type": "string"
+								},
+								"ConnectionID": {
+									"type": "string"
+								},
+								"DatabaseName": {
+									"type": "string"
+								},
+								"NTDomainName": {
+									"type": "string"
+								},
+								"SessionID": {
+									"type": "string"
+								},
+								"SPID": {
+									"type": "string"
+								},
+								"ClientHostName": {
+									"type": "string"
+								},
+								"ClientProcessID": {
+									"type": "string"
+								},
+								"ApplicationName": {
+									"type": "string"
+								},
+								"ApplicationContext": {
+									"type": "string"
+								},
+								"User": {
+									"type": "string"
+								},
+								"EffectiveUsername": {
+									"type": "string"
+								},
+								"Tenant": {
+									"type": "string"
+								},
+								"ServerName": {
+									"type": "string"
+								},
+								"RequestParameters": {
+									"type": "string"
+								},
+								"RequestProperties": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "pth.json",
+						"container": "mongo"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		}
+	]
+}

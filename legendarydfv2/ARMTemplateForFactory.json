@@ -173,11 +173,11 @@
 		},
 		"AzureBlob2_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "odin_fullrefresh_daily.json"
+			"defaultValue": "murugesan.json"
 		},
 		"AzureBlob2_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "legendarycontainer"
+			"defaultValue": "custom"
 		},
 		"AzureBlob3_properties_typeProperties_fileName": {
 			"type": "string",
@@ -2594,7 +2594,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage2",
+					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -2602,7 +2602,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "PT1H.json",
+						"fileName": "PT1H (2).json",
 						"container": "empty"
 					}
 				},
@@ -2744,7 +2744,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		},
 		{
@@ -2761,6 +2761,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
+						"fileName": "pth.json",
 						"container": "mongo"
 					}
 				},
@@ -3369,15 +3370,9 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "SH-IR",
-					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/SH-IR')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2')]",

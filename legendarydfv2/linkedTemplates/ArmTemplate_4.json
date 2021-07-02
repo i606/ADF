@@ -7,6 +7,18 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "legendarydfv2"
 		},
+		"AzureBatch1_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatch1'"
+		},
+		"AzureDataLakeStorageGen2_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'AzureDataLakeStorageGen2'"
+		},
+		"AzureMySql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql1'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -38,6 +50,34 @@
 		"linkedservice_spark_servicePrincipalKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalKey' of 'linkedservice_spark'"
+		},
+		"AzureBatch1_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "legendary"
+		},
+		"AzureBatch1_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://legendary.eastus.batch.azure.com"
+		},
+		"AzureBatch1_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "custom-activity-pool"
+		},
+		"AzureBlobStorage3_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://legendaryfilestorage.blob.core.windows.net"
+		},
+		"AzureDataLakeStorageGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://legendaryadlsgen2.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorageGen2_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeStorageGen2_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "be56f591-badf-4c64-aaec-ca647c49ab9d"
 		},
 		"CosmosDbMongoDb_properties_typeProperties_database": {
 			"type": "string",
@@ -118,56 +158,218 @@
 			"defaultValue": [
 				"legendaryadlsgen2.blob.core.windows.net"
 			]
-		},
-		"AzureDataLakeStorage_Gen2_properties_privateLinkResourceId": {
-			"type": "string",
-			"defaultValue": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.Storage/storageAccounts/legendarygeneration2"
-		},
-		"AzureDataLakeStorage_Gen2_properties_groupId": {
-			"type": "string",
-			"defaultValue": "dfs"
-		},
-		"AzureDataLakeStorage_Gen2_properties_fqdns": {
-			"type": "array",
-			"defaultValue": [
-				"legendarygeneration2.dfs.core.windows.net"
-			]
-		},
-		"LegendaryGen2_properties_privateLinkResourceId": {
-			"type": "string",
-			"defaultValue": "/subscriptions/f935bcc8-a30f-4fbe-9ccf-c7a8c47067ef/resourceGroups/jijo/providers/Microsoft.Storage/storageAccounts/legendarygen2"
-		},
-		"LegendaryGen2_properties_groupId": {
-			"type": "string",
-			"defaultValue": "blob"
-		},
-		"LegendaryGen2_properties_fqdns": {
-			"type": "array",
-			"defaultValue": [
-				"legendarygen2.blob.core.windows.net"
-			]
-		},
-		"AzureBlob1_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "test.json"
-		},
-		"AzureBlob1_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "empty"
-		},
-		"AzureBlob2_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "odin_fullrefresh_daily.json"
-		},
-		"AzureBlob2_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "legendarycontainer"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/RestResource2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RestService3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestResource3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RestService3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": "v1/CountryState?fields=id,description"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_ccg')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "empty"
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\\"
+				},
+				"schema": [
+					{
+						"name": "Field",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "tsv.tsv",
+						"container": "empty"
+					},
+					"columnDelimiter": "\t",
+					"rowDelimiter": "\r",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Test')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "test1.csv",
+						"container": "dataflow"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": "\\N",
+					"quoteChar": "\"",
+					"treatEmptyAsNull": true,
+					"skipLineCount": 0
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBatch1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"accountName": "[parameters('AzureBatch1_properties_typeProperties_accountName')]",
+					"accessKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureBatch1_accessKey')]"
+					},
+					"batchUri": "[parameters('AzureBatch1_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('AzureBatch1_properties_typeProperties_poolName')]",
+					"linkedServiceName": {
+						"referenceName": "AzureBlobStorage",
+						"type": "LinkedServiceReference"
+					}
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime-Azure",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage3')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"serviceEndpoint": "[parameters('AzureBlobStorage3_properties_typeProperties_serviceEndpoint')]",
+					"accountKind": "Storage"
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime-Azure",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorageGen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorageGen2_properties_typeProperties_url')]",
+					"tenant": "[parameters('AzureDataLakeStorageGen2_properties_typeProperties_tenant')]",
+					"servicePrincipalId": "[parameters('AzureDataLakeStorageGen2_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalCredentialType": "ServicePrincipalKey",
+					"servicePrincipalCredential": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorageGen2_servicePrincipalCredential')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "SH-IR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureMySql1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureMySql",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureMySql1_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime-Azure",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -402,501 +604,6 @@
 				"privateLinkResourceId": "[parameters('AzureBlobStorage3_properties_privateLinkResourceId')]",
 				"groupId": "[parameters('AzureBlobStorage3_properties_groupId')]",
 				"fqdns": "[parameters('AzureBlobStorage3_properties_fqdns')]"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/default/AzureDataLakeStorage_Gen2')]",
-			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"privateLinkResourceId": "[parameters('AzureDataLakeStorage_Gen2_properties_privateLinkResourceId')]",
-				"groupId": "[parameters('AzureDataLakeStorage_Gen2_properties_groupId')]",
-				"fqdns": "[parameters('AzureDataLakeStorage_Gen2_properties_fqdns')]"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/default/LegendaryGen2')]",
-			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"privateLinkResourceId": "[parameters('LegendaryGen2_properties_privateLinkResourceId')]",
-				"groupId": "[parameters('LegendaryGen2_properties_groupId')]",
-				"fqdns": "[parameters('LegendaryGen2_properties_fqdns')]"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Avro')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Avro",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "21 (1).avro",
-						"container": "empty"
-					}
-				},
-				"schema": {
-					"type": "record",
-					"name": "Microsoft.ServiceBus.Messaging.EventData",
-					"fields": [
-						{
-							"name": "SequenceNumber",
-							"type": "long"
-						},
-						{
-							"name": "Offset",
-							"type": "string"
-						},
-						{
-							"name": "EnqueuedTimeUtc",
-							"type": "string"
-						},
-						{
-							"name": "SystemProperties",
-							"type": {
-								"type": "map",
-								"values": [
-									"long",
-									"double",
-									"string",
-									"bytes"
-								]
-							}
-						},
-						{
-							"name": "Properties",
-							"type": {
-								"type": "map",
-								"values": [
-									"long",
-									"double",
-									"string",
-									"bytes",
-									"null"
-								]
-							}
-						},
-						{
-							"name": "Body",
-							"type": [
-								"null",
-								"bytes"
-							]
-						}
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlob1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureBlob",
-				"typeProperties": {
-					"format": {
-						"type": "ParquetFormat"
-					},
-					"fileName": "[parameters('AzureBlob1_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlob2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureBlob",
-				"structure": [
-					{
-						"name": "ingestion_config.source",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.app",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.home_dir",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.feed_id",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.seq_type",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.file_sensor.expected_ext",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.file_sensor.expected_ext_count",
-						"type": "Int64"
-					},
-					{
-						"name": "ingestion_config.location.base_dir",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.location.input_dir",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.location.error_dir",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.location.archive_dir",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.location.unzipped_dir",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.start_sequence.initial_seq_id",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.start_sequence.length",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.config_path",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.cdc",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.format",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.delimiter",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.config_path",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.cdc",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.format",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.delimiter",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.config_path",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.cdc",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.format",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.delimiter",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.validation.file_date_format",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.cdc_config.history_table",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.cdc_config.active_table",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.cdc_config.key_cols",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.cdc_config.update_ts_col",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.cdc_config.custom_cdc_query",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.validation.file_date_format",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.history_table",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.active_table",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.key_cols",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.update_ts_col",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.cdc_config.custom_cdc_query",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.validation.file_date_format",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.history_table",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.active_table",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.key_cols",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.update_ts_col",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.cdc_config.custom_cdc_query",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_pattern",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_extensions",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.validation.triplet_check.file_count",
-						"type": "Int64"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.header",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.footer",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_category.validation.record_count_validation.rec_cnt_pos_ctl",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_pattern",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_extensions",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.validation.triplet_check.file_count",
-						"type": "Int64"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.header",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.footer",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_reference.validation.record_count_validation.rec_cnt_pos_ctl",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_pattern",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_extensions",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.validation.triplet_check.file_count",
-						"type": "Int64"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.header",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.footer",
-						"type": "String"
-					},
-					{
-						"name": "ingestion_config.datafeed.lookup_translation.validation.record_count_validation.rec_cnt_pos_ctl",
-						"type": "String"
-					}
-				],
-				"typeProperties": {
-					"format": {
-						"type": "JsonFormat"
-					},
-					"fileName": "[parameters('AzureBlob2_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('AzureBlob2_properties_typeProperties_folderPath')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"SQLPass": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"structure": [
-					{
-						"name": "PersonID",
-						"type": "Int32"
-					},
-					{
-						"name": "LastName",
-						"type": "String"
-					},
-					{
-						"name": "FirstName",
-						"type": "String"
-					},
-					{
-						"name": "Address",
-						"type": "String"
-					},
-					{
-						"name": "City",
-						"type": "String"
-					}
-				],
-				"typeProperties": {
-					"tableName": "[[dbo].[Persons]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1_New1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "walesBank"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Binary2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorageGen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "Empty1",
-						"fileSystem": "test"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Binary4')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorageGen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "*.pdf",
-						"folderPath": "Empty2/all/WS/document",
-						"fileSystem": "test"
-					}
-				}
 			},
 			"dependsOn": []
 		}

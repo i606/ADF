@@ -129,10 +129,10 @@
 			"value": "empty"
 		},
 		"AzureBlob2_properties_typeProperties_fileName": {
-			"value": "odin_fullrefresh_daily.json"
+			"value": "murugesan.json"
 		},
 		"AzureBlob2_properties_typeProperties_folderPath": {
-			"value": "legendarycontainer"
+			"value": "custom"
 		},
 		"AzureBlob3_properties_typeProperties_fileName": {
 			"value": "odin_fullrefresh_daily.json"
