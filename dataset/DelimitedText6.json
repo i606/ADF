@@ -10,9 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "ecolab.csv",
-				"folderPath": "dataflowtest",
-				"container": "empty"
+				"fileName": "date.csv",
+				"container": "custom"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
