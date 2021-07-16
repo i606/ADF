@@ -18,7 +18,7 @@
 					"name": "DerivedColumn1"
 				}
 			],
-			"script": "source(output(\n\t\tDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(Date = toTimestamp(Date, 'yyyy-MM-dd HH:mm:ss.fffff')) ~> DerivedColumn1"
+			"script": "source(output(\n\t\tDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(Date = toTimestamp(replace(split(Date, 'T')[1] +' '+ split(Date, 'T')[2], 'Z', ''))) ~> DerivedColumn1"
 		}
 	}
 }
