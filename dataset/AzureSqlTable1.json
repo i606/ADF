@@ -14,24 +14,9 @@
 		"type": "AzureSqlTable",
 		"structure": [
 			{
-				"name": "PersonID",
-				"type": "Int32"
-			},
-			{
-				"name": "LastName",
-				"type": "String"
-			},
-			{
-				"name": "FirstName",
-				"type": "String"
-			},
-			{
-				"name": "Address",
-				"type": "String"
-			},
-			{
-				"name": "City",
-				"type": "String"
+				"name": "Date",
+				"type": "DateTimeOffset",
+				"format": "yyyy-MM-dd HH:mm:ss.fffffff"
 			}
 		],
 		"typeProperties": {
