@@ -7,7 +7,7 @@
 				"location": "South India",
 				"dataFlowProperties": {
 					"computeType": "MemoryOptimized",
-					"coreCount": 32,
+					"coreCount": 48,
 					"timeToLive": 0
 				}
 			}
